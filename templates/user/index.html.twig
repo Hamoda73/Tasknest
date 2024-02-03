@@ -56,7 +56,8 @@
                                 {% if app.user != null %}
                                     <li><p class="username-navbar">{{app.user.fname}} {{app.user.lname}}</p></li>
                                     <li><a href="{{ path('app_logout') }}">Logout</a></li>
-                                    <li><a href="{{ path('app_logout') }}">Update Profile</a></li>
+                                    <li><a href="{{ path('app_updateuser', { id: app.user.id }) }}">Update</a></li>
+                                    <li><a href="{{ path('app_deleteuser', { id: app.user.id }) }}">Delete</a></li>
                                 {% else %}
                                     <li><a href="{{ path('app_signin') }}">Sigin</a></li>
                                 {% endif %}
