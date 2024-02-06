@@ -9,6 +9,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\UserType;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserOptionsController extends AbstractController
 {
@@ -21,14 +22,21 @@ class UserOptionsController extends AbstractController
     }
 
     #[Route('/updateuser/{id}', name: 'app_updateuser')]
-    public function authoredit($id, ManagerRegistry $managerRegistry, UserRepository $userRepository, Request $request): Response
+    public function authoredit($id, ManagerRegistry $managerRegistry, UserRepository $userRepository, Request $request, UserPasswordHasherInterface $passwordHasher): Response
     {
         $em = $managerRegistry->getManager();
         $data = $userRepository->find($id); 
         $form = $this->createForm(UserType::class, $data);
         $form->handleRequest($request);
-        if($form->isSubmitted() and $form->isValid()) {
-            $em->persist($data);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            // Hash the password if it has been changed in the form
+            $plainPassword = $form->get('password')->getData(); // Assuming 'password' is the name of your password field in the form
+            if (!empty($plainPassword)) {
+                $hashedPassword = $passwordHasher->hashPassword($data, $plainPassword);
+                $data->setPassword($hashedPassword);
+            }
+
             $em->flush();
         }
 
@@ -36,6 +44,7 @@ class UserOptionsController extends AbstractController
             'f' => $form->createView(),
         ]);
     }
+
 
     #[Route('/deleteuser/{id}', name: 'app_deleteuser')]
     public function authordelete($id, UserRepository $userRepository, ManagerRegistry $managerRegistry ): Response

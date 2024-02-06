@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class RegistrationController extends AbstractController
 {
@@ -19,38 +20,44 @@ class RegistrationController extends AbstractController
     {
         $this->passwordEncoder = $passwordEncoder;
     }*/
-
-    /**
-     * @Route("/registration", name="registration")
-     */
     #[Route('/signup', name: 'app_signup')]
-    public function signup(ManagerRegistry $managerRegistry, Request $request)
-    {
-        $user = new User();
+public function signup(ManagerRegistry $managerRegistry, UserPasswordHasherInterface $passwordHasher, Request $request)
+{
+    $user = new User();
 
-        $form = $this->createForm(UserType::class, $user);
+    $form = $this->createForm(UserType::class, $user);
+    $form->handleRequest($request);
 
-        $form->handleRequest($request);
+    if ($form->isSubmitted() && $form->isValid()) {
+        // Get the password field value from the request
+        $formData = $form->getData();
+        $plaintextPassword = $formData->getPassword();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            // Encode the new users password
-            //$user->setPassword($this->passwordEncoder->encodePassword($user, $user->getPassword()));
-
-            // Set their role
-            $user->setRoles(['ROLE_USER']);
-
-            // Save
-            $em = $managerRegistry->getManager();
-            $em->persist($user);
-            $em->flush();
-
-            return $this->redirectToRoute('app_signup');
+        // Make sure the password is not null
+        if ($plaintextPassword === null) {
+            // Handle the error appropriately
+            // For example, you can return a response indicating an error
+            return new Response('Password cannot be null', Response::HTTP_BAD_REQUEST);
         }
 
-        return $this->render('registration/signup.html.twig', [
-            'form' => $form->createView(),
-        ]);
+        // Hash the password
+        $hashedPassword = $passwordHasher->hashPassword($user, $plaintextPassword);
+
+        $user->setPassword($hashedPassword);
+        $user->setRoles(['ROLE_USER']);
+
+        $em = $managerRegistry->getManager();
+        $em->persist($user);
+        $em->flush();
+
+        return $this->redirectToRoute('app_signup');
     }
+
+    return $this->render('registration/signup.html.twig', [
+        'form' => $form->createView(),
+    ]);
+}
+
     
     #[Route('/contact', name: 'app_contact')]
     public function contact(): Response
@@ -64,6 +71,14 @@ class RegistrationController extends AbstractController
     public function indexhome(): Response
     {
         return $this->render('user/index.html.twig'
+            
+        );
+    }
+
+    #[Route('/dashboard', name: 'app_dashboard')]
+    public function dashboard(): Response
+    {
+        return $this->render('admin/dashboard.html.twig'
             
         );
     }

@@ -80,3 +80,8 @@
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-size: xx-small;
 }
+.birthdate-error-message {
+  color: red; /* Set color to red */
+  font-size: 14px; /* Set font size */
+  margin-top: 5px; /* Add margin to separate from the input */
+}
