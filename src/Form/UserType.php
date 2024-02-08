@@ -19,6 +19,7 @@ class UserType extends AbstractType
         ->add('birthdate')
         ->add('phonenumber')
         ->add('email')
+        ->add('image')
         ->add('password', RepeatedType::class, [
             'type'=>PasswordType::class,
             'first_options'=>['label'=>'Password'],

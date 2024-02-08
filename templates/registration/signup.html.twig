@@ -113,6 +113,11 @@
 									<label for="floatingInput">Email Adress</label>
 								</div>
 								<div class="margin-inputs form-floating">
+									<input type="file" id="imageInput" name="{{ form.image.vars.full_name }}" accept=".png" class="form-control">
+
+									<label for="floatingInput">Profile image</label>
+								</div>
+								<div class="margin-inputs form-floating">
 									{{ form_widget(form.password.first,{'attr':{'class':'form-control'}}) }}
 
 									<label for="floatingInput">Password</label>

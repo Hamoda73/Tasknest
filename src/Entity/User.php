@@ -40,6 +40,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\Length(min: 8, max: 8)]
     private ?int $phonenumber = null;
 
+    #[ORM\Column(length: 180)]
+    #[Assert\NotBlank]
+    private ?string $image = null;
+
     
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     #[Assert\NotBlank]
@@ -182,6 +186,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPhonenumber(int $phonenumber): static
     {
         $this->phonenumber = $phonenumber;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): static
+    {
+        $this->image = $image;
 
         return $this;
     }
