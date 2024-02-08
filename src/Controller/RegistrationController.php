@@ -58,6 +58,8 @@ public function signup(ManagerRegistry $managerRegistry, UserPasswordHasherInter
     ]);
 }
 
+
+
     
     #[Route('/contact', name: 'app_contact')]
     public function contact(): Response
@@ -82,4 +84,47 @@ public function signup(ManagerRegistry $managerRegistry, UserPasswordHasherInter
             
         );
     }
+
+
+
+/*----------------------------------------  ADMIN  -----------------------------------------------*/
+
+    #[Route('/signupadmin', name: 'app_signup_admin')]
+    public function signupadmin(ManagerRegistry $managerRegistry, UserPasswordHasherInterface $passwordHasher, Request $request)
+    {
+        $user = new User();
+
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Get the password field value from the request
+            $formData = $form->getData();
+            $plaintextPassword = $formData->getPassword();
+
+            // Make sure the password is not null
+            if ($plaintextPassword === null) {
+                // Handle the error appropriately
+                // For example, you can return a response indicating an error
+                return new Response('Password cannot be null', Response::HTTP_BAD_REQUEST);
+            }
+
+            // Hash the password
+            $hashedPassword = $passwordHasher->hashPassword($user, $plaintextPassword);
+
+            $user->setPassword($hashedPassword);
+            $user->setRoles(['ROLE_USER']);
+
+            $em = $managerRegistry->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            return $this->redirectToRoute('app_signup');
+        }
+
+        return $this->render('registration/signup.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
 }

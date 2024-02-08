@@ -43,7 +43,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     #[Assert\NotBlank]
-    #[Assert\GreaterThan('today', message:'invalid birthdate')]
+   
     private ?\DateTimeInterface $birthdate = null;
 
     #[ORM\Column]
@@ -52,14 +52,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      */
-    /**
-     * @ORM\Column(length: 180)
-     * @Assert\NotBlank
-     * @Assert\Regex(
-     *     pattern="/^(?=.*\d)(?=.*[A-Z])[A-Za-z\d]{8,}$/",
-     *     message="The password must be at least 8 characters long and contain at least one digit and one uppercase letter."
-     * )
-     */
+    
+    #[ORM\Column(length: 180)]
     private ?string $password = null;
 
     public function getId(): ?int

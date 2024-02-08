@@ -40,5 +40,11 @@ class SecurityController extends AbstractController
         return $this->redirectToRoute('app_signin');
     }
 
+    #[Route(path: '/signinadmin', name: 'app_signin_admin')]
+    public function signinadmin(AuthenticationUtils $authenticationUtils)
+    {
+        
+    }
+
     
 }
