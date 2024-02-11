@@ -1,5 +1,5 @@
 <?php
-
+//from forum management branch
 namespace App\Entity;
 
 use App\Repository\UserRepository;
