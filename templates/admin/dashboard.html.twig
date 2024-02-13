@@ -18,13 +18,12 @@
 					</a>
 				</li>
 				<li class="nav-item d-none d-sm-inline-block">
-					<a href="index3.html" class="nav-link">Home</a>
+					<a href="index3.html" class="nav-link"></a>
 				</li>
 				<li class="nav-item d-none d-sm-inline-block">
 					<a href="#" class="nav-link">Contact</a>
 				</li>
 			</ul>
-
 			<!-- Right navbar links -->
 			<ul
 				class="navbar-nav ml-auto">
@@ -176,11 +175,14 @@
 				<div
 				class="sidebar"> <!-- Sidebar user panel (optional) -->
 				<div class="user-panel mt-3 pb-3 mb-3 d-flex">
-					<div class="image">
-						<img src="images/dashboard-images/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-					</div>
 					<div class="info">
-						<a href="#" class="d-block">Alexander Pierce</a>
+						<p>
+							<span class="admin-infos">{{app.user.fname}}</span>
+							<span class="">{{app.user.lname}}</span>
+							{% if app.user.image %}
+								<img src="{{ app.user.image }}" alt="Admin Image" style="width: 50px; height: 50px; border-radius: 50%;">
+							{% endif %}
+						</p>
 					</div>
 				</div>
 
@@ -201,7 +203,7 @@
 					<ul
 						class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 						<!-- Add icons to the links using the .nav-icon class
-																																																																																																	with font-awesome or any other icon font library -->
+																																																																																																																																																																			with font-awesome or any other icon font library -->
 						<li class="nav-item menu-open">
 							<a href="#" class="nav-link active">
 								<i class="nav-icon fas fa-tachometer-alt"></i>

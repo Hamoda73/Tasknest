@@ -3,14 +3,23 @@
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+//use App\Form\DataTransformer\FileToPathTransformer;
 
 class UserType extends AbstractType
 {
+    /*private $fileTransformer;
+
+    public function __construct(FileToPathTransformer $fileTransformer)
+    {
+        $this->fileTransformer = $fileTransformer;
+    }*/
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -25,8 +34,8 @@ class UserType extends AbstractType
             'first_options'=>['label'=>'Password'],
             'second_options'=>['label'=>'Confirm Password']
         ])
-        ->add('SAVE', SubmitType::class)
         ;
+        //$builder->get('image')->addModelTransformer($this->fileTransformer);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -61,7 +61,9 @@
 								<li>
 									<p class="username-navbar">{{app.user.fname}}
 										{{app.user.lname}}
-										<img src="{{ app.user.image }}" alt="User Image" style="width: 50px; height: 50px; border-radius: 50%;">
+										{% if app.user.image %}
+											<img src="{{ app.user.image }}" alt="User Image" style="width: 50px; height: 50px; border-radius: 50%;">
+										{% endif %}
 									</p>
 								</li>
 								<li>

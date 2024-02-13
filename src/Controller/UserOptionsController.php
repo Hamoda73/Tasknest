@@ -30,6 +30,7 @@ class UserOptionsController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
+            
             // Hash the password if it has been changed in the form
             $plainPassword = $form->get('password')->getData(); // Assuming 'password' is the name of your password field in the form
             if (!empty($plainPassword)) {
@@ -41,7 +42,7 @@ class UserOptionsController extends AbstractController
         }
 
         return $this->render('user_options/updateuser.html.twig', [
-            'f' => $form->createView(),
+            'form' => $form->createView(),
         ]);
     }
 

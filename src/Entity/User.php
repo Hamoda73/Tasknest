@@ -25,13 +25,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     
     #[ORM\Column(length: 180)]
     #[Assert\NotBlank]
-    #[Assert\Length(min: 5)]
+    #[Assert\Length(min: 4)]
     private ?string $fname = null;
     
     
     #[ORM\Column(length: 180)]
     #[Assert\NotBlank]
-    #[Assert\Length(min: 5)]
+    //#[Assert\Length(min: 5)]
     private ?string $lname = null;
 
     
