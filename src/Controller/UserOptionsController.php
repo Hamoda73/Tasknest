@@ -22,7 +22,7 @@ class UserOptionsController extends AbstractController
     }
 
     #[Route('/updateuser/{id}', name: 'app_updateuser')]
-    public function authoredit($id, ManagerRegistry $managerRegistry, UserRepository $userRepository, Request $request, UserPasswordHasherInterface $passwordHasher): Response
+    public function updateuser($id, ManagerRegistry $managerRegistry, UserRepository $userRepository, Request $request, UserPasswordHasherInterface $passwordHasher): Response
     {
         $em = $managerRegistry->getManager();
         $data = $userRepository->find($id); 
@@ -48,7 +48,7 @@ class UserOptionsController extends AbstractController
 
 
     #[Route('/deleteuser/{id}', name: 'app_deleteuser')]
-    public function authordelete($id, UserRepository $userRepository, ManagerRegistry $managerRegistry ): Response
+    public function deleteuser($id, UserRepository $userRepository, ManagerRegistry $managerRegistry ): Response
     {
         $em = $managerRegistry->getManager();
         $data = $userRepository->find($id);
@@ -57,4 +57,45 @@ class UserOptionsController extends AbstractController
 
         return $this->redirectToRoute('app_logout');
     }
+
+
+    /*------------------------------  ADMIN  ------------------------------------*/
+
+
+    #[Route('/updateadmin/{id}', name: 'app_updateadmin')]
+    public function updateadmin($id, ManagerRegistry $managerRegistry, UserRepository $userRepository, Request $request, UserPasswordHasherInterface $passwordHasher): Response
+    {
+        $em = $managerRegistry->getManager();
+        $data = $userRepository->find($id); 
+        $form = $this->createForm(UserType::class, $data);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            
+            // Hash the password if it has been changed in the form
+            $plainPassword = $form->get('password')->getData(); // Assuming 'password' is the name of your password field in the form
+            if (!empty($plainPassword)) {
+                $hashedPassword = $passwordHasher->hashPassword($data, $plainPassword);
+                $data->setPassword($hashedPassword);
+            }
+            $em->flush();
+        }
+
+        return $this->render('user_options/updateadmin.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/admindeleteuser/{id}', name: 'app_admindeleteuser')]
+    public function admindeleteuser($id, UserRepository $userRepository, ManagerRegistry $managerRegistry ): Response
+    {
+        $em = $managerRegistry->getManager();
+        $data = $userRepository->find($id);
+        $em->remove($data);
+        $em->flush();
+
+        return $this->redirectToRoute('app_useraccounts');
+    }
+
 }
+

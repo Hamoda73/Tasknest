@@ -76,10 +76,6 @@
 #rememberMe:checked label {
   color: #7d2ae8;
 }
-.username-navbar {
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  font-size: xx-small;
-}
 .birthdate-error-message {
   color: red; /* Set color to red */
   font-size: 14px; /* Set font size */
@@ -104,4 +100,35 @@
 .admin-infos {
   color: white;
   font-size: large;
+}
+.useroptions {
+  background-color: #40e0d0;
+  width: 90%;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  margin-left: 7px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.useroptions:hover,
+.useroptions:focus {
+  transform: scale(1.05);
+  outline: none;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+.dashboard-managment-table {
+  margin-left: 250px;
+  background-image: url("https://www.monitask.com/en/blog/how-to-create-and-promote-teamwork-in-the-workplace");
+  background-size: cover;
+  background-position: center;
+}
+.fname {
+  font-size: 16px;
+  color: black;
+}
+.lname {
+  font-size: 16px;
+  color: black;
 }

@@ -1,0 +1,66 @@
+{% extends 'baseadmin.html.twig' %}
+{% block body %}
+	<section class="explore-section section-padding" id="section_2">
+		<div class="container">
+			<div class="row">
+				<div class="container">
+					<div class="col-lg-6 ">
+						<div class="custom-form" id="signup-form">
+							{{ form_start(form,{attr:{novalidate:'novalidate'}}) }}
+							<div class="margin-inputs xx">
+								<div class="xx form-floating label-width">
+									{{ form_widget(form.fname,{'attr':{'class':'form-control'}}) }}
+									{{ form_errors(form.fname) }}
+									<label for="floatingInput">First Name</label>
+								</div>
+
+								<div class="xx form-floating label-width">
+									{{ form_widget(form.lname,{'attr':{'class':'form-control'}}) }}
+									{{ form_errors(form.fname) }}
+									<label for="floatingInput">Last Name</label>
+								</div>
+							</div>
+							<div class="margin-inputs xx">
+								<div class="xx form-floating label-width">
+									{{ form_widget(form.birthdate, {'attr': {'class': 'form-control'}}) }}
+
+									<label for="floatingInput" class="birthdate-label">Date Of Birth</label>
+								</div>
+								<div class="label-width xx form-floating">
+									{{ form_widget(form.phonenumber,{'attr':{'class':'form-control'}}) }}
+									{{ form_errors(form.phonenumber) }}
+									<label for="floatingInput">Phone number</label>
+								</div>
+							</div>
+							<div class="margin-inputs form-floating">
+								{{ form_widget(form.email,{'attr':{'class':'form-control'}}) }}
+								{{ form_errors(form.email) }}
+								<label for="floatingInput">Email Adress</label>
+							</div>
+							<div class="margin-inputs form-floating">
+								{{ form_widget(form.image,{'attr':{'class':'form-control'}}) }}
+
+								<label for="floatingInput">Profile image</label>
+							</div>
+							<div class="margin-inputs form-floating">
+								{{ form_widget(form.password.first,{'attr':{'class':'form-control'}}) }}
+
+								<label for="floatingInput">Password</label>
+							</div>
+							<div class="margin-inputs form-floating">
+								{{ form_widget(form.password.second,{'attr':{'class':'form-control'}}) }}
+
+								<label for="floatingInput">Confirm Password</label>
+							</div>
+							<div class="margin-inputs label-width1">
+								<button type="submit" class="form-control">Submit</button>
+							</div>
+							{{ form_end(form) }}
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>{% endblock %}
