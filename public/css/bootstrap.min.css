@@ -10443,3 +10443,9 @@ fieldset:disabled .btn {
   }
 }
 /*# sourceMappingURL=bootstrap.min.css.map */
+
+.col-lg-6.col-12.m-auto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
