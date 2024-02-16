@@ -42,7 +42,7 @@ class UserOptionsController extends AbstractController
         }
 
         return $this->render('user_options/updateuser.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form->createView()
         ]);
     }
 

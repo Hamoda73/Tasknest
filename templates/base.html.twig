@@ -115,9 +115,12 @@
 										</button>
 									</li>
 									<li>
-										<button class="useroptions">
-											<a href="{{ path('app_deleteuser', { id: app.user.id }) }}">Delete</a>
-										</button>
+
+										<form action="{{ path('app_deleteuser', { 'id': app.user.id }) }}" method="POST">
+											<input type="hidden" name="_method" value="Delete">
+											<button type="submit" class="useroptions" onclick="return confirm('{{ app.user.fname }} {{ app.user.lname }} are you sure you want to delete your account?')">Delete</button>
+										</form>
+
 									</li>
 								{% else %}
 									<li>

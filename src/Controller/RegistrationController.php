@@ -51,6 +51,9 @@ class RegistrationController extends AbstractController
             $em->persist($user);
             $em->flush();
 
+            //Email
+            
+
             return $this->redirectToRoute('app_signup');
         }
 
