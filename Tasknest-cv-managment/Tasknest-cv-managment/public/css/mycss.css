@@ -1,0 +1,90 @@
+
+.custom-block-image {
+  border-radius: 20px; /* Adjust this value to your desired border radius */
+}
+
+
+
+
+.forget-pass-text {
+  margin-top: -15px;
+  margin-left: 120px;
+}
+.xx {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+}
+
+.loginpic {
+  margin-left: 200px;
+}
+.label-width {
+  width: 400px;
+}
+.label-width1 {
+  width: 550px;
+}
+.flex-signup-form-pic {
+  display: flex;
+  flex-direction: row;
+}
+.margin-tab {
+  margin-top: -40px;
+  margin-bottom: -40px;
+}
+
+.loginpic {
+  border-radius: 50%;
+  filter: grayscale(50%);
+  transition: 0.5s ease;
+  cursor: pointer;
+}
+.loginpic:hover {
+  transform: scale(1.3);
+  filter: grayscale(0%);
+}
+.margin-inputs {
+  margin-bottom: -10px;
+}
+.ww {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+.create-account-text {
+  margin-left: 100px;
+  margin-top: 10px;
+}
+.create-account-text:hover {
+  color: rergb(64, 0, 255);
+  margin-left: 100px;
+  margin-top: 10px;
+}
+.have-account-text {
+  margin-left: 100px;
+  margin-top: 10px;
+}
+.logincheckbox-container {
+  margin-bottom: 10px;
+  margin-left: 120px;
+}
+#rememberMe {
+  margin-right: 6px;
+  pointer-events: none;
+}
+.logincheckbox-label {
+  font-weight: 500;
+  color: rgb(137, 137, 137);
+  cursor: pointer;
+}
+#rememberMe:checked {
+  accent-color: #7d2ae8;
+}
+#rememberMe:checked label {
+  color: #7d2ae8;
+}
+.username-navbar {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: xx-small;
+}

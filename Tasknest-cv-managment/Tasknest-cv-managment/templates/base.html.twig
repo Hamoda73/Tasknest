@@ -1,0 +1,167 @@
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>{% block title %}TaskNest{% endblock %}</title>
+        <link rel="icon" href="{{ asset('images/tasknest.png') }}">
+        {% block stylesheets %}     
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap" rel="stylesheet">                
+        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/bootstrap-icons.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/templatemo-topic-listing.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/mycss.css') }}" rel="stylesheet">
+
+        {% endblock %}
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <i class=""></i>
+                    <img src="{{ asset('images/tasknest1.png') }}" alt="Tasknest Logo" style="width: 220px; height: auto;">
+                </a>
+
+                <div class="d-lg-none ms-auto me-4">
+                    <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+                </div>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-lg-5 me-lg-auto">
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="{{ path('home') }}">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="{{ path('showcvs') }}">Freelancers</a>
+                        </li>
+
+                      
+
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="#section_4">FAQs</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="#section_5">Contact</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
+
+                            <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+                                <li><a class="dropdown-item" href="topics-listing.html">Topics Listing</a></li>
+
+                                <li><a class="dropdown-item" href="contact.html">Contact Form</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href=""></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href=""></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href=""></a>
+                        </li>
+                        {% block navcv %}
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="{{ path('addcv', {'id': 1}) }}">Make Your own CV</a>
+                        </li>
+                        {% endblock %}
+                    </ul>
+
+                    <div class="d-none d-lg-block">
+                        <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        {% block javascripts %}
+        <script src="{{asset('js/jquery.min.js')}}"></script>
+        <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+        <script src="{{asset('js/jquery.sticky.js')}}"></script>
+        <script src="{{asset('js/click-scroll.js')}}"></script>
+        <script src="{{asset('js/custom.js')}}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js" integrity="sha512-lvpTL6+ySwTr7W97xq9vpK46u+MB8pHlHJYZq0J0lh0Fd6jNhxJVryPVql7WWp9tDVawrrM/Kd25JrqrMZIKOw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha512-Pv9Ye2Wkpuw5AJBcQzW8KOFskZao3XK76wGiPzvkQMc+FwhNoo9wrZi7+8JnOlUkNbkf+GTnTdu3VX4fhv74Dg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    {% endblock %}
+    </head>
+
+    <body id="top"> 
+                {% block body %} 
+                {% endblock %} 
+    </body>
+    <footer class="site-footer section-padding">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-3 col-12 mb-4 pb-2">
+                    <a class="navbar-brand mb-2" href="index.html">
+                        <i class=""></i>
+                    <img src="{{asset('images/tasknest1.png')}}" alt="Tasknest Logo" style="width: 300px; height: auto;">
+                </a>
+                    </a>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-6">
+                    <h6 class="site-footer-title mb-3">Resources</h6>
+
+                    <ul class="site-footer-links">
+                        <li class="site-footer-link-item">
+                            <a href="#" class="site-footer-link">Home</a>
+                        </li>
+
+                        <li class="site-footer-link-item">
+                            <a href="{{ path('showcvs') }}" class="site-footer-link">Freelancers</a>
+                        </li>
+                    
+                        <li class="site-footer-link-item">
+                            <a href="#" class="site-footer-link">FAQs</a>
+                        </li>
+
+                        <li class="site-footer-link-item">
+                            <a href="#" class="site-footer-link">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-6 mb-4 mb-lg-0">
+                    <h6 class="site-footer-title mb-3">Information</h6>
+
+                    <p class="text-white d-flex mb-1">
+                        <a href="tel: 28-899-812" class="site-footer-link">
+                            28-899-812
+                        </a>
+                    </p>
+
+                    <p class="text-white d-flex">
+                        <a href="mailto:TaskNest@gmail.com" class="site-footer-link">
+                            TaskNest@gmail.com
+                        </a>
+                    </p>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-12 mt-4 mt-lg-0 ms-auto">
+                   
+
+                    <p class="copyright-text mt-lg-5 mt-4">Copyright © 2024 Freelancing Center. All rights reserved.
+                    <br><br>Design: <a rel="nofollow" href="https://templatemo.com" target="_blank">TechTitans</a> Distribution <a href="https://themewagon.com"></a></p>
+                    
+                </div>
+
+            </div>
+        </div>
+    </footer>
+</html>
+

@@ -1,0 +1,255 @@
+{% extends 'base.html.twig' %}
+{% block title %}Your CV!{% endblock %}
+
+{% block body %}
+    <style>
+        :root {
+            --violet-color: #995492;
+        }
+        h7 {
+            color: var(--violet-color);
+            font-size: var(--h6-font-size);
+            margin-bottom: 10px; /* Adjust margin bottom for spacing */
+        }
+        .language-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+        .bullet {
+            font-size: 10px;
+            margin-right: 5px;
+        }
+        .language {
+            font-size: 17px;
+            font-weight: bold;
+            margin-bottom: 0;
+        }
+        .skill {
+            font-size: 17px;
+            font-weight: bold;
+            margin-bottom: -15px;
+            margin-top: 10px;
+        }
+        .ml-auto {
+            margin-left: 60px; /* This will push the languages section to the right by 50 pixels */
+        }
+        .language-item:first-child {
+            margin-top: 80px!important; /* Adjust as needed */
+        }
+        .languages-heading {
+            margin-bottom: 10px; /* Adjust this value to increase or decrease the space */
+        }
+        .description {
+    margin-left: 30px; /* Adjust as needed to control position from the left */
+    margin-right: 20px; /* Adjust as needed to control position from the right */
+    word-wrap: break-word; /* Wrap long words to the next line */
+}
+        .location {
+            margin-top: 25px; /* Adjust as needed to control position from the left */
+            margin-left: -5px; /* Adjust as needed to control position from the left */
+            margin-right: 20px; /* Adjust as needed to control position from the right */
+            color: rgb(0, 0, 0);
+        }
+        .location-image {
+            margin-top: 17px; /* Adjust as needed to control the vertical position (top) */
+            margin-left: 10px; /* Adjust as needed to control the horizontal position (left) */
+            margin-right: 20px; /* Adjust as needed to control position from the right */
+        }
+        .skill-container {
+    display: flex;
+    justify-content: space-between; /* Distribute items evenly along the container */
+}
+
+.skill-item {
+    /* width: calc(33.33% - 20px); Adjusted for equal spacing */
+    margin-right: 20px; /* Updated margin for equal spacing */
+    margin-bottom: 20px; /* Updated for consistency */
+}
+
+.skill-item:last-child {
+    margin-right: 0; /* No right margin for the last item */
+}
+
+@media (max-width: 1000px) {
+    .skill-item {
+        width: calc(50% - 20px); /* Adjusted for smaller screens */
+        margin-right: 20px;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .skill-item {
+        width: calc(100% - 20px); /* Full width for small screens */
+        margin-right: 0; /* No right margin on small screens */
+        margin-bottom: 20px;
+    }
+}
+
+
+        .action {
+            margin-top: 20px;
+            margin-left: 580px; /* Adjust as needed to control position from the left */
+            margin-right: 0px; /* Adjust as needed to control position from the right */
+            width: 30%; /* Adjust as needed to control the size of the block */
+        }
+        .action-item {
+            width: calc(40% - 10px); /* Adjust the width as needed */
+        }
+        .custom-btn1 {
+            background-color: rgb(196, 106, 187); /* Background color */
+            color: white; /* Text color */
+            border-radius: 20px;
+            /* Add any additional styling you need */
+        }
+        .custom-btn1:hover {
+            background-color: rgb(100, 24, 92); /* specify the desired hover background color */;
+            color: white; /* specify the desired hover text color */;
+            /* Add styles for button hover state if needed */
+        }
+        .mb-3 {
+    margin-bottom: -1rem!important;
+}
+    </style>
+
+    <header class="site-header d-flex flex-column justify-content-center align-items-center">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Freelancers</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Your CV</li>
+                        </ol>
+                    </nav>
+                    <h2 class="text-white">Your CV</h2>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-12 mt-3 mx-auto">
+                    <div class="custom-block custom-block-topics-listing bg-white shadow-lg mb-5">
+
+                        <div class="d-flex mb-4"> <!-- Added mb-4 class for bottom margin -->
+                            <img src="{{ asset('images/' ~ cv.user.image) }}" class="custom-block-image img-fluid rounded-circle mr-3" alt=""> <!-- Added mr-3 class for right margin -->
+                            <div>
+                                <h6 class="mb-2 name">{{ cv.user.fname ~ ' ' ~ cv.user.lname }}</h6>
+                                <h5 class="mb-2">{{ cv.bio }}</h5>
+                                <p class=" description">{{ cv.description }}</p>
+                                <div class="d-flex align-items-center">
+                                    <img src="{{ asset('images/loc.png') }}" alt="Location Icon" width="25" height="30" class="mr-2 location-image">
+                                    <p class="mb-0 location">{{ cv.location }}</p>
+                                </div>
+                                
+                            </div>
+                            <div class="ms-auto"> <!-- Move the badge to the right by using "ms-auto" -->
+                                <div class="badge bg-design rounded-pill">{{ cv.skills|length }}</div> <!-- Display the badge -->
+                            </div>
+                        </div>
+
+                        <div class="d-flex mb-4"> <!-- Added mb-4 class for bottom margin -->
+                            <div class="ml-auto">
+                                <div class="d-flex align-items-center languages-heading"> <!-- Container for "Languages :" heading -->
+                                    <div style="display: inline-block;"> 
+                                        <h7 class="mb-0 language">Languages:</h7> <!-- Added margin-bottom directly to the heading -->
+                                    </div>
+                                </div>
+                            
+                                {% for language in cv.language %}
+                                <div class="language-item">
+                                    <span class="bullet">&#8226;</span>
+                                    <h6 class="mb-2 language">{{ language }}</h6>
+                                </div>
+                                {% endfor %}
+                              
+                            </div>
+
+                                
+                                
+                            <div class="ml-auto">
+                                <div class="d-flex align-items-center skill">
+                                    <div style="display: inline-block;"> 
+                                        <h7 class="mb-0 skill">Skills:</h7>
+                                    </div>
+                                </div>
+                                <div class=" d-flex flex-wrap">
+                                    {% if cv.skills  is not empty %}
+                                    {% for skill in cv.skills %}
+                                    <div class="skill-item skill-container mb-3 mr-3 custom-container"> <!-- Adjust margin-right as needed -->
+                                        <h6 class="mb-2 btn custom-btn mt-3 mt-lg-4">{{ skill.name }}</h6>
+                                    </div>
+                                    {% endfor %}
+                                    {% else %}
+                                    <h5 class="mb-0 skill">No Skills </h5>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            
+                                
+                            
+                            
+                        </div>
+
+<style>.ml-auto.certif {
+    margin-top: 30px;
+    margin-left: -11px;
+    margin-right: 10px;
+}
+.ml-auto.contact {
+    margin-left: -11px;
+    margin-right: 10px;
+}
+</style>
+
+
+                        <div class="d-flex mb-4"> <!-- Added mb-4 class for bottom margin -->
+                            <div class="ml-auto certif">
+                                <div class="d-flex align-items-center languages-heading"> <!-- Container for "Languages :" heading -->
+                                    <div style="display: inline-block;" class="description-block"> 
+                                        <h7 class="mb-0 description-text1">Certification:</h7> <!-- Added margin-bottom directly to the heading -->
+                                    </div>
+                                </div>
+                                <div class="description-block1">
+                                    <p class="mb-0 description-text">{{ cv.certification }}</p>
+                                </div>
+                            </div>
+                        </div>
+                                
+                        <div class="d-flex mb-4">      
+                            <div class="ml-auto contact">
+                                <div class="d-flex align-items-center languages-heading"> <!-- Container for "Languages :" heading -->
+                                    <div style="display: inline-block;" class="description-block"> 
+                                        <h7 class="mb-0 description-text1">Contact:</h7> <!-- Added margin-bottom directly to the heading -->
+                                    </div>
+                                </div>
+                                <div class="description-block1">
+                                    <a href="{{ cv.contact }}" target="_blank" class="mb-0 description-text">{{ cv.user.fname ~ ' ' ~ cv.user.lname }}</a>
+                                </div>
+                            </div>
+                            
+                          
+                            
+                        </div>
+
+
+                      
+                        <div class="d-flex action action-item">
+                            <div class="action-item">
+                                <a href="{{ path('editcv', {'id': cv.id}) }}" class="btn custom-btn1 mt-3 mt-lg-4">Edit CV</a>
+                            </div>
+                            <div class="action-item">
+                                <a href="{{ path('removecv', {'id': cv.id}) }}" class="btn custom-btn1 mt-3 mt-lg-4">Delete CV</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>           
+</main>
+{% endblock %}
