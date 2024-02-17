@@ -1,0 +1,180 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tasknest - CV!{% endblock %}
+
+{% block body %}
+<main>
+    <header class="login-gif site-header">
+        <div class="container">
+            <h2 class="text-white">Welcome to TASKNEST</h2>
+            <h6 class="text-white">Start By creating your own CV</h6>
+        </div>
+    </header>
+
+    <section class="explore-section section-padding" id="">
+        <div class="container">
+            <div class="row">              
+                <div class="container">
+                    <h2 class="text-center mb-4" style="margin-top: -50px;">Create your cv!</h2>
+                    <div class="row">
+                        <div class="col-lg-6" style="order: 2;">
+                            <div class="ww">
+                                <img src="{{ asset('images/loginpic.png') }}" alt="loginpic" height="270" class="loginpic" style="width: auto; max-width: 50%;">
+                            </div>
+                        </div>
+                    <div class="col-lg-6 ">
+                            <div class="custom-form" id="signup-form">
+                                    {{ form_start(cvForm,{'attr': {'novalidate': 'novalidate'}} ) }}
+                                        <div class="margin-inputs xx">
+                                       
+                                            <div class="xx form-floating label-width">
+                                                {{ form_widget(cvForm.user,{'attr':{'class':'form-control'}}) }}
+                                                    <label for="floatingInput">Last Name</label>
+                                            </div>
+                                            
+                                            <div class="xx form-floating label-width">
+                                                
+                                                {{ form_widget(cvForm.bio,{'attr':{'class':'form-control'}}) }}
+                                               <!-- Wrapper for the error message -->
+                                                    
+                                                <label for="floatingInput">BIO</label>
+                                                
+                                            </div>
+                                           
+                                            
+                                            
+                                            
+                                            
+                                        </div>
+                                        <div class="margin-inputs xx">
+                                       
+                                            <div class="xx form-floating label-width">
+
+                                                  
+                                            </div>
+                                            
+                                            <div class="xx form-floating label-width">
+                                                
+                                                {{ form_errors(cvForm.bio) }}
+                                                
+                                            </div>
+                                           
+                                            
+                                            
+                                            
+                                            
+                                        </div>
+                                        
+                                        <div class="margin-inputs form-floating">
+                                            <div class="xx form-floating label-width ">
+                                                {{ form_widget(cvForm.description,{'attr':{'class':'form-control'}}) }}
+                                                <label for="floatingInput" class="birthdate-label">description</label>
+                                            </div>
+
+                                            <div class="margin-inputs xx">
+                                                
+                                                <div class="xx form-floating label-width">
+                                                    
+                                                    {{ form_errors(cvForm.description) }}
+                                                    
+                                                </div>
+
+                                                
+                                            </div>
+                                           
+                                            <div class="margin-inputs xx custom-language-field">
+                                                <label for="floatingInput">Languages:</label>
+                                                {{ form_widget(cvForm.language, {'attr': {'class': 'form-control no-border custom-language-field'}}) }}
+                                            </div>
+                                            
+                                            <div class="margin-inputs xx">
+                                                
+                                                <div class="xx form-floating label-width">
+                                                    
+                                                    {{ form_errors(cvForm.language) }}
+                                                    
+                                                </div>
+    
+                                                
+                                            </div>
+                                               <style>
+      .no-border {
+        border: none;
+    }
+   /* Add column layout to custom-language-field class */
+   .custom-language-field {
+        display: flex;
+        flex-direction: column!important; /* Change flex-direction to column */
+        gap: 2px!important; /* Adjust the gap between choices if needed */
+    }
+
+    /* Override margin-bottom for form-check elements within custom-language-field */
+    .custom-language-field .form-check {
+        margin-bottom: 2px!important;
+    }
+
+
+
+                                 
+                                            </style>
+                                        </div>
+
+                                        <div class="margin-inputs form-floating">
+                                            {{ form_widget(cvForm.location,{'attr':{'class':'form-control'}}) }}
+                                            <label for="floatingInput">Location</label>
+                                        </div>
+                                        <div class="margin-inputs xx">
+                                                
+                                            <div class="xx form-floating label-width">
+                                                
+                                                {{ form_errors(cvForm.location) }}
+                                                
+                                            </div>
+
+                                            
+                                        </div>
+                                        <div class="margin-inputs form-floating">
+                                            {{ form_widget(cvForm.certification,{'attr':{'class':'form-control'}}) }}
+                                            <label for="floatingInput">Certification</label>
+                                        </div>
+                                        <div class="margin-inputs xx">
+                                                
+                                            <div class="xx form-floating label-width">
+                                                
+                                                {{ form_errors(cvForm.certification) }}
+                                                
+                                            </div>
+
+                                            
+                                        </div>
+                                        <div class="margin-inputs form-floating">
+                                            {{ form_widget(cvForm.contact,{'attr':{'class':'form-control'}}) }}
+                                            <label for="floatingInput">Contact</label>
+                                        </div>
+                                        <div class="margin-inputs xx">
+                                                
+                                            <div class="xx form-floating label-width">
+                                                
+                                                {{ form_errors(cvForm.contact) }}
+                                                
+                                            </div>
+
+                                            
+                                        </div>
+                                        <div class="margin-inputs label-width1">
+                                            <button type="submit" href="" class="form-control">Add Skills</button>
+                                        </div>
+
+                    
+                                    {{ form_end(cvForm) }}
+                                </div>
+                            </div> 
+                                                     
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+{% endblock %}

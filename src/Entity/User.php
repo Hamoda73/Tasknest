@@ -11,7 +11,7 @@ use Doctrine\DBAL\Types\Types;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+class User /*implements UserInterface, PasswordAuthenticatedUserInterface*/
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -32,6 +32,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $birthdate = null;
+    
+    //#[ORM\OneToOne(mappedBy: "user", cascade: ["remove"])]
+   // private ?CV $cv = null;
+// User.php
+
+#[ORM\OneToOne(mappedBy: "user", cascade: ["persist", "remove"])]
+private ?CV $cv = null;
+
+public function setCv(?CV $cv): static
+{
+    $this->cv = $cv;
+    if ($cv !== null) {
+        $cv->setUser($this); // Make sure to synchronize the association on both sides
+    }
+    return $this;
+}
+
 
     #[ORM\Column]
     private array $roles = [];
@@ -42,6 +59,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -51,6 +71,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->email;
     }
+
+    
+
+    /*public function setCv(?CV $cv): static
+    {
+        $this->cv = $cv;
+    
+        return $this;
+    }*/
+    
+    public function getCV(): ?CV
+    {
+        return $this->cv;
+    }
+
+    
 
     public function setEmail(string $email): static
     {
@@ -156,6 +192,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPhonenumber(int $phonenumber): static
     {
         $this->phonenumber = $phonenumber;
+
+        return $this;
+    }
+    public function __toString()
+    {
+        return $this->getLname(); 
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): static
+    {
+        $this->image = $image;
 
         return $this;
     }

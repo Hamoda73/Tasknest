@@ -1,0 +1,83 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block body %}
+	<div class="dashboard-managment-table">
+		<!-- TABLE: LATEST ORDERS -->
+		<div class="card">
+			<div class="card-header border-transparent">
+				<div class="card-header">
+					<h3 class="card-title">All CVs</h3>
+					<div class="card-tools">
+						<div class="input-group input-group-sm" style="width: 150px;">
+							<input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+							<div class="input-group-append">
+								<button type="submit" class="btn btn-default">
+									<i class="fas fa-search"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card-tools">
+					<button type="button" class="btn btn-tool" data-card-widget="collapse">
+						<i class="fas fa-minus"></i>
+					</button>
+					<button type="button" class="btn btn-tool" data-card-widget="remove">
+						<i class="fas fa-times"></i>
+					</button>
+				</div>
+			</div>
+			<!-- /.card-header -->
+			<div class="card-body p-0">
+				<div class="table-responsive">
+					{% if cv is empty %}
+   									 <div class="alert alert-info text-center">No CVs uploaded yet.</div>
+						{% else %}
+						<table class="table m-0">
+							<thead>
+								<tr style="background-color: #55d8c6; color: #fff;">
+									<th style="text-align: center;">Freelancer</th>
+									<th style="text-align: center;">BIO</th>
+									<th style="text-align: center;">Description</th>
+									<th style="text-align: center;">Languages</th>
+									<th style="text-align: center;">Location</th>
+									<th style="text-align: center;">Certification</th>
+									<th style="text-align: center;">Contact</th>
+									<th style="text-align: center;">Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for c in cv %}
+								<tr style="background-color: #9ad8cb; color: #333;">
+									<td style="text-align: center;">
+										<img src="{{ asset('images/' ~ c.user.image) }}" alt="User Image" style="width: 90px; height: 90px; border-radius: 50%;">
+									</td>
+									<td style="text-align: center;">{{ c.bio }}</td>
+									<td style="text-align: center;">{{ c.description }}</td>
+									<td style="text-align: center;">
+										{% for lang in c.language %}
+										{{ lang }}{% if not loop.last %}, {% endif %}
+										{% endfor %}
+									</td>
+									<td style="text-align: center;">{{ c.location }}</td>
+									<td style="text-align: center;">{{ c.certification }}</td>
+									<td style="text-align: center;">{{ c.contact }}</td>
+									<td style="text-align: center;">
+										<form action="" style="display: inline-block;">
+											<a href="{{ path('removecvadmin', {'id': c.id}) }}" class="btn btn-danger">Delete</a>
+										</form>
+									</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					{% endif %}
+				</div>
+				<!-- /.table-responsive -->
+			</div>
+			<!-- /.content -->
+		</div>
+	</div>
+{% endblock %}
+
+{% block footer %} {% endblock %}

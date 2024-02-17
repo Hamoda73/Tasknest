@@ -1,3 +1,11 @@
+
+.custom-block-image {
+  border-radius: 20px; /* Adjust this value to your desired border radius */
+}
+
+
+
+
 .forget-pass-text {
   margin-top: -15px;
   margin-left: 120px;

@@ -1,0 +1,256 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Freelancers CVs!{% endblock %}
+
+{% block body %}
+                            <style>
+                                :root {
+                                    --violet-color: #995492;
+                                }
+                                h7 {
+                                    color: var(--violet-color);
+                                    font-size: var(--h6-font-size);
+                                    margin-bottom: 10px; /* Adjust margin bottom for spacing */
+                                }
+                                .bullet {
+                                    font-size: 10px;
+                                    margin-right: 5px;
+                                    margin-top: 5px; /* Align bullet to the bottom */
+                                }
+
+                                .skill-item {
+                                    display: flex; /* Display skill items as flex */
+                                    align-items: center; /* Align items vertically */
+                                    margin-right: 5px; /* Adjust as needed */
+                                }
+
+                                .skill-item h6 {
+                                    margin-bottom: 0; /* Remove bottom margin from skill item */
+                                }
+
+                                    /*   .bullet {
+                                    font-size: 10px;
+                                    margin-right: 5px;
+                                    margin-top: auto; 
+                                } */
+
+                                .language {
+                                    font-size: 17px;
+                                    font-weight: bold;
+                                    margin-bottom: 0;
+                                    margin-top: auto; /* Align language text to the bottom */
+                                }
+                                .language-item:first-child {
+                                margin-top: 70px; /* Adjust as needed */
+                                 }
+                                .lang{
+                                    margin-top: 10px;
+                                    }
+
+                                .skill {
+                                    font-size: 17px;
+                                    font-weight: bold;
+                                    margin-bottom: -15px;
+                                    margin-top: 5px;
+                                }
+                                .ml-auto {
+                                    margin-left: 60px; /* This will push the languages section to the right by 50 pixels */
+                                }
+       
+                                .languages-heading {
+                                    margin-bottom: 15px; /* Adjust this value to increase or decrease the space */
+                                }
+                                .description {
+                                    margin-left: 30px; /* Adjust as needed to control position from the left */
+                                    margin-right: 20px; /* Adjust as needed to control position from the right */
+                                }
+                                .location {
+                                    margin-top: 20px!important; 
+                                    margin-right: -100px!important; 
+                        
+                                    margin-left: -5px; 
+                                /* margin-right: 20px;  Adjust as needed to control position from the right */
+                                    color: rgb(0, 0, 0); 
+                                }
+                                .location-image {
+                                    margin-top: 0px; /* Adjust as needed to control the vertical position (top) */
+                                    margin-left: -230px; /* Adjust as needed to control the horizontal position (left) */
+                                    margin-right: 20px; /* Adjust as needed to control position from the right */
+                                }
+                                .skill-container {
+                                    display: flex;
+                                    justify-content: space-between; /* Distribute items evenly along the container */
+                                }
+
+                                .skill-item {
+                                    /* width: calc(33.33% - 20px); Adjusted for equal spacing */
+                                    margin-right: 20px; /* Updated margin for equal spacing */
+                                    margin-bottom: 10px; /* Updated for consistency */
+                                }
+
+                                .action {
+                                    margin-top: 20px;
+                                    margin-left: 580px; /* Adjust as needed to control position from the left */
+                                    margin-right: 0px; /* Adjust as needed to control position from the right */
+                                    width: 30%; /* Adjust as needed to control the size of the block */
+                                }
+                                .action-item {
+                                    width: calc(40% - 10px); /* Adjust the width as needed */
+                                }
+                                .custom-btn1 {
+                                    background-color: rgb(196, 106, 187); /* Background color */
+                                    color: white; /* Text color */
+                                    border-radius: 20px;
+                                    /* Add any additional styling you need */
+                                }
+                                .custom-btn1:hover {
+                                    background-color: rgb(100, 24, 92); /* specify the desired hover background color */;
+                                    color: white; /* specify the desired hover text color */;
+                                    /* Add styles for button hover state if needed */
+                                }
+                                .mb-3 {
+                                    margin-bottom: -1rem!important;
+                                }
+
+                                .custom-block-image{
+                                margin-top: -15px!important; 
+                                margin-right: 15px!important;  
+                                }
+
+
+
+                                .ml-auto.certif {
+                                    margin-top: 30px;
+                                    margin-left: -11px;
+                                    margin-right: 10px;
+                                }
+                                .ml-auto.contact {
+                                    margin-left: -11px;
+                                    margin-right: 10px;
+                                }
+                                
+                                .left-column {
+                                    flex: 1;
+                                }
+
+                                .right-column {
+                                    flex: 2;
+                                    max-width: 70%;
+                                }
+
+                                .location-image {
+                                    margin-top: 0px;
+                                    margin-left: 0;
+                                    margin-right: 5px;
+                                }
+
+
+                                .languages {
+                                    margin-top: -10px;
+                                }
+
+                                .skill-item {
+                                    margin-right: 5px; /* Adjust as needed */
+                                }
+
+                                .custom-block {
+                                    display: flex;
+                                    padding: 20px;
+                                }
+                                .emp {
+                                    margin-right: 20px;
+                                    margin-top: 20px;
+                                }
+
+                            </style>
+
+
+    <header class="site-header d-flex flex-column justify-content-center align-items-center">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Freelancers</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">All CVs</li>
+                        </ol>
+                    </nav>
+                    <h2 class="text-white">You will find here all the CVs</h2>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="section-padding">
+        {% if cv is not empty %}
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-12 mt-3 mx-auto">
+                    {% for c in cv %}
+                    <div class="custom-block custom-block-topics-listing bg-white shadow-lg mb-5 d-flex flex-wrap">
+        
+                        <!-- Left Column -->
+                        <div class="left-column mr-4">
+                            <img src="{{ asset('images/' ~ c.user.image) }}" class="custom-block-image img-fluid rounded-circle mb-3" alt="">
+                            <div class="d-flex align-items-center location">
+                                <img src="{{ asset('images/loc.png') }}" alt="Location Icon" width="15" height="20" class="mr-2 location-image">
+                                <p class="mb-0 ">{{ c.location }}</p>
+                            </div>
+                            <div class="mt-3 location">
+                                <a href="{{ c.contact }}" target="_blank" class="mb-0 ">{{ c.user.fname ~ ' ' ~ c.user.lname }}</a>
+                            </div>
+                        </div>
+        
+                        <!-- Right Column -->
+                        <div class="right-column">
+                            <h6 class="mb-2 name">{{ c.user.fname ~ ' ' ~ c.user.lname }}</h6>
+                            <h5 class="mb-2">{{ c.bio }}</h5>
+                            <p class="mb-0 description">{{ c.description }}</p>
+                            
+                            <div class="languages-heading mt-3">
+                                <h7 class="mb-0 language">Languages :</h7>
+                            </div>
+                            <div class="languages">
+                                {% for language in c.language %}
+                                    <div class="skill-item">
+                                        <span class="bullet">&#8226;</span>
+                                        <h6 class="mb-2 language">{{ language }}</h6>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            
+                            
+                            <div class="d-flex align-items-center mt-3">
+                                <div class="d-flex align-items-center skill">
+                                    <div style="display: inline-block;"> 
+                                        <h7 class="mb-0 skill">Skills:</h7>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-wrap ml-3">
+                                    {% if c.skills  is not empty %}
+                                    {% for skill in c.skills %}
+                                    <div class="skill-item skill-container mb-3 mr-3 custom-container"> <!-- Adjust margin-right as needed -->
+                                        <h6 class="mb-2 btn custom-btn mt-3 mt-lg-4">{{ skill.name }}</h6>
+                                    </div>
+                                    {% endfor %}
+                                    {% else %}
+                                    <h8 class="mb-0 emp"> No Skills </h8>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div class="badge bg-design rounded-pill ms-auto">{{ c.skills|length }}</div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        
+        {% else %}
+        <p>No CVs found.</p>
+    {% endif %}
+    </section>           
+</main>
+{% endblock %}
+
