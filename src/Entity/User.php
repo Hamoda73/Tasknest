@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\DBAL\Types\Types;
+use phpDocumentor\Reflection\Types\Boolean;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
@@ -43,6 +44,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180)]
     #[Assert\NotBlank]
     private ?string $image = null;
+
+    #[ORM\Column]
+    private ?bool $blocked = null;
 
     
     #[ORM\Column(type: Types::DATE_MUTABLE)]
@@ -198,6 +202,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setImage(string $image): static
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function isBlocked(): ?bool
+    {
+        return $this->blocked;
+    }
+
+    public function setBlocked(bool $blocked): self
+    {
+        $this->blocked = $blocked;
 
         return $this;
     }

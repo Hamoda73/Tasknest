@@ -97,5 +97,16 @@ class UserOptionsController extends AbstractController
         return $this->redirectToRoute('app_useraccounts');
     }
 
+    #[Route('/adminblockuser/{id}', name: 'app_adminblockuser')]
+    public function adminblockuser($id, UserRepository $userRepository, ManagerRegistry $managerRegistry ): Response
+    {
+        $em = $managerRegistry->getManager();
+        $data = $userRepository->find($id);
+        $data->setBlocked(!$data->isBlocked());
+        $em->persist($data);
+        $em->flush();
+        return $this->redirectToRoute('app_useraccounts');
+    }
+
 }
 

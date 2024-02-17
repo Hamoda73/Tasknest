@@ -59,10 +59,10 @@
 										<td>{{ u.phonenumber }}</td>
 										<td>{{ u.getBirthdate|date('Y-m-d') }}</td>
 										<td>
-											<a href="#">
-												<button class="small-box bg-info">Block
-												</button>
-											</a>
+											<form id="blockForm" action="{{ path('app_adminblockuser', { 'id': u.id }) }}" method="POST">
+												<input type="hidden" name="_method">
+												<button id="blockButton" type="submit" class="small-box bg-info" onclick="return confirm('Are you sure you want to block {{ u.fname }} {{ u.lname }} ?')">Block</button>
+											</form>
 											<form action="{{ path('app_admindeleteuser', { 'id': u.id }) }}" method="POST">
 												<input type="hidden" name="_method" value="DELETE">
 												<button type="submit" class="small-box bg-danger" onclick="return confirm('Are you sure you want to delete {{ u.fname }} {{ u.lname }}')">Delete</button>

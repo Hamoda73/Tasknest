@@ -46,13 +46,11 @@ class RegistrationController extends AbstractController
 
             $user->setPassword($hashedPassword);
             $user->setRoles(['ROLE_USER']);
+            $user->setBlocked(false);
 
             $em = $managerRegistry->getManager();
             $em->persist($user);
             $em->flush();
-
-            //Email
-            
 
             return $this->redirectToRoute('app_signup');
         }
