@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Apply for Offer{% endblock %}
+
+
+{%  block seeApplications %}
+                      
+<li class="nav-item">
+    <a class="nav-link click-scroll" href="{{ path('my_applications', {'offerId':1})}}">my Applications</a>
+</li>
+                        {%  endblock %}  
+
+
+{% block body %}
+<main>
+    <header class="site-header">
+        <div class="container">
+            <h2 class="text-white">Welcome to TASKNEST</h2>
+            <h6 class="text-white">update your Application</h6>
+        </div>
+    </header> 
+
+    <section class="explore-section section-padding" id="section_2" style="background-color: white;">
+        <div class="container">
+            <h2 class="text-center mb-4" style="margin-top: -50px;">Application Form</h2>
+            <div class="row">
+                <div class="col-lg-6" style="order: 2;">
+
+                    <div class="ww" style="margin-top: 50px;">
+                        <img src="{{ asset('images/loginpic.png') }}" alt="loginpic" height="250" class="loginpic" style="width: auto; max-width: 40%;">
+                    </div>
+
+                </div>
+                <div class="col-lg-6" style="order: 1;">
+                    <div class="custom-form" id="post-offer" style="background-color: white; padding: 20px;">
+                        {{ form_start(formapp, {attr: {novalidate: 'novalidate'}}) }}
+
+                        <div class="margin-inputs xx">
+                            <div class="xx form-floating label-width">
+                                {{ form_widget(formapp.userFirstName, {'attr': {'class': 'form-control'}}) }}
+                                <label for="floatingInput">First Name</label>
+                            </div>
+                            <div class="xx form-floating label-width">
+                                {{ form_widget(formapp.userLastName, {'attr': {'class': 'form-control'}}) }}
+                                <label for="floatingInput">Last Name</label>
+                            </div>
+                        </div>
+                        <div class="margin-inputs xx">
+                            <div class="xx form-floating label-width ">
+                                {{ form_widget(formapp.userEmail, {'attr': {'class': 'form-control'}}) }}
+                                <label for="floatingInput" class="Post">Email</label>
+                            </div>
+                            <div class="label-width xx form-floating">
+                                {{ form_widget(formapp.userPhoneNumber, {'attr': {'class': 'form-control'}}) }}
+                                <label for="floatingInput">Phone Number</label>
+                            </div>
+                        </div>
+                       
+                        <div class="margin-inputs form-floating">
+                            <div class="input-group">
+                                {{ form_widget(formapp.cv, {'attr': {'class': 'form-control', 'id': 'cvInput'}}) }}
+                                <label class="input-group-text" for="cvInput" style="background-color: rgb(119, 240, 208); display: flex; align-items: center; font-size: 20px; height:52px;">
+                                    <i class="bi bi-file-arrow-up"></i>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        
+                         <div class="margin-inputs label-width1">
+                            <button type="submit" class="form-control">Submit</button>
+                        </div>
+                        {{ form_end(formapp) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+    </section>
+</main>
+{% endblock %}

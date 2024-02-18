@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}All Offers{% endblock %}
+
+
+{% block offer %}
+<li class="nav-item">
+    <a class="nav-link click-scroll" href="{{path('addformoff')}}">Post a Job</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link click-scroll" href="{{ path('show_offers', {'id':1}) }}">My posts</a>
+</li>
+{% endblock %}
+
+
+
+
+{% block body %}
+    <section class="explore-section section-padding" id="" style="background-color: white;">
+        <div class="container">
+            <h1 class="text-center mt-3 mb-5">Your Offers</h1>
+
+            <div class="row">
+                {% for offer in offers %}
+                    <div class="col-md-12 mb-4">
+                        <div class="card">
+                            <div class="row no-gutters">
+                                <div class="col-md-4">
+                                    <!-- img-->
+                                    <img src="{{ asset('images/entreprise.jpg') }}" alt="Tasknest Logo" style="width: 100%; height: auto;">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h3 class="card-title"><span class="Black">{{ offer.entrepriseName }}</span></h3>
+                                        <p class="card-text"><strong><span class="purple">Domain:</span></strong> {{ offer.domain }}</p>
+                                        <p class="card-text"><strong><span class="purple">Post:</span></strong> {{ offer.post }}</p>
+                                        <p class="card-text"><strong><span class="purple">Description:</span></strong> {{ offer.description }}</p>
+                                        <p class="card-text"><strong><span class="purple">Salary:</span></strong> {{ offer.salary }}DT</p>
+                                        <p class="card-text"><strong><span class="purple">Period:</span></strong> {{ offer.period }}</p>
+                                        <p class="card-text"><strong><span class="purple">Localisation:</span></strong> {{ offer.localisation }}</p>
+                                    </div>
+                                    <div class="apply-btn">
+                                        <a href="{{ path('editOffer', {'id': offer.id}) }}" class="btn custom-btn mt-3 ml-2 ">Edit</a>
+                                        <a href="{{ path('deleteOffer', {'id': offer.id}) }}" class="btn custom-btn mt-3 ml-2 mr-2 btn-delete">Delete</a>
+                                        <a href="{{ path('show_apps', {'offerId': offer.id}) }}" class="btn custom-btn mt-3 ml-2 mr-2 btn-apply">See Applications</a>  
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .purple {
+            color: purple;
+        }
+        .Black{
+            color: rgb(212, 91, 26);
+        }
+        .apply-btn {
+            position: absolute;
+            bottom: 10px; 
+            right: 10px;
+            display: flex;
+        }
+        
+        .apply-btn .btn {
+            margin-right: 10px; 
+        }
+
+    </style>
+
+     <style>
+        .btn-delete {
+            background-color: red;
+            color: white;
+            border-color: red;
+        }
+        
+        .btn-delete:hover {
+            background-color: darkred;
+            border-color: darkred;
+        }
+
+        .btn-apply {
+            background-color: rgb(240, 154, 16);
+            color: white;
+        }
+
+    </style>
+       
+{% endblock %}

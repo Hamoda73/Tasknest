@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}All Offers{% endblock %}
+
+{% block offer %}
+<li class="nav-item">
+    <a class="nav-link click-scroll" href="{{path('addformoff')}}">Post a Job</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link click-scroll" href="{{ path('show_offers', {'id':2}) }}">My posts</a>
+</li>
+{% endblock %}
+
+{%  block seeApplications %}
+                      
+<li class="nav-item">
+    <a class="nav-link click-scroll" href="{{ path('my_applications', {'offerId':1})}}"> My Applications</a>
+</li>
+                        {%  endblock %}  
+
+
+{% block body %}
+    <section class="explore-section section-padding" id="section_2" style="background-color: white;">
+        <div class="container">
+            <h1 class="text-center mt-3 mb-5">All Offers</h1>
+
+            <div class="row">
+                {% for offer in offers %}
+                    <div class="col-md-12 mb-4"> {# Use 12 columns to occupy full width #}
+                        <div class="card">
+                            <div class="row no-gutters">
+                                <div class="col-md-4">
+                                    <!-- img-->
+                                    <img src="{{ asset('images/entreprise.jpg') }}" alt="Tasknest Logo" style="width: 100%; height: auto;">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><span class="Black">{{ offer.entrepriseName }}</span></h5>
+                                        <p class="card-text"><strong><span class="purple">Domain:</span></strong> {{ offer.domain }}</p>
+                                        <p class="card-text"><strong><span class="purple">Post:</span></strong> {{ offer.post }}</p>
+                                        <p class="card-text"><strong><span class="purple">Description:</span></strong> {{ offer.description }}</p>
+                                        <p class="card-text"><strong><span class="purple">Salary:</span></strong> {{ offer.salary }}DT</p>
+                                        <p class="card-text"><strong><span class="purple">Period:</span></strong> {{ offer.period }}</p>
+                                        <p class="card-text"><strong><span class="purple">Localisation:</span></strong> {{ offer.localisation }}</p>
+                                    </div>
+                                    <div class="apply-btn">
+                                        <a href="{{ path('addformapp', {'offerId': offer.id}) }}" class="btn custom-btn mt-3 mt-lg-4 applybtn">Apply</a>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .apply-btn {
+            position: absolute;
+            bottom: 10px; 
+            right: 10px; 
+            color :rgb(240, 154, 16);
+            display: flex;
+        }
+       
+        .Black{
+            color: rgb(212, 91, 26);
+        }
+        .purple {
+            color: purple;
+        }
+
+      
+    </style>
+{% endblock %}

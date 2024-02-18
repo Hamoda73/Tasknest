@@ -1,0 +1,59 @@
+{% extends 'baseadmin.html.twig' %}
+
+
+
+
+{% block title %}Applications for Offer{% endblock %}
+
+{% block body %}
+    <section class="explore-section section-padding" style="background-color: white;">
+        <div class="container">
+            <h1 class="text-center mt-3 mb-5"> Offer Candidats </h1>
+
+            <div class="row">
+                {% for application in applications %}
+                    <div class="col-md-12 mb-4">
+                        <div class="card">
+                            <div class="row no-gutters">
+                                <div class="col-md-4">
+                                    <!-- img-->
+                                    <img src="{{ asset('images/topics/undraw_online_ad_re_ol62.png') }}" alt="Tasknest Logo" style="width: 100%; height: auto;">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h3 class="card-title">{{ application.getUser().getFname() }} {{ application.getUser().getLname() }}</h3>
+                                        <p class="card-text"><strong>Email:</strong> {{ application.getUser().getEmail() }}</p>
+                                        <p class="card-text"><strong>Phone Number:</strong> {{ application.getUser().getPhonenumber() }}</p>
+                                        <div class="apply-btn">
+                                            <a href="{{ path('showresume', {'idapp':application.id})}}" class="btn custom-btn mt-3"" target="_blank"> See Resume</a>
+                                            
+                                            <a href="{{ path('deleteappadmin', {'id':application.id})}}" class="btn custom-btn mt-3 ml-2 mr-2 btn-delete">Delete</a>
+                                        </div>
+
+                                 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <style>
+.btn-delete {
+    background-color: red;
+    color: white;
+    border-color: red;
+}
+
+.btn-delete:hover {
+    background-color: darkred;
+    border-color: darkred;
+}
+.apply-btn .btn {
+            margin-right: 260px; 
+        }
+
+        </style>
+    </section>
+{% endblock %}
