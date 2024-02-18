@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\RespondRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RespondRepository::class)]
 class Respond
@@ -14,6 +15,8 @@ class Respond
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 10)]
     private ?string $message = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]

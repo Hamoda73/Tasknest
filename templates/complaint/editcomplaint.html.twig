@@ -160,7 +160,7 @@
                                 <div class="xx">
                                     <form action="#" method="post" class="custom-form contact-form" role="form">
                                         <div class="row">
-                                            {{ form_start(form) }}
+                                            {{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
 
                                             <div class="col-lg-6 col-md-6 col-12 mb-4">
                                                 <div class="form-floating">
@@ -183,14 +183,7 @@
 
 
 
-                                            <div class="col-lg-12 col-12">
-                                                <div class="form-floating">
-                                                    {{ form_widget(form.attachement, {'attr': {'class': 'form-control',
-                                                    'style': 'display: none;'}}) }}
-                                                    {{ form_errors(form.attachement) }}
-
-                                                </div>
-                                            </div>
+                                            
 
 
 
@@ -254,7 +247,7 @@
                                             </div>
                                         </div>
 
-                                        <label for="avatar">Add attachement</label>
+                                        
                                         <div>
                                             <input type="file" id="avatar" name="avatar"
                                                 accept="image/png, image/jpeg" />

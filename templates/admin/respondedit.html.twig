@@ -203,7 +203,7 @@
 			<div class="mt-3">
 				<label for="responseInput" class="form-label">Respond:</label>
 
-				{{ form_start(form) }}
+				{{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
 
 				{{ form_widget(form.message, {'attr': {'class': 'form-control rounded-4', 'style': 'height: 150px;'}}) }}
 				{{ form_errors(form.message) }}

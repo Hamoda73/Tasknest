@@ -123,7 +123,7 @@
                                 <div class="xx">
                                     <form action="#" method="post" class="custom-form contact-form" role="form">
                                         <div class="row">
-                                            {{ form_start(form) }}
+                                            {{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
 
                                             <div class="col-lg-6 col-md-6 col-12 mb-4">
                                                 <div class="form-floating">
@@ -134,14 +134,15 @@
                                                 </div>
                                             </div>
 
-                                            
 
-
-
-
-                                            
-
-                                            
+                                            <div class="col-lg-12 col-12">
+                                                <div class="form-floating">
+                                                    {{ form_widget(form.message, {'attr': {'class': 'form-control
+                                                    rounded-4', 'style': 'height: 150px;'}}) }}
+                                                    {{ form_errors(form.message) }}
+                                                    <label for="floatingTextarea">Tell me about your complaint</label>
+                                                </div>
+                                            </div>
 
 
 
