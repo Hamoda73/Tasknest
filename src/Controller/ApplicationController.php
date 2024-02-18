@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
@@ -54,7 +55,7 @@ class ApplicationController extends AbstractController
 
 
     #[Route('/addformapp/{offerId}', name: 'addformapp')]
-    public function addformapp(UserRepository $userRepository, OffersRepository $offersRepository, $offerId, Request $request, ManagerRegistry $managerRegistry): Response
+    public function addformapp(ApplicationRepository $applicationRepository, UserRepository $userRepository, OffersRepository $offersRepository, $offerId, Request $request, ManagerRegistry $managerRegistry): Response
     {
         $em = $managerRegistry->getManager();
         $user = $userRepository->find(1);
@@ -66,30 +67,42 @@ class ApplicationController extends AbstractController
         $appForm->handleRequest($request);
 
         if ($appForm->isSubmitted() && $appForm->isValid()) {
-            /** @var UploadedFile $cvFile */
-            $cvFile = $appForm['cv']->getData();
+            $existingapps = $applicationRepository->findOneBy([  //seartch etha ken l user atheka already applied lel offer hethyka
+                'Offers' => $offer,
+                'user' => $user,
+            ]);
+            if ($existingapps) {
+                // If an app for this offer and  this user  exists, add flash message and redirect
+                $this->addFlash('error', 'You ve already applied for this job.');
+                return new RedirectResponse($this->generateUrl('addformapp', ['offerId' => $offerId]));
+            } else {
 
-            if ($cvFile) {
-                $originalFilename = pathinfo($cvFile->getClientOriginalName(), PATHINFO_FILENAME);
-                $newFilename = $originalFilename . '-' . uniqid() . '.' . $cvFile->guessExtension();
 
-                try {
-                    $cvFile->move(
-                        $this->getParameter('cv_directory'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    // Handle file upload error
+                /** @var UploadedFile $cvFile */
+                $cvFile = $appForm['cv']->getData();
+
+                if ($cvFile) {
+                    $originalFilename = pathinfo($cvFile->getClientOriginalName(), PATHINFO_FILENAME);
+                    $newFilename = $originalFilename . '-' . uniqid() . '.' . $cvFile->guessExtension();
+
+                    try {
+                        $cvFile->move(
+                            $this->getParameter('cv_directory'),
+                            $newFilename
+                        );
+                    } catch (FileException $e) {
+                        // Handle file upload error
+                    }
+
+                    // Store the file path in the database
+                    $app->setCv($newFilename);
                 }
 
-                // Store the file path in the database
-                $app->setCv($newFilename);
+                $em->persist($app);
+                $em->flush();
+                return $this->redirectToRoute("showAlloffers");
             }
-
-            $em->persist($app);
-            $em->flush();
-            return $this->redirectToRoute("showAlloffers");
-        }
+        } //end else
 
         return $this->renderForm('user/application/app.html.twig', [
             'formapp' => $appForm,

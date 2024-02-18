@@ -14,7 +14,7 @@ class ApplicationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            // Add fields for user details
+
             ->add('userFirstName', null, [
                 'label' => 'First Name',
                 'mapped' => false,
@@ -40,9 +40,10 @@ class ApplicationType extends AbstractType
 
                 'required' => false,
             ])*/
+
             ->add('cv', FileType::class, [
                 'required' => false,
-                'data_class' => null, // Set data_class to null for non-entity fields
+                'data_class' => null, //  non-entity fields
             ]);;
     }
 

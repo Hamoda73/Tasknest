@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use phpDocumentor\Reflection\Types\Integer;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: OffersRepository::class)]
 class Offers
@@ -18,26 +19,83 @@ class Offers
     private ?int $id = null;
 
     #[ORM\Column(length: 20)]
+    #[Assert\NotBlank(message: "Your Entreprise Name cannot be blank.")]
+    #[Assert\Length(
+        max: 20,
+        maxMessage: "Your Entreprise Name cannot contain more than {{ limit }} characters."
+    )]
+    #[Assert\Regex(
+        pattern: "/^[a-zA-Z0-9\s]*$/",
+        message: "this field must contain letters,numbers and spaces only."
+    )]
     private ?string $entrepriseName = null;
 
+
+
     #[ORM\Column(length: 20)]
+    #[Assert\NotBlank(message: "This field cannot be blank.")]
+    #[Assert\Length(
+        max: 20,
+        maxMessage: "this field cannot contain more than {{ limit }} characters."
+    )]
+    #[Assert\Regex(
+        pattern: "/^[a-zA-Z\s]*$/",
+        message: "this field must contain letters and spaces only."
+    )]
     private ?string $domain = null;
 
+
+
+
+
     #[ORM\Column(length: 20)]
+    #[Assert\NotBlank(message: "This field cannot be blank.")]
+    #[Assert\Length(
+        max: 20,
+        maxMessage: "this field cannot contain more than {{ limit }} characters."
+    )]
+    #[Assert\Regex(
+        pattern: "/^[a-zA-Z\s]*$/",
+        message: "this field must contain letters and spaces only."
+    )]
     private ?string $post = null;
 
+
+
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank(message: "Your Description cannot be blank.")]
+    #[Assert\Length(
+        max: 1000,
+        maxMessage: "Your Description cannot contain more than {{ limit }} characters."
+    )]
     private ?string $description = null;
 
 
+
     #[ORM\Column(length: 20)]
+    #[Assert\NotBlank(message: "this field cannot be blank.")]
+
     private ?string $period = null;
 
     #[ORM\Column(length: 20)]
+    #[Assert\NotBlank(message: "this field cannot be blank.")]
+    #[Assert\Positive(message: "This field must be a positive number.")]
     private ?int $salary;
 
+
     #[ORM\Column(length: 20)]
+    #[Assert\NotBlank(message: "Your Location cannot be blank.")]
+    #[Assert\Length(
+        max: 20,
+        maxMessage: "Your Location cannot contain more than {{ limit }} characters."
+    )]
+    #[Assert\Regex(
+        pattern: "/^[a-zA-Z\s]*$/",
+        message: "Your Location must only contain letters and spaces."
+    )]
+
     private ?string $localisation = null;
+
 
 
 
@@ -177,7 +235,7 @@ class Offers
     public function removeApplication(Application $application): static
     {
         if ($this->applications->removeElement($application)) {
-            // set the owning side to null (unless already changed)
+
             if ($application->getOffers() === $this) {
                 $application->setOffers(null);
             }

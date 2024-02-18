@@ -44,11 +44,26 @@
                                 {{ form_widget(form.entrepriseName, {'attr': {'class': 'form-control'}}) }}
                                 <label for="floatingInput">Entreprise</label>
                             </div>
+                    
+
                             <div class="xx form-floating label-width">
                                 {{ form_widget(form.domain, {'attr': {'class': 'form-control'}}) }}
                                 <label for="floatingInput">Domain</label>
                             </div>
                         </div>
+                        <div class="margin-inputs xx">
+                                                
+                            <div class="xx form-floating label-width">
+                                
+                                {{ form_errors(form.entrepriseName) }}
+                                
+                            </div>
+                            <div class="xx form-floating label-width">
+                                
+                                {{ form_errors(form.domain) }}
+                                
+                            </div>
+                            </div>
                         <div class="margin-inputs xx">
                             <div class="xx form-floating label-width ">
                                 {{ form_widget(form.post, {'attr': {'class': 'form-control'}}) }}
@@ -57,21 +72,66 @@
                             <div class="label-width xx form-floating">
                                 {{ form_widget(form.salary, {'attr': {'class': 'form-control'}}) }}
                                 <label for="floatingInput">Salary</label>
-                            </div>
+                            </div>                            
                         </div>
+                        <div class="margin-inputs xx">
+                                                
+                            <div class="xx form-floating label-width">
+                                
+                                {{ form_errors(form.post) }}
+                                
+                            </div>
+                            <div class="xx form-floating label-width">
+                                
+                                {{ form_errors(form.salary) }}
+                                
+                            </div>
+                            </div>
+
                         <div class="margin-inputs form-floating">
                             {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
                             <label for="floatingInput">Description</label>
                         </div>
+                        <div class="margin-inputs xx">
+                                                
+                            <div class="xx form-floating label-width">
+                                
+                                {{ form_errors(form.description) }}
+                                
+                            </div>
+                          
+                            </div>
+
+
                         <div class="margin-inputs form-floating">
                             {{ form_widget(form.period, {'attr': {'class': 'form-control'}}) }}
                             <label for="floatingInput">Period</label>
                         </div>
+                        <div class="margin-inputs xx">
+                                                
+                            <div class="xx form-floating label-width">
+                                
+                                {{ form_errors(form.period) }}
+                                
+                            </div>
+                          
+                            </div>
+                        
+
+
                         <div class="margin-inputs form-floating">
                             {{ form_widget(form.localisation, {'attr': {'class': 'form-control'}}) }}
                             <label for="floatingInput">Localisation</label>
                         </div>
-                       
+                       <div class="margin-inputs xx">
+                                                
+                            <div class="xx form-floating label-width">
+                                
+                                {{ form_errors(form.localisation) }}
+                                
+                            </div>
+                          
+                            </div>
                        
                         <div class="margin-inputs label-width1">
                             <button type="submit" class="form-control">Submit</button>

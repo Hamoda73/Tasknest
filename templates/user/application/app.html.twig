@@ -17,6 +17,9 @@
         <div class="container">
             <h2 class="text-white">Welcome to TASKNEST</h2>
             <h6 class="text-white">Apply for a job and prove yourself </h6>
+            {% for flashMessage in app.flashes('error') %}
+            <div class="alert alert-danger">{{ flashMessage }}</div>
+        {% endfor %}
         </div>
     </header> 
 
@@ -63,8 +66,16 @@
                                     <i class="bi bi-file-arrow-up"></i>
                                 </label>
                             </div>
-                        </div>
                         
+                        </div>
+                        <div class="margin-inputs xx">
+                                                
+                            <div class="xx form-floating label-width">
+                                
+                                {{ form_errors(formapp.cv) }}
+                                
+                            </div>
+                        </div>
                         
                          <div class="margin-inputs label-width1">
                             <button type="submit" class="form-control">Submit</button>

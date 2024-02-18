@@ -6,7 +6,7 @@
     <section class="explore-section section-padding" style="background-color: white;">
         <div class="container">
             <h1 class="text-center mt-3 mb-5"> Offer Candidats </h1>
-
+            {% if applications is not empty %}
             <div class="row">
                 {% for application in applications %}
                     <div class="col-md-12 mb-4">
@@ -35,6 +35,11 @@
                     </div>
                 {% endfor %}
             </div>
+            {% else %}
+
+            <h6 class="text-center">No Applications yet</h6>
+
+    {% endif %}
         </div>
         <style>
 .btn-delete {

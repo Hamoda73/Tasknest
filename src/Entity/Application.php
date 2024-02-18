@@ -5,11 +5,12 @@ namespace App\Entity;
 use App\Repository\ApplicationRepository;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ApplicationRepository::class)]
 
 #[ORM\Table(name: "application")] //nhebch l user y aaml apply fard offre 
-#[ORM\UniqueConstraint(name: "offer_user_unique", columns: ["offers_id", "user_id"])]
+#[ORM\UniqueConstraint(name: "offer_user_unique", columns: ["offers_id", "user_id"])]  //2columns l id user wl id offer
 
 class Application
 {
@@ -29,6 +30,8 @@ class Application
     private ?User $user = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Please upload your resume.")]
+
     private ?string $cv = null;
 
 

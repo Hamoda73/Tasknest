@@ -19,7 +19,7 @@
     <section class="explore-section section-padding" id="" style="background-color: white;">
         <div class="container">
             <h1 class="text-center mt-3 mb-5">Your Offers</h1>
-
+            {% if offers is not empty %}
             <div class="row">
                 {% for offer in offers %}
                     <div class="col-md-12 mb-4">
@@ -50,6 +50,11 @@
                     </div>
                 {% endfor %}
             </div>
+            {% else %}
+
+            <h6 class="text-center">You didn't post any  Offers yet</h6>
+
+    {% endif %}
         </div>
     </section>
 
