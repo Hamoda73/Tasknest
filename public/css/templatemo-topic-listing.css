@@ -9,6 +9,42 @@ https://templatemo.com/tm-590-topic-listing
 /*---------------------------------------
   CUSTOM PROPERTIES ( VARIABLES )             
 -----------------------------------------*/
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+button.edit {
+  background-color: #3498db;
+}
+
+button.delete {
+  background-color: #e74c3c;
+}
+
 .home-slogan{
   font-size: 35px;
   padding-bottom: 50px;

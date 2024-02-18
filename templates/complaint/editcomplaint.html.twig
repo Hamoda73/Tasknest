@@ -6,11 +6,48 @@
 {% block body %}
 
 <main>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap"
+        rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="../css/bootstrap-icons.css" rel="stylesheet">
+
+    <link href="../css/templatemo-topic-listing.css" rel="stylesheet">
+
+    <link href="../css/mycss.css" rel="stylesheet">
+
+    <script src="{{asset('js/jquery.min.js')}}"></script>
+    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('js/jquery.sticky.js')}}"></script>
+    <script src="{{asset('js/click-scroll.js')}}"></script>
+    <script src="{{asset('js/custom.js')}}"></script>
+<script>function updateAttachmentFileName() {
+    var fileName = document.getElementById("avatar").files[0].name;
+    document.getElementById("attachmentFileName").value = fileName;
+}</script>
+
+<script>
+    function updateFileName(input) {
+        var fileName = input.files[0].name;
+        document.getElementById('file-name').innerHTML = fileName;
+    }
+</script>
+
+
 
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="index.html">
-                <img src="images/tasknest1.png" alt="Resized Image" width="235" height="100">
+                <img src="../images/tasknest1.png" alt="Resized Image" width="235" height="100">
             </a>
 
             <div class="d-lg-none ms-auto me-4">
@@ -171,7 +208,7 @@
                                             {{ form_end(form) }}
                                         </div>
                                     </form>
-                                    <img src="images/callcenter.jpg" alt="" height="300px" width="300px">
+                                    <img src="../images/callcenter.jpg" alt="" height="300px" width="300px">
                                 </div>
                             </div>
                         </div>
@@ -234,7 +271,7 @@
                                         </div>
                                     </div>
                                 </form>
-                                <img src="images/callcenter.jpg" alt="" height="300px" width="300px">
+                                <img src="../images/callcenter.jpg" alt="" height="300px" width="300px">
                             </div>
                         </div>
 
@@ -263,22 +300,6 @@
                                             </div>
 
 
-                                            <table>
-                                                <tr>
-                                                    <td>Type</td>
-                                                    <td>Message</td>
-                                                    <td>Attachement</td>
-                                                </tr>
-
-                                                {% for a in complaint %}
-                                                <tr>
-                                                    <td>{{a.type}}</td>
-                                                    <td>{{a.message}}</td>
-                                                    <td>{{a.attachement}}</td>
-
-                                                </tr>
-                                                {% endfor %}
-                                            </table>
 
 
 
@@ -292,7 +313,7 @@
 
                                         </div>
                                     </form>
-                                    <img src="images/callcenter.jpg" alt="" height="300px" width="300px">
+                                    <img src="../images/callcenter.jpg" alt="" height="300px" width="300px">
                                 </div>
 
                             </div>
@@ -315,7 +336,7 @@
         <div class="row">
             <div class="col-lg-3 col-12 mb-4 pb-2">
                 <a class="navbar-brand mb-2" href="index.html">
-                    <img src="images/tasknest1.png" alt="" height="100px" width="235px">
+                    <img src="../images/tasknest1.png" alt="" height="100px" width="235px">
                 </a>
             </div>
 

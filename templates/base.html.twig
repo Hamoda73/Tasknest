@@ -36,6 +36,18 @@
     <script src="{{asset('js/jquery.sticky.js')}}"></script>
     <script src="{{asset('js/click-scroll.js')}}"></script>
     <script src="{{asset('js/custom.js')}}"></script>
+<script>function updateAttachmentFileName() {
+    var fileName = document.getElementById("avatar").files[0].name;
+    document.getElementById("attachmentFileName").value = fileName;
+}</script>
+
+<script>
+    function updateFileName(input) {
+        var fileName = input.files[0].name;
+        document.getElementById('file-name').innerHTML = fileName;
+    }
+</script>
+
 
     
 

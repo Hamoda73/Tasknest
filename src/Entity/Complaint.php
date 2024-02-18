@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ComplaintRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ComplaintRepository::class)]
@@ -62,4 +64,13 @@ class Complaint
 
         return $this;
     }
+
+    public function __toString()
+    {
+   
+         return(string)$this->getId();
+    
+    }
+
+
 }

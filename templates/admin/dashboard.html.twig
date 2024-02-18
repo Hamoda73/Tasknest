@@ -1196,103 +1196,29 @@
 					</div>
 				</div>
 				<!-- /.card-header -->
-				<div class="card-body p-0">
+				<div class="card-body">
 					<div class="table-responsive">
+					
+
 						<table class="table m-0">
 							<thead>
 								<tr>
 									<th>Complaint ID</th>
 									<th>Type</th>
-									<th>Status</th>
 									<th>Message</th>
+									<th>Attachement</th>
 								</tr>
 							</thead>
+							{% for a in complaint %}
 							<tbody>
 								<tr>
-									<td>
-										<a href="{{ path('app_dashboardcomplaint') }}">OR9842</a>
-									</td>
-									<td>General inquiry</td>
-									<td>
-										<span class="badge badge-success">Pending</span>
-									</td>
-									<td>
-										<div class="sparkbar" data-color="#00a65a" data-height="20">hi i was wondering if...</div>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<a href="pages/examples/invoice.html">OR1848</a>
-									</td>
-									<td>General inquiry</td>
-									<td>
-										<span class="badge badge-warning">Pending</span>
-									</td>
-									<td>
-										<div class="sparkbar" data-color="#f39c12" data-height="20">hi i was wondering if...</div>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<a href="pages/examples/invoice.html">OR7429</a>
-									</td>
-									<td>Feedback</td>
-									<td>
-										<span class="badge badge-danger">Delivered</span>
-									</td>
-									<td>
-										<div class="sparkbar" data-color="#f56954" data-height="20">hi i was wondering if...</div>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<a href="pages/examples/invoice.html">OR7429</a>
-									</td>
-									<td>Complaint</td>
-									<td>
-										<span class="badge badge-info">Processing</span>
-									</td>
-									<td>
-										<div class="sparkbar" data-color="#00c0ef" data-height="20">hi i was wondering if...</div>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<a href="pages/examples/invoice.html">OR1848</a>
-									</td>
-									<td>General inquiry</td>
-									<td>
-										<span class="badge badge-warning">Pending</span>
-									</td>
-									<td>
-										<div class="sparkbar" data-color="#f39c12" data-height="20">hi i was wondering if...</div>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<a href="pages/examples/invoice.html">OR7429</a>
-									</td>
-									<td>General inquiry</td>
-									<td>
-										<span class="badge badge-danger">Delivered</span>
-									</td>
-									<td>
-										<div class="sparkbar" data-color="#f56954" data-height="20">hi i was wondering if...</div>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<a href="pages/examples/invoice.html">OR9842</a>
-									</td>
-									<td>Feedback</td>
-									<td>
-										<span class="badge badge-success">Treated</span>
-									</td>
-									<td>
-										<div class="sparkbar" data-color="#00a65a" data-height="20">hi i was wondering if...</div>
-									</td>
+									<td><a href="{{ path('app_respond',{'id': a.id}) }}">{{a.id}}</a></td>
+									<td>{{a.type}}</td>
+									<td>{{a.message}}</td>
+									<td>{{a.attachement}}</td>
 								</tr>
 							</tbody>
+							{% endfor %}
 						</table>
 					</div>
 					<!-- /.table-responsive -->
