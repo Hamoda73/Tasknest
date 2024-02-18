@@ -105,6 +105,20 @@ class ComplaintController extends AbstractController
        
     }
 
+    #[Route('/deletecomplaint1/{id}', name: 'app_deletecomplaint1')]
+    public function deletecomplaint1($id,ManagerRegistry $managerRegistry,ComplaintRepository $complaintRepository ): Response
+    {
+        $em=$managerRegistry->getManager();
+        $dataid=$complaintRepository->find($id);
+        $em->remove($dataid);
+        $em->flush();
+
+        return $this->redirectToRoute('app_dashboard');
+
+       
+    }
+
+
     #[Route('/editcomplaint/{id}', name: 'app_editcomplaint')]
     public function editcomplaint($id, ManagerRegistry $managerRegistry, ComplaintRepository $complaintRepository, Request $req): Response
     {

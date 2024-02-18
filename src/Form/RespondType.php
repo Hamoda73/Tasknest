@@ -19,7 +19,7 @@ class RespondType extends AbstractType
             ->add('message')
             ->add('Complaint', EntityType::class, [
                 'class' => Complaint::class,
-'choice_label' => 'id',
+                'choice_label' => 'id',
             ])
         ;
     }

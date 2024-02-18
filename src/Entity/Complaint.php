@@ -21,8 +21,9 @@ class Complaint
     #[ORM\Column(length: 255)]
     private ?string $message = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $attachement = null;
+   
+
+ 
 
     public function getId(): ?int
     {
@@ -53,17 +54,9 @@ class Complaint
         return $this;
     }
 
-    public function getAttachement(): ?string
-    {
-        return $this->attachement;
-    }
+    
 
-    public function setAttachement(?string $attachement): static
-    {
-        $this->attachement = $attachement;
-
-        return $this;
-    }
+    
 
     public function __toString()
     {
@@ -72,5 +65,6 @@ class Complaint
     
     }
 
+    
 
 }

@@ -134,26 +134,14 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-lg-12 col-12">
-                                                <div class="form-floating">
-                                                    {{ form_widget(form.message, {'attr': {'class': 'form-control
-                                                    rounded-4', 'style': 'height: 150px;'}}) }}
-                                                    {{ form_errors(form.message) }}
-                                                    <label for="floatingTextarea">Tell me about your complaint</label>
-                                                </div>
-                                            </div>
+                                            
 
 
 
 
-                                            <div class="col-lg-12 col-12">
-                                                <div class="form-floating">
-                                                    {{ form_widget(form.attachement, {'attr': {'class': 'form-control',
-                                                    'style': 'display: none;'}}) }}
-                                                    {{ form_errors(form.attachement) }}
+                                            
 
-                                                </div>
-                                            </div>
+                                            
 
 
 
@@ -267,14 +255,14 @@
                                                 <tr>
                                                     <td>Type</td>
                                                     <td>Message</td>
-                                                    <td>Attachement</td>
+                                                  
                                                 </tr>
 
                                                 {% for a in complaint %}
                                                 <tr>
                                                     <td>{{a.type}}</td>
                                                     <td>{{a.message}}</td>
-                                                    <td>{{a.attachement}}</td>
+                                                    
 
                                                 </tr>
                                                 {% endfor %}

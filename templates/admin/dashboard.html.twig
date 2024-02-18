@@ -892,40 +892,137 @@
 										<th>Complaint ID</th>
 										<th>Type</th>
 										<th>Message</th>
-										<th>Attachment</th>
+										
 										<th>Action</th>
 										<th>Respond</th>
 									</tr>
 								</thead>
 								<tbody>
-									{% for a in complaint %}
-									<tr>
-										<td><a href="{{ path('app_respond', {'id': a.id}) }}">{{ a.id }}</a></td>
-										<td>{{ a.type }}</td>
-										<td>{{ a.message }}</td>
-										<td>{{ a.attachement }}</td>
-										<td>
-											{% for b in respond %}
-											{% if a.id == b.Complaint.id %}
-											<a class="delete" href="{{ path('app_deleterespond', {'id': b.id}) }}">Delete</a>
-											<a class="delete" href="{{ path('app_respondedit', {'id': b.id,'id1': a.id}) }}">Edit</a>
+									{% for a in respond %}
+										{% set bIdExistsInRespond = false %}
+										{% for b in complaint %}
+											{% if b.id == a.Complaint.id %}
+												{% set bIdExistsInRespond = true %}
+												<tr>
+													<td><a href="{{ path('app_respond', {'id': a.id}) }}">{{ a.Complaint.id }}</a></td>
+													<td>{{ a.Complaint.type }}</td>
+													<td>{{ a.Complaint.message }}</td>
+												
+													<td>
+														<a class="delete" href="{{ path('app_deleterespond', {'id': a.id}) }}">Delete</a>
+														<a class="delete" href="{{ path('app_respondedit', {'id': a.id,'id1': a.Complaint.id}) }}">Edit</a>
+														
+													</td>
+													<td>{{ a.message }}</td>
+												</tr>
 											{% endif %}
-											{%if a.id != b.Complaint.id%}
-											<a class="delete" href="{{ path('app_deleterespond', {'id': b.id}) }}">Delete</a>
-											<a class="delete" href="{{ path('app_respond', {'id': a.id}) }}">Respond</a>
-											{%endif%}
-
-											{% endfor %}
-										</td>
-										{% for b in respond %}
-										{% if a.id == b.Complaint.id %}
-										<td>{{ b.message }}</td>
-										{% endif %}
 										{% endfor %}
-									</tr>
+										{% if not bIdExistsInRespond %}
+											<tr>
+												<td><a href="{{ path('app_respond', {'id': a.id}) }}">{{ a.Complaint.id }}</a></td>
+												<td>{{ a.Complaint.type }}</td>
+												<td>{{ a.Complaint.message }}</td>
+											
+												<td>
+													<a class="delete" href="{{ path('app_deleterespond', {'id': a.id}) }}">Delete</a>
+													<a class="delete" href="{{ path('app_respond', {'id': a.Complaint.id}) }}">Respond</a>
+												</td>
+												<td>{{ a.message }}</td>
+											</tr>
+										{% endif %}
 									{% endfor %}
-								</tbody>
+</tbody>
+
 							</table>
+
+
+
+
+
+							
+								
+
+						</div>
+						<!-- /.table-responsive -->
+					</div>
+					<!-- /.content -->
+				</div>
+
+
+				<div class="card">
+					<div class="card-header border-transparent">
+						<h3 class="card-title">Latest Complaints</h3>
+
+						<div class="card-tools">
+							<button type="button" class="btn btn-tool" data-card-widget="collapse">
+								<i class="fas fa-minus"></i>
+							</button>
+							<button type="button" class="btn btn-tool" data-card-widget="remove">
+								<i class="fas fa-times"></i>
+							</button>
+						</div>
+					</div>
+					<!-- /.card-header -->
+					<div class="card-body">
+						<div class="table-responsive">
+
+
+							<table class="table m-0">
+								<thead>
+									<tr>
+										<th>Complaint ID</th>
+										<th>Type</th>
+										<th>Message</th>
+										
+										<th>Action</th>
+										
+									</tr>
+								</thead>
+								<tbody>
+    {% for a in complaint %}
+        {% set hasResponse = false %}
+        {% for b in respond %}
+            {% if a.id == b.Complaint.id %}
+                {% set hasResponse = true %}
+            {% endif %}
+        {% endfor %}
+        {% if not hasResponse %}
+            <tr>
+                <td><a href="{{ path('app_respond', {'id': a.id}) }}">{{ a.id }}</a></td>
+                <td>{{ a.type }}</td>
+                <td>{{ a.message }}</td>
+               
+                <td>
+                    {% set skipButtons = false %}
+                    {% for b in respond %}
+                        {% if a.id == b.Complaint.id %}
+                            {% set skipButtons = true %}
+                            <td>{{ b.message }}</td>
+                        {% endif %}
+                    {% endfor %}
+                    {% if not skipButtons %}
+                        <a class="delete" href="{{ path('app_respond', {'id': a.id}) }}">Respond</a>
+						<a class="delete" href="{{ path('app_deletecomplaint1', {'id': a.id}) }}">delete</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endif %}
+    {% endfor %}
+</tbody>
+
+
+
+
+
+
+							</table>
+
+
+
+
+
+							
+								
 
 						</div>
 						<!-- /.table-responsive -->
