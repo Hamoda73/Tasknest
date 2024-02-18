@@ -133,15 +133,27 @@
                                                 </tr>
                                                 
                                                 {% for a in complaint %}
-                                                
+                                                {% set x = 0%}
                                                 <tr>
                                                     <td>{{a.type}}</td>
                                                     <td>{{a.message}}</td>
                                                     <td>{{a.attachement}}</td>
                                                     <td>
-                                                        
+
+                                                        {% for b in respond %}
+                                                    {% if a.id == b.Complaint.id %}
+                                                        {% set x = 1 %}
+                                                    {% endif %}
+                                                    {% endfor %}
+
+                                                        {% if x == 1 %}
+                                                        <a class="delete" href="{{ path('app_deletecomplaint', {'id': a.id}) }}">Delete</a>
+                                                        {% endif %}
+                                                        {% if x == 0 %}
                                                         <a class="delete" href="{{ path('app_editcomplaint', {'id': a.id}) }}">Edit</a>
                                                         <a class="delete" href="{{ path('app_deletecomplaint', {'id': a.id}) }}">Delete</a>
+                                                        {% endif %}
+
                                                     </td>
                                                     {% for b in respond %}
                                                     {% if a.id == b.Complaint.id %}

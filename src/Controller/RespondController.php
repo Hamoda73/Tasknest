@@ -55,6 +55,49 @@ class RespondController extends AbstractController
         ]);
     }
 
+    #[Route('/respondedit/{id}/{id1}', name: 'app_respondedit')]
+    public function respondedit($id, $id1, ManagerRegistry $managerRegistry, ComplaintRepository $complaintRepository, RespondRepository $respondRepository, Request $req): Response
+    {
+        $em=$managerRegistry->getManager();
+        $dataid=$respondRepository->find($id);
+        
+        $complaint = $complaintRepository->find($id1);
+        
+        $form=$this->createForm(RespondType::class,$dataid);
+        $form->handleRequest($req);
+
+        if($form->isSubmitted() and $form->isValid())
+        {
+            $em->persist($dataid);
+            $em->flush();
+            return $this->redirectToRoute('app_dashboard');
+             
+        }
+
+
+        return $this->renderForm('admin/respondedit.html.twig', [
+            'complaint' => $complaint,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/deleterespond/{id}', name: 'app_deleterespond')]
+    public function deleterespond($id,ManagerRegistry $managerRegistry,RespondRepository $respondRepository ): Response
+    {
+        $em=$managerRegistry->getManager();
+        $dataid=$respondRepository->find($id);
+        $em->remove($dataid);
+        $em->flush();
+
+        return $this->redirectToRoute('app_dashboard');
+
+       
+    }
+
+
+
+
+
     
 
 

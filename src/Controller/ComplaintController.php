@@ -28,12 +28,15 @@ class ComplaintController extends AbstractController
 
 
     #[Route('/dashboard', name: 'app_dashboard')]
-    public function dashboard(ComplaintRepository $complaintRepository): Response
+    public function dashboard(ComplaintRepository $complaintRepository, RespondRepository $respondRepository): Response
     {
         $complaint = $complaintRepository->findAll();
+        $respond = $respondRepository->findAll();
+
         return $this->render('admin/dashboard.html.twig', [
             'controller_name' => 'ComplaintController',
             'complaint' => $complaint,
+            'respond' => $respond,
             
         ]);
     }

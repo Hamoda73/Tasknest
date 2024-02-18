@@ -869,51 +869,72 @@
 
 
 				<div class="card">
-				<div class="card-header border-transparent">
-					<h3 class="card-title">Latest Complaints</h3>
+					<div class="card-header border-transparent">
+						<h3 class="card-title">Latest Complaints</h3>
 
-					<div class="card-tools">
-						<button type="button" class="btn btn-tool" data-card-widget="collapse">
-							<i class="fas fa-minus"></i>
-						</button>
-						<button type="button" class="btn btn-tool" data-card-widget="remove">
-							<i class="fas fa-times"></i>
-						</button>
+						<div class="card-tools">
+							<button type="button" class="btn btn-tool" data-card-widget="collapse">
+								<i class="fas fa-minus"></i>
+							</button>
+							<button type="button" class="btn btn-tool" data-card-widget="remove">
+								<i class="fas fa-times"></i>
+							</button>
+						</div>
 					</div>
-				</div>
-				<!-- /.card-header -->
-				<div class="card-body">
-					<div class="table-responsive">
-					
+					<!-- /.card-header -->
+					<div class="card-body">
+						<div class="table-responsive">
 
-						<table class="table m-0">
-							<thead>
-								<tr>
-									<th>Complaint ID</th>
-									<th>Type</th>
-									<th>Message</th>
-									<th>Attachement</th>
-								</tr>
-							</thead>
-							{% for a in complaint %}
-							<tbody>
-								<tr>
-									<td><a href="{{ path('app_respond',{'id': a.id}) }}">{{a.id}}</a></td>
-									<td>{{a.type}}</td>
-									<td>{{a.message}}</td>
-									<td>{{a.attachement}}</td>
-								</tr>
-							</tbody>
-							{% endfor %}
-						</table>
+
+							<table class="table m-0">
+								<thead>
+									<tr>
+										<th>Complaint ID</th>
+										<th>Type</th>
+										<th>Message</th>
+										<th>Attachment</th>
+										<th>Action</th>
+										<th>Respond</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for a in complaint %}
+									<tr>
+										<td><a href="{{ path('app_respond', {'id': a.id}) }}">{{ a.id }}</a></td>
+										<td>{{ a.type }}</td>
+										<td>{{ a.message }}</td>
+										<td>{{ a.attachement }}</td>
+										<td>
+											{% for b in respond %}
+											{% if a.id == b.Complaint.id %}
+											<a class="delete" href="{{ path('app_deleterespond', {'id': b.id}) }}">Delete</a>
+											<a class="delete" href="{{ path('app_respondedit', {'id': b.id,'id1': a.id}) }}">Edit</a>
+											{% endif %}
+											{%if a.id != b.Complaint.id%}
+											<a class="delete" href="{{ path('app_deleterespond', {'id': b.id}) }}">Delete</a>
+											<a class="delete" href="{{ path('app_respond', {'id': a.id}) }}">Respond</a>
+											{%endif%}
+
+											{% endfor %}
+										</td>
+										{% for b in respond %}
+										{% if a.id == b.Complaint.id %}
+										<td>{{ b.message }}</td>
+										{% endif %}
+										{% endfor %}
+									</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+
+						</div>
+						<!-- /.table-responsive -->
 					</div>
-					<!-- /.table-responsive -->
+					<!-- /.content -->
 				</div>
-				<!-- /.content -->
-			</div>
 
 
-			
+
 				<!-- /.row -->
 				<!-- Main row -->
 				<div class="row">
