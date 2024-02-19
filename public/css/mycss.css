@@ -6,9 +6,14 @@
 .xx {
   display: flex;
   flex-direction: row;
-  gap: 50px;
+  gap: 200px;
 }
 
+
+.consultpic{
+  margin-left: 200px;
+
+}
 .loginpic {
   margin-left: 200px;
 }
