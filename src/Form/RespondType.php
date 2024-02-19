@@ -20,7 +20,13 @@ class RespondType extends AbstractType
             ->add('Complaint', EntityType::class, [
                 'class' => Complaint::class,
                 'choice_label' => 'id',
+                'mapped' => false,
+                'attr' => [
+                    'style' => 'display: none;', // Optional: Hide the field with CSS
+                ],
             ])
+            
+            
         ;
     }
 

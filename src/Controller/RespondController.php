@@ -36,6 +36,10 @@ class RespondController extends AbstractController
 
         $respond = new respond();
 
+        $respond->setComplaint($complaint);
+
+        
+
         $form = $this->createForm(RespondType::class, $respond);
         $form->handleRequest($req);
         //$respond->setComplaint($id);
