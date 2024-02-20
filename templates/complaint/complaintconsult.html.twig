@@ -24,37 +24,26 @@
                             <li class="breadcrumb-item active" aria-current="page">Reclamation</li>
                         </ol>
                     </nav>
-
                     <h2 class="text-white">Complaints management system</h2>
                 </div>
-
             </div>
         </div>
-
     </header>
     <section class="explore-section section-padding" id="section_2">
         <div class="container-fluid">
             <div class="row">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" href="{{ path('app_complaintpage') }}" role="tab" aria-controls="Send-tab-pane" aria-selected="true">
                             Send
                         </a>
                     </li>
-
                     <li class="nav-item" role="presentation">
                         <a class="nav-link active" href="{{ path('app_complaintconsult') }}id="consult-tab data-bs-toggle="tab" data-bs-target="#consult-tab-pane" type="button" role="tab" aria-controls="consult-tab-pane" aria-selected="True">Consult</a>
                     </li>
-                    
-                    
-                    
-
-
                 </ul>
             </div>
         </div>
-
         <div class="container">
             <div class="row">
 
@@ -67,31 +56,24 @@
                                 <div class="xxx">
                                     <form action="#" method="post" class="custom-form contact-form" role="form">
                                         <div class="row">
-
                                             <table>
                                                 <tr>
                                                     <th>Type</th>
                                                     <th>Message</th>
-                                                    
                                                     <th>Action</th>
                                                     <th>Response</th>
-
                                                 </tr>
-                                                
                                                 {% for a in complaint %}
                                                 {% set x = 0%}
                                                 <tr>
                                                     <td>{{a.type}}</td>
                                                     <td>{{a.message}}</td>
-                                                   
                                                     <td>
-
                                                         {% for b in respond %}
                                                     {% if a.id == b.Complaint.id %}
                                                         {% set x = 1 %}
                                                     {% endif %}
                                                     {% endfor %}
-
                                                         {% if x == 1 %}
                                                         <a class="delete" href="{{ path('app_deletecomplaint', {'id': a.id}) }}">Delete</a>
                                                         {% endif %}
@@ -99,22 +81,15 @@
                                                         <a class="delete" href="{{ path('app_editcomplaint', {'id': a.id}) }}">Edit</a>
                                                         <a class="delete" href="{{ path('app_deletecomplaint', {'id': a.id}) }}">Delete</a>
                                                         {% endif %}
-
                                                     </td>
                                                     {% for b in respond %}
                                                     {% if a.id == b.Complaint.id %}
                                                     <td>{{b.message}}</td>
                                                     {% endif %}
                                                     {% endfor %}
-                                                    
                                                 </tr>
-                                                
                                                 {% endfor %}
                                             </table>
-                                            
-
-
-
                                             <div class="row">
                                                 <div class="col-lg-3 col-12 ms-auto">
                                                     <button type="submit"

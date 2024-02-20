@@ -41,6 +41,22 @@ class ComplaintController extends AbstractController
         ]);
     }
 
+    #[Route('/userdashboard', name: 'app_userdashboard')]
+    public function userdashboard(ComplaintRepository $complaintRepository, RespondRepository $respondRepository): Response
+    {
+        $complaint = $complaintRepository->findAll();
+        $respond = $respondRepository->findAll();
+
+        return $this->render('admin/userdashboard.html.twig', [
+            'controller_name' => 'ComplaintController',
+            'complaint' => $complaint,
+            'respond' => $respond,
+            
+        ]);
+    }
+
+
+
     #[Route('/dashboardcomplaint', name: 'app_dashboardcomplaint')]
     public function dashboardcomplaint(): Response
     {
@@ -126,26 +142,14 @@ class ComplaintController extends AbstractController
         $dataid=$complaintRepository->find($id);
         $form=$this->createForm(ComplaintformType::class,$dataid);
         $form->handleRequest($req);
-
         if($form->isSubmitted() and $form->isValid())
         {
             $em->persist($dataid);
             $em->flush();
             return $this->redirectToRoute('app_complaintconsult');
-             
         }
-
-
         return $this->renderForm('complaint/editcomplaint.html.twig', [
             'form'=>$form
         ]);
     }
-
-    
-
-
-
-
-
-
 }

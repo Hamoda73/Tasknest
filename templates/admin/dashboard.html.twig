@@ -1,22 +1,16 @@
 {% extends 'baseadmin.html.twig' %}
-
 {% block body %}
 
 <div class="wrapper">
 
-
-
 	<!-- Content Wrapper. Contains page content -->
 	<div class="content-wrapper">
-		<!-- Content Header (Page header) -->
 		<div class="content-header">
 			<div class="container-fluid">
 				<div class="row mb-2">
 					<div class="col-sm-6">
-					<h1 class="m-0" style="font-weight: bold;">Complaints management system</h1>
-
+						<h1 class="m-0" style="font-weight: bold;">Complaints management system</h1>
 					</div>
-					<!-- /.col -->
 					<div class="col-sm-6">
 						<ol class="breadcrumb float-sm-right">
 							<li class="breadcrumb-item">
@@ -25,25 +19,11 @@
 							<li class="breadcrumb-item active">Complaints Dashboard</li>
 						</ol>
 					</div>
-					<!-- /.col -->
 				</div>
-				<!-- /.row -->
 			</div>
-			<!-- /.container-fluid -->
 		</div>
-		<!-- /.content-header -->
-
-		<!-- Main content -->
 		<section class="content">
 			<div class="container-fluid">
-				<!-- Small boxes (Stat box) -->
-				
-
-
-
-				
-
-
 				<div class="card">
 					<div class="card-header border-transparent">
 						<h3 class="card-title">Pending complaints</h3>
@@ -57,20 +37,15 @@
 							</button>
 						</div>
 					</div>
-					<!-- /.card-header -->
 					<div class="card-body">
 						<div class="table-responsive">
-
-
 							<table class="table m-0">
 								<thead>
 									<tr>
 										<th>Complaint ID</th>
 										<th>Type</th>
 										<th>Message</th>
-
 										<th>Action</th>
-
 									</tr>
 								</thead>
 								<tbody>
@@ -86,7 +61,6 @@
 										<td><a href="{{ path('app_respond', {'id': a.id}) }}">{{ a.id }}</a></td>
 										<td>{{ a.type }}</td>
 										<td>{{ a.message }}</td>
-
 										<td>
 											{% set skipButtons = false %}
 											{% for b in respond %}
@@ -97,37 +71,18 @@
 										{% endfor %}
 										{% if not skipButtons %}
 										<a class="delete" href="{{ path('app_respond', {'id': a.id}) }}">Respond</a>
-										<a class="delete" href="{{ path('app_deletecomplaint1', {'id': a.id}) }}">delete</a>
+										<a class="delete" href="{{ path('app_deletecomplaint1', {'id': a.id}) }}"
+											style="color: darkred;">delete</a>
 										{% endif %}
 										</td>
 									</tr>
 									{% endif %}
 									{% endfor %}
 								</tbody>
-
-
-
-
-
-
 							</table>
-
-
-
-
-
-
-
-
 						</div>
-						<!-- /.table-responsive -->
 					</div>
-					<!-- /.content -->
 				</div>
-
-
-
-
 				<div class="card">
 					<div class="card-header border-transparent">
 						<h3 class="card-title">Done Complaints</h3>
@@ -141,21 +96,16 @@
 							</button>
 						</div>
 					</div>
-					<!-- /.card-header -->
 					<div class="card-body">
 						<div class="table-responsive">
-
-
 							<table class="table m-0">
 								<thead>
 									<tr>
 										<th>Complaint ID</th>
 										<th>Type</th>
 										<th>Message</th>
-
 										<th>Respond</th>
 										<th>Action</th>
-										
 									</tr>
 								</thead>
 								<tbody>
@@ -165,79 +115,41 @@
 									{% if b.id == a.Complaint.id %}
 									{% set bIdExistsInRespond = true %}
 									<tr>
-										<td><a href="{{ path('app_respondedit', {'id': a.id,'id1': a.Complaint.id}) }}">{{ a.Complaint.id }}</a></td>
+										<td><a href="{{ path('app_respondedit', {'id': a.id,'id1': a.Complaint.id}) }}">{{
+												a.Complaint.id }}</a></td>
 										<td>{{ a.Complaint.type }}</td>
 										<td>{{ a.Complaint.message }}</td>
 										<td>{{ a.message }}</td>
 										<td>
-											<a class="delete" href="{{ path('app_deleterespond', {'id': a.id}) }}">Delete</a>
-											<a class="delete" href="{{ path('app_respondedit', {'id': a.id,'id1': a.Complaint.id}) }}">Edit</a>
-
-											
+											<a class="delete" href="{{ path('app_deleterespond', {'id': a.id}) }}"
+												style="color: darkred;">Delete</a>
+											<a class="delete"
+												href="{{ path('app_respondedit', {'id': a.id,'id1': a.Complaint.id}) }}">Edit</a>
 										</td>
-										
-										
 									</tr>
 									{% endif %}
 									{% endfor %}
 									{% if not bIdExistsInRespond %}
 									<tr>
-										<td><a href="{{ path('app_respond', {'id': a.id}) }}">{{ a.Complaint.id }}</a></td>
+										<td><a href="{{ path('app_respond', {'id': a.id}) }}">{{ a.Complaint.id }}</a>
+										</td>
 										<td>{{ a.Complaint.type }}</td>
 										<td>{{ a.Complaint.message }}</td>
-
-										
 										<td>
-										<button class="deleto" href="{{ path('app_deleterespond', {'id': a.id}) }}">Delete</button>
-											<a class="deleto" href="{{ path('app_respond', {'id': a.Complaint.id}) }}">Respond</a>
+											<button class="deleto"
+												href="{{ path('app_deleterespond', {'id': a.id}) }}">Delete</button>
+											<a class="deleto"
+												href="{{ path('app_respond', {'id': a.Complaint.id}) }}">Respond</a>
 										</td>
-										
 									</tr>
 									{% endif %}
 									{% endfor %}
 								</tbody>
-
 							</table>
-
-
-
-
-
-
-
-
 						</div>
-						<!-- /.table-responsive -->
 					</div>
-					<!-- /.content -->
 				</div>
-
-
-
-
-
-
-				<!-- /.row -->
-				<!-- Main row -->
-				
-				<!-- /.row (main row) -->
 			</div>
-			<!-- /.container-fluid -->
-		
-		<!-- TABLE: LATEST ORDERS -->
-
-
-
-		<!-- /.content-wrapper -->
-		<footer class="main-footer">
-			<strong>Copyright &copy; 2014-2021
-				<a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-			All rights reserved.
-			<div class="float-right d-none d-sm-inline-block">
-				<b>Version</b>
-				3.2.0
-			</div>
-		</footer>
 		</section>
 	</div>
 	{% endblock %}
