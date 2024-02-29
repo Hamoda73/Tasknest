@@ -1,0 +1,160 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block title %}Statistics{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css"
+    integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock %}
+
+{% block body %}
+{{ parent() }}
+<p>
+
+</p>
+<div class="wrapper">
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="card">
+                    <div class="card-header border-transparent">
+                        <h3 class="card-title">Complaint Types Distribution</h3>
+
+
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row xx">
+                    
+                            <div class="col-md-6">
+                                <canvas id="complaintTypesChart" width="400" height="200"></canvas>
+                            </div>
+                    
+                            <div class="col-md-6">
+                                <p>
+                                </p>
+                                <p>
+                                    
+                                </p>
+                                <!-- Bar Chart for Complaint Counts -->
+                                <canvas id="complaintCountsBarChart" width="500" height="200"></canvas>
+                            </div>
+                    
+                        </div>
+                    </div>
+                    
+
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
+    integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+        var complaintData = {{ complaintData| json_encode | raw
+    }};
+    var labels = complaintData.map(function (complaint) {
+        return complaint.type;
+    });
+    var data = complaintData.map(function (complaint) {
+        return complaint.count;
+    });
+
+    new Chart(document.getElementById("complaintTypesChart"), {
+        type: "pie",
+        data: {
+            labels: labels,
+            datasets: [{
+                data: data,
+                backgroundColor: getRandomColors(labels.length),
+            }]
+        }
+    });
+        });
+
+    // Function to generate random colors
+    function getRandomColors(count) {
+        var colors = [];
+        for (var i = 0; i < count; i++) {
+            colors.push(getRandomColor());
+        }
+        return colors;
+    }
+
+    // Function to generate a random color
+    function getRandomColor() {
+        var letters = "0123456789ABCDEF";
+        var color = "#";
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var complaintData = {{ complaintData| json_encode | raw
+    }};
+
+    // Extract data for Bar Chart
+    var barLabels = complaintData.map(function (complaint) {
+        return complaint.type;
+    });
+    var barData = complaintData.map(function (complaint) {
+        return complaint.count;
+    });
+
+    // Bar Chart
+    new Chart(document.getElementById("complaintCountsBarChart"), {
+        type: "bar",
+        data: {
+            labels: barLabels,
+            datasets: [{
+                label: "Complaint Counts",
+                data: barData,
+                backgroundColor: getRandomColors(barLabels.length),
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    });
+
+    function getRandomColors(count) {
+        // Implement or use a function that generates random colors
+        // You can use a library or a custom function for generating random colors
+        // For simplicity, you can use an array of predefined colors
+        var colors = ["#FF5733", "#33FF57", "#5733FF", "#FF5733", "#33FF57", "#5733FF"];
+        return colors.slice(0, count);
+    }
+</script>
+
+{% endblock %}

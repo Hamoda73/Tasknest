@@ -27,6 +27,9 @@ class Complaint
     #[Assert\Length(min: 10)]
     private ?string $message = null;
 
+    #[ORM\ManyToOne(inversedBy: 'complaints')]
+    private ?User $User = null;
+
    
 
  
@@ -69,6 +72,18 @@ class Complaint
    
          return(string)$this->getId();
     
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->User;
+    }
+
+    public function setUser(?User $User): static
+    {
+        $this->User = $User;
+
+        return $this;
     }
 
     

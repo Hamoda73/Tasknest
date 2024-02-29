@@ -2,8 +2,6 @@
 
 namespace App\Controller;
 
-
-namespace App\Controller;
 use App\Repository\ComplaintRepository;
 use App\Entity\Complaint;
 use App\Form\ComplaintformType;
@@ -16,6 +14,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bridge\Doctrine\ManagerRegistry as DoctrineManagerRegistry;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Mime\Email;
+use Symfony\Component\Mailer\MailerInterface;
 
 class RespondController extends AbstractController
 {
@@ -28,9 +28,9 @@ class RespondController extends AbstractController
     }
 
     #[Route('/respond/{id}', name: 'app_respond')]
-    public function respond($id, ManagerRegistry $managerRegistry, ComplaintRepository $complaintRepository, RespondRepository $respondRepository, Request $req): Response
+    public function respond($id, ManagerRegistry $managerRegistry, ComplaintRepository $complaintRepository, RespondRepository $respondRepository, Request $req, MailerInterface $mailer): Response
     {
-        $em=$managerRegistry->getManager();
+        $em = $managerRegistry->getManager();
         $complaint = $complaintRepository->find($id);
 
 
@@ -38,17 +38,29 @@ class RespondController extends AbstractController
 
         $respond->setComplaint($complaint);
 
-        
+
 
         $form = $this->createForm(RespondType::class, $respond);
         $form->handleRequest($req);
         //$respond->setComplaint($id);
         if ($form->isSubmitted() && $form->isValid()) {
-            
+
             $em->persist($respond);
             $em->flush();
 
+            $sender ='tasknestcompany@gmail.com';
+            $receiver ='md.khelifi@hotmail.com';
+            
+            $email = (new Email())
+                ->from($sender)
+                ->to($receiver)
+                ->subject('Time for Symfony Mailer!')
+                ->text('Sending emails is fun again!');
+           $mailer->send($email);
+
             return $this->redirectToRoute('app_dashboard');
+
+            
         }
 
         return $this->render('admin/respond.html.twig', [
@@ -62,20 +74,18 @@ class RespondController extends AbstractController
     #[Route('/respondedit/{id}/{id1}', name: 'app_respondedit')]
     public function respondedit($id, $id1, ManagerRegistry $managerRegistry, ComplaintRepository $complaintRepository, RespondRepository $respondRepository, Request $req): Response
     {
-        $em=$managerRegistry->getManager();
-        $dataid=$respondRepository->find($id);
-        
+        $em = $managerRegistry->getManager();
+        $dataid = $respondRepository->find($id);
+
         $complaint = $complaintRepository->find($id1);
-        
-        $form=$this->createForm(RespondType::class,$dataid);
+
+        $form = $this->createForm(RespondType::class, $dataid);
         $form->handleRequest($req);
 
-        if($form->isSubmitted() and $form->isValid())
-        {
+        if ($form->isSubmitted() and $form->isValid()) {
             $em->persist($dataid);
             $em->flush();
             return $this->redirectToRoute('app_dashboard');
-             
         }
 
 
@@ -86,31 +96,13 @@ class RespondController extends AbstractController
     }
 
     #[Route('/deleterespond/{id}', name: 'app_deleterespond')]
-    public function deleterespond($id,ManagerRegistry $managerRegistry,RespondRepository $respondRepository ): Response
+    public function deleterespond($id, ManagerRegistry $managerRegistry, RespondRepository $respondRepository): Response
     {
-        $em=$managerRegistry->getManager();
-        $dataid=$respondRepository->find($id);
+        $em = $managerRegistry->getManager();
+        $dataid = $respondRepository->find($id);
         $em->remove($dataid);
         $em->flush();
 
         return $this->redirectToRoute('app_dashboard');
-
-       
     }
-
-
-
-
-
-    
-
-
-
-    
-
-    
-
-
-
-
 }

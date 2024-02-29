@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -41,6 +43,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     private ?string $password = null;
+
+    #[ORM\OneToMany(mappedBy: 'User', targetEntity: Complaint::class)]
+    private Collection $complaints;
+
+    public function __construct()
+    {
+        $this->complaints = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -156,6 +166,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPhonenumber(int $phonenumber): static
     {
         $this->phonenumber = $phonenumber;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Complaint>
+     */
+    public function getComplaints(): Collection
+    {
+        return $this->complaints;
+    }
+
+    public function addComplaint(Complaint $complaint): static
+    {
+        if (!$this->complaints->contains($complaint)) {
+            $this->complaints->add($complaint);
+            $complaint->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComplaint(Complaint $complaint): static
+    {
+        if ($this->complaints->removeElement($complaint)) {
+            // set the owning side to null (unless already changed)
+            if ($complaint->getUser() === $this) {
+                $complaint->setUser(null);
+            }
+        }
 
         return $this;
     }
