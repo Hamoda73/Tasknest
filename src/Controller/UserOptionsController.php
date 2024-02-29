@@ -8,7 +8,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
+
 use App\Form\UserType;
+use Exception;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserOptionsController extends AbstractController
@@ -30,7 +32,6 @@ class UserOptionsController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-            
             // Hash the password if it has been changed in the form
             $plainPassword = $form->get('password')->getData(); // Assuming 'password' is the name of your password field in the form
             if (!empty($plainPassword)) {
@@ -55,7 +56,7 @@ class UserOptionsController extends AbstractController
         $em->remove($data);
         $em->flush();
 
-        return $this->redirectToRoute('app_logout');
+        return $this->redirectToRoute('app_signin');
     }
 
 

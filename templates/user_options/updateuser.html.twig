@@ -1,70 +1,34 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}
+	<link href="../css/mycss.css" rel="stylesheet">
 
-{% block title %}Tasknest - Update!
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap" rel="stylesheet">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+
+	<link href="../css/bootstrap.min.css" rel="stylesheet">
+
+	<link href="../css/bootstrap-icons.css" rel="stylesheet">
+
+	<link href="../css/templatemo-topic-listing.css" rel="stylesheet">
+
+
+{% endblock %}
+{% block javascripts %}
+	<script src="{{asset('../js/jquery.min.js')}}"></script>
+	<script src="{{asset('../js/bootstrap.bundle.min.js')}}"></script>
+	<script src="{{asset('../js/jquery.sticky.js')}}"></script>
+	<script src="{{asset('../js/click-scroll.js')}}"></script>
+	<script src="{{asset('../js/custom.js')}}"></script>
 {% endblock %}
 {% block body %}
 	<main>
-
-		<nav class="navbar navbar-expand-lg">
-			<div class="container">
-				<a class="navbar-brand" href="index.html">
-					<img src="images/tasknest1.png" alt="Resized Image" width="235" height="100">
-				</a>
-
-				<div class="d-lg-none ms-auto me-4">
-					<a href="#top" class="navbar-icon bi-person smoothscroll"></a>
-				</div>
-
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-
-
-				<div class="collapse navbar-collapse" id="navbarNav">
-					<ul class="navbar-nav ms-lg-5 me-lg-auto">
-						<li class="nav-item">
-							<a class="nav-link click-scroll" href="index.html#section_1">Home</a>
-						</li>
-
-						<li class="nav-item">
-							<a class="nav-link click-scroll" href="index.html#section_2">Browse Topics</a>
-						</li>
-
-						<li class="nav-item">
-							<a class="nav-link click-scroll" href="index.html#section_3">How it works</a>
-						</li>
-
-						<li class="nav-item">
-							<a class="nav-link click-scroll" href="index.html#section_4">FAQs</a>
-						</li>
-
-						<li class="nav-item">
-							<a class="nav-link click-scroll" href="index.html#section_5">Contact</a>
-						</li>
-
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#section_5" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
-
-							<ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-								<li>
-									<a class="dropdown-item" href="topics-listing.html">Topics Listing</a>
-								</li>
-
-								<li>
-									<a class="dropdown-item active" href="contact.html">Contact Form</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
-
-					<div class="d-none d-lg-block">
-						<a href="#top" class="navbar-icon bi-person smoothscroll"></a>
-					</div>
-				</div>
-			</div>
-		</nav>
-
-
 		<header class="login-gif site-header">
 			<div class="container">
 				<h2 class="text-white">Update your account</h2>
@@ -73,38 +37,53 @@
 		</header>
 
 
-		<section class="explore-section section-padding" id="section_2">
+		<section class=" explore-section section-padding" id="section_2">
 			<div class="container">
 				<div class="row">
 					<div class="container">
 						<div class="col-lg-6 ">
-							<div class="custom-form" id="signup-form">
+							<div class=" custom-form" id="signup-form">
 								{{ form_start(form,{attr:{novalidate:'novalidate'}}) }}
 								<div class="margin-inputs xx">
 									<div class="xx form-floating label-width">
 										{{ form_widget(form.fname,{'attr':{'class':'form-control'}}) }}
-										{{ form_errors(form.fname) }}
 										<label for="floatingInput">First Name</label>
 									</div>
-
 									<div class="xx form-floating label-width">
 										{{ form_widget(form.lname,{'attr':{'class':'form-control'}}) }}
-										{{ form_errors(form.fname) }}
+
 										<label for="floatingInput">Last Name</label>
 									</div>
 								</div>
 								<div class="margin-inputs xx">
 									<div class="xx form-floating label-width">
-										{{ form_widget(form.birthdate, {'attr': {'class': 'form-control'}}) }}
+										{{ form_errors(form.fname, {'attr':{'class':'form-control'}})}}
+									</div>
 
+									<div class="xx form-floating label-width">
+										{{ form_errors(form.lname) }}
+									</div>
+								</div>
+								<div class="margin-inputs xx">
+									<div class="xx form-floating label-width">
+										{{ form_widget(form.birthdate, {'attr': {'class': 'form-control'}}) }}
 										<label for="floatingInput" class="birthdate-label">Date Of Birth</label>
 									</div>
 									<div class="label-width xx form-floating">
 										{{ form_widget(form.phonenumber,{'attr':{'class':'form-control'}}) }}
-										{{ form_errors(form.phonenumber) }}
 										<label for="floatingInput">Phone number</label>
 									</div>
 								</div>
+								<div class="margin-inputs xx">
+									<div class="xx form-floating label-width">
+										{{ form_errors(form.birthdate, {'attr':{'class':'form-control'}})}}
+									</div>
+
+									<div class="xx form-floating label-width">
+										{{ form_errors(form.phonenumber) }}
+									</div>
+								</div>
+
 								<div class="margin-inputs form-floating">
 									{{ form_widget(form.email,{'attr':{'class':'form-control'}}) }}
 									{{ form_errors(form.email) }}
@@ -117,12 +96,12 @@
 								</div>
 								<div class="margin-inputs form-floating">
 									{{ form_widget(form.password.first,{'attr':{'class':'form-control'}}) }}
-
+									{{ form_errors(form.password.first) }}
 									<label for="floatingInput">Password</label>
 								</div>
 								<div class="margin-inputs form-floating">
 									{{ form_widget(form.password.second,{'attr':{'class':'form-control'}}) }}
-
+									{{ form_errors(form.password.second) }}
 									<label for="floatingInput">Confirm Password</label>
 								</div>
 								<div class="margin-inputs label-width1">
@@ -130,7 +109,7 @@
 								</div>
 
 								<div class="create-account-text">
-									<a href="{{ path('app_signin') }}">
+									<a href="{{ path('app_home') }}">
 										<p>Already have an account?</p>
 									</a>
 								</div>

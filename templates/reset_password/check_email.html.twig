@@ -1,12 +1,149 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+
+	<link href="../css/mycss.css" rel="stylesheet">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap" rel="stylesheet">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+
+	<link href="../css/bootstrap.min.css" rel="stylesheet">
+
+	<link href="../css/bootstrap-icons.css" rel="stylesheet">
+
+	<link href="../css/templatemo-topic-listing.css" rel="stylesheet">
+
+
+{% endblock %}
+
+{% block javascripts %}
+	<script src="{{asset('../js/jquery.min.js')}}"></script>
+	<script src="{{asset('../js/bootstrap.bundle.min.js')}}"></script>
+	<script src="{{asset('../js/jquery.sticky.js')}}"></script>
+	<script src="{{asset('../js/click-scroll.js')}}"></script>
+	<script src="{{asset('../js/custom.js')}}"></script>
+
+
+{% endblock %}
 {% block title %}Password Reset Email Sent
 {% endblock %}
 
 {% block body %}
-	<p>
-		If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.
-		        This link will expire in
-		{{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
-	</p>
-	<p>If you don't receive an email please check your spam folder or
-		<a href="{{ path('app_forgot_password_request') }}">try again</a>.</p>
-{% endblock %}
+	<main>
+		<header class="login-gif site-header">
+			<div class="container">
+				<h2 class="text-white">Welcome to TASKNEST</h2>
+				<h6 class="text-white">Start your adventure</h6>
+			</div>
+		</header>
+
+
+		<section class="explore-section section-padding" id="section_2">
+			<div class="container">
+				<div class="row">
+					<div class="container">
+						<div class="col-lg-6 ">
+							<p>
+								If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.
+																																																						        This link will expire in
+								{{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+							</p>
+							<p>If you don't receive an email please check your spam folder or
+								<a href="{{ path('app_forgot_password_request') }}">try again</a>.
+							</p>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<footer class="site-footer section-padding">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-lg-3 col-12 mb-4 pb-2">
+					<a class="navbar-brand mb-2" href="index.html">
+						<i class="bi-back"></i>
+						<span>Topic</span>
+					</a>
+				</div>
+
+				<div class="col-lg-3 col-md-4 col-6">
+					<h6 class="site-footer-title mb-3">Resources</h6>
+
+					<ul class="site-footer-links">
+						<li class="site-footer-link-item">
+							<a href="#" class="site-footer-link">Home</a>
+						</li>
+
+						<li class="site-footer-link-item">
+							<a href="#" class="site-footer-link">How it works</a>
+						</li>
+
+						<li class="site-footer-link-item">
+							<a href="#" class="site-footer-link">FAQs</a>
+						</li>
+
+						<li class="site-footer-link-item">
+							<a href="#" class="site-footer-link">Contact</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="col-lg-3 col-md-4 col-6 mb-4 mb-lg-0">
+					<h6 class="site-footer-title mb-3">Information</h6>
+
+					<p class="text-white d-flex mb-1">
+						<a href="tel: 305-240-9671" class="site-footer-link">
+							305-240-9671
+						</a>
+					</p>
+
+					<p class="text-white d-flex">
+						<a href="mailto:info@company.com" class="site-footer-link">
+							info@company.com
+						</a>
+					</p>
+				</div>
+
+				<div class="col-lg-3 col-md-4 col-12 mt-4 mt-lg-0 ms-auto">
+					<div class="dropdown">
+						<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+							English</button>
+
+						<ul class="dropdown-menu">
+							<li>
+								<button class="dropdown-item" type="button">Thai</button>
+							</li>
+
+							<li>
+								<button class="dropdown-item" type="button">Myanmar</button>
+							</li>
+
+							<li>
+								<button class="dropdown-item" type="button">Arabic</button>
+							</li>
+						</ul>
+					</div>
+
+					<p class="copyright-text mt-lg-5 mt-4">Copyright © 2048 Topic Listing Center. All rights reserved.
+						<br><br>Design:
+						<a rel="nofollow" href="https://templatemo.com" target="_blank">TemplateMo</a>
+						Distribution
+						<a href="https://themewagon.com">ThemeWagon</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+</main>{% endblock %}

@@ -19,30 +19,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(message: "Fill in the Email blank.")]
     #[Assert\Email(message: "The email '{{ value }}' is not a valid email.")]
     private ?string $email = null;
 
     
     #[ORM\Column(length: 180)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(message: "Fill in the Firstname blank.")]
     #[Assert\Length(min: 4)]
     private ?string $fname = null;
     
     
     #[ORM\Column(length: 180)]
-    #[Assert\NotBlank]
-    //#[Assert\Length(min: 5)]
+    #[Assert\NotBlank(message: "Fill in the Lastname blank.")]
+    #[Assert\Length(min: 5)]
     private ?string $lname = null;
 
     
     #[ORM\Column(length: 180)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(message: "Fill in the Phone number blank.")]
     #[Assert\Length(min: 8, max: 8)]
     private ?int $phonenumber = null;
 
     #[ORM\Column(length: 180)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(message: "Fill in the Image blank.")]
     private ?string $image = null;
 
     #[ORM\Column]
@@ -51,7 +51,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     #[Assert\NotBlank]
-   
     private ?\DateTimeInterface $birthdate = null;
 
     #[ORM\Column]
@@ -62,6 +61,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     
     #[ORM\Column(length: 180)]
+    #[Assert\NotBlank(message: "Fill in the Password blank.")]
+    #[Assert\Length(min: 6)]
     private ?string $password = null;
 
     public function getId(): ?int
