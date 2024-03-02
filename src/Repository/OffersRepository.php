@@ -46,4 +46,32 @@ class OffersRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+
+    /*  public function findByCriteria(array $criteria): array
+    {
+        $queryBuilder = $this->createQueryBuilder('o');
+
+        foreach ($criteria as $key => $value) {
+            if ($value) {
+                $queryBuilder->andWhere("o.$key LIKE :$key")
+                    ->setParameter($key, "%$value%");
+            }
+        }
+
+        return $queryBuilder->getQuery()->getResult();
+    }*/
+
+
+    public function findRandomOffers(int $limit): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT o FROM App\Entity\Offers o ORDER BY RAND()'
+        )->setMaxResults($limit);
+
+        // Execute the query and return the result
+        return $query->getResult();
+    }
 }

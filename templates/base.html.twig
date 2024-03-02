@@ -101,7 +101,7 @@
                 <div class="col-lg-3 col-12 mb-4 pb-2">
                     <a class="navbar-brand mb-2" href="index.html">
                         <i class=""></i>
-                    <img src="images/tasknest1.png" alt="Tasknest Logo" style="width: 300px; height: auto;">
+                    <img src="{{asset('images/tasknest1.png')}}" alt="Tasknest Logo" style="width: 300px; height: auto;">
                 </a>
                     </a>
                 </div>
@@ -111,11 +111,11 @@
 
                     <ul class="site-footer-links">
                         <li class="site-footer-link-item">
-                            <a href="#" class="site-footer-link">Home</a>
+                            <a href="{{path('check')}}" class="site-footer-link">Home</a>
                         </li>
 
                         <li class="site-footer-link-item">
-                            <a href="showAlloffers" class="site-footer-link">Jobs</a>
+                            <a href="{{path('showAlloffers')}}" class="site-footer-link">Jobs</a>
                         </li>
                     
                         <li class="site-footer-link-item">
@@ -133,7 +133,7 @@
 
                     <p class="text-white d-flex mb-1">
                         <a href="tel: 28-899-812" class="site-footer-link">
-                            28-899-812
+                            28-899-812 / 94233067
                         </a>
                     </p>
 

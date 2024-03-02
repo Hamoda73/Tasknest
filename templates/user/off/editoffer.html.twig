@@ -13,8 +13,10 @@
 </li>
 {% endblock %}
 
+
 {% block body %}
-<main><header class="site-header">
+<main>
+    <header class="site-header">
     <div class="container">
         <h2 class="text-white">Welcome to TASKNEST</h2>
         <h6 class="text-white">Post a Job and Unlock top talent for your projects </h6>
@@ -29,7 +31,7 @@
         <div class="row">
             <div class="col-lg-6" style="order: 2;">
                 <div class="ww" style="margin-top: 50px;">
-                    <img src="{{ asset('images/loginpic.png') }}" alt="loginpic" height="250" class="loginpic" style="width: auto; max-width: 40%;">
+                    <img src="images/loginpic.png" alt="loginpic" height="250" class="loginpic" style="width: auto; max-width: 40%;">
                 </div>
             </div>
             <div class="col-lg-6" style="order: 1;">
@@ -42,11 +44,26 @@
                                 {{ form_widget(form.entrepriseName, {'attr': {'class': 'form-control'}}) }}
                                 <label for="floatingInput">Entreprise</label>
                             </div>
+                    
+
                             <div class="xx form-floating label-width">
                                 {{ form_widget(form.domain, {'attr': {'class': 'form-control'}}) }}
                                 <label for="floatingInput">Domain</label>
                             </div>
                         </div>
+                        <div class="margin-inputs xx">
+                                                
+                            <div class="xx form-floating label-width">
+                                
+                                {{ form_errors(form.entrepriseName) }}
+                                
+                            </div>
+                            <div class="xx form-floating label-width">
+                                
+                                {{ form_errors(form.domain) }}
+                                
+                            </div>
+                            </div>
                         <div class="margin-inputs xx">
                             <div class="xx form-floating label-width ">
                                 {{ form_widget(form.post, {'attr': {'class': 'form-control'}}) }}
@@ -55,20 +72,66 @@
                             <div class="label-width xx form-floating">
                                 {{ form_widget(form.salary, {'attr': {'class': 'form-control'}}) }}
                                 <label for="floatingInput">Salary</label>
-                            </div>
+                            </div>                            
                         </div>
+                        <div class="margin-inputs xx">
+                                                
+                            <div class="xx form-floating label-width">
+                                
+                                {{ form_errors(form.post) }}
+                                
+                            </div>
+                            <div class="xx form-floating label-width">
+                                
+                              {{ form_errors(form.salary) }}
+                                
+                            </div>
+                            </div>
+
                         <div class="margin-inputs form-floating">
                             {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
-                            <label for="floatingInput">description</label>
+                            <label for="floatingInput">Description</label>
                         </div>
+                        <div class="margin-inputs xx">
+                                                
+                            <div class="xx form-floating label-width">
+                                
+                                {{ form_errors(form.description) }}
+                                
+                            </div>
+                          
+                            </div>
+
+
                         <div class="margin-inputs form-floating">
                             {{ form_widget(form.period, {'attr': {'class': 'form-control'}}) }}
                             <label for="floatingInput">Period</label>
                         </div>
+                        <div class="margin-inputs xx">
+                                                
+                            <div class="xx form-floating label-width">
+                                
+                                {{ form_errors(form.period) }}
+                                
+                            </div>
+                          
+                            </div>
+                        
+
+
                         <div class="margin-inputs form-floating">
                             {{ form_widget(form.localisation, {'attr': {'class': 'form-control'}}) }}
                             <label for="floatingInput">Localisation</label>
                         </div>
+                       <div class="margin-inputs xx">
+                                                
+                            <div class="xx form-floating label-width">
+                                
+                                {{ form_errors(form.localisation) }}
+                                
+                            </div>
+                          
+                            </div>
                        
                         <div class="margin-inputs label-width1">
                             <button type="submit" class="form-control">Submit</button>

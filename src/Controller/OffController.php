@@ -12,6 +12,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Knp\Component\Pager\PaginatorInterface;
+
+
 
 class OffController extends AbstractController
 {
@@ -26,7 +30,7 @@ class OffController extends AbstractController
     #[Route('/addformoff', name: 'addformoff')]
     public function addformoff(UserRepository $UserRepository, ManagerRegistry $managerRegistry, Request $req): Response
     {
-        $dataid = $UserRepository->find(2);
+        $dataid = $UserRepository->find(1);
         $em = $managerRegistry->getManager();
         $offer = new Offers();
         $offer->setUser($dataid);
@@ -37,7 +41,8 @@ class OffController extends AbstractController
             $em->persist($offer);
             $em->flush();
             $offerid = $offer->getUser()->getId();
-            return $this->redirectToRoute('show_offers', ['id' => $offerid]);
+            $this->addFlash('success', 'Your offer has been added successfully.');
+            return $this->redirectToRoute('show_offers', ['id' => $offerid]); //to show the offers of the user
         }
 
         return $this->renderForm('user/off/off.html.twig', [
@@ -46,7 +51,8 @@ class OffController extends AbstractController
         ]);
     }
 
-    #[Route('/show_offers/{id}', name: 'show_offers')]
+    //specific user offers
+    #[Route('/show_offers/{id}', name: 'show_offers')] //show offers of the user
     public function showOffers(OffersRepository $offersRepository, UserRepository $UserRepository, $id): Response
     {
         $user = $UserRepository->find($id);
@@ -75,7 +81,7 @@ class OffController extends AbstractController
         }
         $form = $this->createForm(OffersType::class, $offer);
         $form->handleRequest($Req);
-        if ($form->isSubmitted() and $form->isValid()) {
+        if ($form->isSubmitted() and $form->isValid()) { //
             $em->persist($offer);
             $em->flush();
             return $this->redirectToRoute('show_offers', ['id' => $offer->getUser()->getId()]);
@@ -93,17 +99,24 @@ class OffController extends AbstractController
         $dataid = $offerRepository->find($id);
         $em->remove($dataid);
         $em->flush();
-        return $this->redirectToRoute('show_offers', ['id' => $dataid->getUser()->getId()]);
+        $this->addFlash('success', 'Offer has been deleted successfully.');
+        return $this->redirectToRoute('show_offers', ['id' => $dataid->getUser()->getId()]); //done deletin redirection to the list
     }
 
 
 
-    #[Route('/showAlloffers', name: 'showAlloffers')]
-    public function showAllffers(OffersRepository $offersRepository): Response
+    #[Route('/showAlloffers', name: 'showAlloffers')]  //show all offers
+    public function showAllffers(OffersRepository $offersRepository, PaginatorInterface $paginator, Request $request): Response
     {
         $offers = $offersRepository->findAll();
+        $pagination = $paginator->paginate(
+            $offers, // Query results
+            $request->query->getInt('page', 1), // Current page number, default to 1
+            3 // Items per page
+        );
         return $this->render('user/off/OffersListing.html.twig', [
-            'offers' => $offers, //tableau d'offres
+            // 'offers' => $offers, //tableau d'offres
+            'pagination' => $pagination,
 
         ]);
     }
@@ -112,7 +125,7 @@ class OffController extends AbstractController
 
     //admin crud
 
-    #[Route('/showoffadmin', name: 'showoffadmin')]
+    #[Route('/showoffadmin', name: 'showoffadmin', methods: ['GET'])]
     public function showoffadmin(OffersRepository $offersRepository): Response
     {
         $offers = $offersRepository->findAll();
@@ -131,4 +144,40 @@ class OffController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('showoffadmin', ['id' => $dataid->getUser()->getId()]);
     }
+
+
+
+
+    //search 
+
+    // src/Controller/OffController.php
+    /*
+    #[Route('/search_offers', name: 'search_offers')]
+    public function searchOffers(Request $request, OffersRepository $offersRepository): Response
+    {
+        // Retrieve criteria from the request query parameters
+        $entrepriseName = $request->query->get('entrepriseName');
+        $domain = $request->query->get('domain');
+        $post = $request->query->get('post');
+
+        // Create an array to hold criteria
+        $criteria = [];
+
+        // Add criteria to the array if they are not empty
+        if ($entrepriseName) {
+            $criteria['entrepriseName'] = $entrepriseName;
+        }
+        if ($domain) {
+            $criteria['domain'] = $domain;
+        }
+        if ($post) {
+            $criteria['post'] = $post;
+        }
+
+        // Filter offers based on the given criteria
+        $results = $offersRepository->findByCriteria($criteria);
+
+        // Serialize the results to JSON and return as JsonResponse
+        return new JsonResponse($results);
+    }*/
 }

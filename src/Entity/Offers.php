@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Boolean;
 use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -99,17 +100,21 @@ class Offers
 
 
 
+
     #[ORM\ManyToOne(inversedBy: 'offers')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $User = null;
 
+
+    //cascade 
     #[ORM\OneToMany(targetEntity: Application::class, mappedBy: 'Offers', cascade: ["remove"])]
     private Collection $applications;
 
     public function __construct()
     {
-        $this->applications = new ArrayCollection();
+        $this->applications = new ArrayCollection(); //offer has many applications 
     }
+
 
 
 
@@ -129,6 +134,9 @@ class Offers
 
         return $this;
     }
+
+
+
 
     public function getDomain(): ?string
     {

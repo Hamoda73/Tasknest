@@ -16,9 +16,34 @@
 
 
 {% block body %}
+
+
+
+<header class="site-header">
+    <div class="container">
+        <h2 class="text-white">Welcome to TASKNEST</h2>
+        <h6 class="text-white">Here are the Jobs you posted</h6>
+    </div>
+</header> 
     <section class="explore-section section-padding" id="" style="background-color: white;">
         <div class="container">
             <h1 class="text-center mt-3 mb-5">Your Offers</h1>
+            
+            {% for flashType, flashMessages in app.session.flashbag.all() %}
+            {% for flashMessage in flashMessages %}
+                {% if flashType == 'success' %}
+                    <div class="alert alert-success" role="alert">
+                {% elseif flashType == 'delete' %}
+                    <div class="alert alert-delete" role="alert">
+                {% else %}
+                    <div class="alert alert-{{ flashType }}" role="alert">
+                {% endif %}
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+        
+           
             {% if offers is not empty %}
             <div class="row">
                 {% for offer in offers %}
@@ -29,9 +54,11 @@
                                     <!-- img-->
                                     <img src="{{ asset('images/entreprise.jpg') }}" alt="Tasknest Logo" style="width: 100%; height: auto;">
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-8 position-relative">
                                     <div class="card-body">
                                         <h3 class="card-title"><span class="Black">{{ offer.entrepriseName }}</span></h3>
+                                        <!-- nbr apps for the offer -->
+                                        <div class="badge bg-design rounded-pill position-absolute top-0 end-0" style="font-size: larger;">{{ offer.applications|length }}</div>
                                         <p class="card-text"><strong><span class="purple">Domain:</span></strong> {{ offer.domain }}</p>
                                         <p class="card-text"><strong><span class="purple">Post:</span></strong> {{ offer.post }}</p>
                                         <p class="card-text"><strong><span class="purple">Description:</span></strong> {{ offer.description }}</p>
@@ -95,6 +122,41 @@
             color: white;
         }
 
-    </style>
+        </style>
+
+
+<style>
+    /* Style for success flash messages */
+    
+    .alert-delete {
+
+        color: #155724;
+        background-color: #d83131;
+        border-color: #c3e6cb;
+        padding: 0.75rem 1.25rem;
+        margin-bottom: 1rem;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+    }
+
+    /* Style for delete flash messages */
+    .alert-success {
+        
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+        padding: 0.75rem 1.25rem;
+        margin-bottom: 1rem;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+    }
+</style>
+
+
+
+
+
+
+
+
        
 {% endblock %}

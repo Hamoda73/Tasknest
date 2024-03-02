@@ -29,7 +29,7 @@
                                             
                                             <a href="{{ path('deleteappadmin', {'id':application.id})}}" class="btn custom-btn mt-3 ml-2 mr-2 btn-delete">Delete</a>
                                         </div>
-
+                                        <a href="{{ path('showoffadmin')}}" class="btn custom-btn mt-3 ml-2 mr-2 btn-back">Go Back</a>
                                  
                                     </div>
                                 </div>
@@ -63,7 +63,11 @@
 .apply-btn .btn {
             margin-right: 260px; 
         }
-
+        .btn-back {
+    background-color: rgb(187, 0, 255);
+    color: white;
+    border-color: rgb(153, 0, 255);
+}
         </style>
     </section>
 {% endblock %}

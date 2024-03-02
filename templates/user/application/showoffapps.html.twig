@@ -3,6 +3,13 @@
 {% block title %}Applications for Offer{% endblock %}
 
 {% block body %}
+
+<header class="site-header">
+    <div class="container">
+        <h2 class="text-white">Welcome to TASKNEST</h2>
+        <h6 class="text-white">Your Offer Condidats </h6>
+    </div>
+</header> 
     <section class="explore-section section-padding" style="background-color: white;">
         <div class="container">
             <h1 class="text-center mt-3 mb-5"> Offer Candidats </h1>
@@ -19,12 +26,15 @@
                                 <div class="col-md-8">
                                     <div class="card-body">
                                         <h3 class="card-title">{{ application.getUser().getFname() }} {{ application.getUser().getLname() }}</h3>
+                                        
                                         <p class="card-text"><strong>Email:</strong> {{ application.getUser().getEmail() }}</p>
                                         <p class="card-text"><strong>Phone Number:</strong> {{ application.getUser().getPhonenumber() }}</p>
                                         <div class="apply-btn">
                                             <a href="{{ path('showresume', {'idapp':application.id})}}" class="btn custom-btn mt-3"" target="_blank"> See Resume</a>
                                             
                                             <a href="{{ path('deleteappoff', {'id':application.id})}}" class="btn custom-btn mt-3 ml-2 mr-2 btn-delete">Delete</a>
+
+                                            <a href="{{ path('sendSms', {'applicationId': application.id}) }}" class="btn custom-btn mt-3 ml-2 mr-2 btn-sms">Send Acceptance SMS</a>
                                         </div>
 
                                  
@@ -32,14 +42,20 @@
                                 </div>
                             </div>
                         </div>
+                        
                     </div>
                 {% endfor %}
+                
+                
             </div>
             {% else %}
 
             <h6 class="text-center">No Applications yet</h6>
 
+
     {% endif %}
+    <a href="{{ path('show_offers',{'id':offer.user.id}) }}" class="btn custom-btn mt-3 ml-2 mr-2 btn-apply">Back to the Offers list</a>
+   
         </div>
         <style>
 .btn-delete {
@@ -47,7 +63,16 @@
     color: white;
     border-color: red;
 }
+.btn-sms {
+    background-color: rgb(106, 206, 249);
+    color: white;
+    border-color: rgb(85, 191, 248);
+}
 
+.btn-sms:hover {
+    background-color: rgb(5, 97, 130);
+    border-color: rgb(11, 81, 147);
+}
 .btn-delete:hover {
     background-color: darkred;
     border-color: darkred;

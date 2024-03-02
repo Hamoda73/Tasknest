@@ -7,6 +7,7 @@ use App\Form\ApplicationType;
 use App\Repository\ApplicationRepository;
 use App\Repository\OffersRepository;
 use App\Repository\UserRepository;
+use App\Service\TwilioSMSService;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -114,16 +115,19 @@ class ApplicationController extends AbstractController
 
 
     #[Route('/show_apps/{offerId}', name: 'show_apps')]
-    public function showApplications(ApplicationRepository $applicationRepository, $offerId): Response
+    public function showApplications(ApplicationRepository $applicationRepository, OffersRepository $offerRepository, $offerId): Response
     {
         $applications = $applicationRepository->findBy(['Offers' => $offerId]);
+        $offer = $offerRepository->find($offerId); //recuperation d'offre
 
         return $this->render('user/application/showoffapps.html.twig', [
             'applications' => $applications,
+            'offer' => $offer,
         ]);
     }
 
-    //user show
+    //user show  change id to work
+    //offerId d'offer
 
     #[Route('/my_applications/{offerId}', name: 'my_applications')]
     public function myApplications($offerId, ApplicationRepository $applicationRepository, UserRepository $userRepository, OffersRepository $offersRepository): Response
@@ -186,23 +190,22 @@ class ApplicationController extends AbstractController
 
             if ($cvFile instanceof UploadedFile) {
                 // Handle file upload
-                $newFilename = uniqid() . '.' . $cvFile->guessExtension();
+                $newFilename = uniqid() . '.' . $cvFile->guessExtension(); //uniqid prevent machekl l filename
 
                 try {
-                    // Move the uploaded file to the desired directory
+                    // Move ll u
                     $cvFile->move(
                         $this->getParameter('cv_directory'),
                         $newFilename
                     );
 
-                    // Update the CV property of the application entity with the new file path
+                    // Update the CV  with the new file path
                     $app->setCv($newFilename);
                 } catch (FileException $e) {
                     // Handle file upload error
                 }
             }
 
-            // Persist and flush changes to the database
             $em->persist($app);
             $em->flush();
 
@@ -251,5 +254,39 @@ class ApplicationController extends AbstractController
         $em->remove($dataid);
         $em->flush();
         return $this->redirectToRoute('showappsadmin', ['offerId' => $idoff]);
+    }
+
+    //smsss workinn suiiii
+
+    #[Route('/sendSms/{applicationId}', name: 'sendSms')]
+    public function sendSms(ApplicationRepository $applicationRepository, $applicationId): Response
+    {
+        // Retrieve the application entity
+        $application = $applicationRepository->find($applicationId);
+
+        if (!$application) {
+            throw $this->createNotFoundException('Application not found');
+        }
+
+        // Extract necessary information from the application and offer entities
+        $enterpriseName = $application->getOffers()->getEntrepriseName();
+        $post = $application->getOffers()->getPost();
+        $firstName = $application->getUser()->getFname();
+        $lastName = $application->getUser()->getLname();
+        $phoneNumber = '+216' . $application->getUser()->getPhonenumber();
+        // Construct the message
+        $message = "Dear $firstName $lastName,\nCongratulations! Your application for the position of $post at $enterpriseName has been accepted. We look forward to having you on our team.";
+
+        // Create an instance of TwilioSMSService manually and pass the required parameters
+        $twilioSMSService = new TwilioSMSService(
+            $this->getParameter('twilio_account_sid'),
+            $this->getParameter('twilio_auth_token'),
+            $this->getParameter('twilio_phone_number')
+        );
+
+        // Send SMS
+        $twilioSMSService->sendSMS($phoneNumber, $message);
+
+        return $this->redirectToRoute('show_apps', ['offerId' => $application->getOffers()->getId()]);
     }
 }

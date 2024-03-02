@@ -10,6 +10,21 @@
         <div class="container">
             <h1 class="text-center mt-3 mb-5 pagetitle">Uploaded Offers</h1>
 
+            <div class="search-container">
+                <div class="col text-center">
+                    <h4 class="search-title" style="margin-bottom: 15px; color: rgb(126, 14, 231);">Search Here</h4>
+                    <div class="input-group">
+                        <input type="text" value="" class="form-control search-input" placeholder="&#128269; Search an Offer" id="searchoffer">
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+            
+            
             <div class="row">
                 <div class="col">
                     <div class="table-responsive">
@@ -108,5 +123,70 @@
         .pagetitle {
             color: #340965; 
         }
+
+        
     </style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Function to perform the search based on the specified keyword
+        function searchOffer(keyword) {
+            $(".table tbody tr").each(function () {
+                var found = false;
+                $(this).find("td").each(function () {
+                    if ($(this).text().toLowerCase().includes(keyword.toLowerCase())) {
+                        found = true;
+                        return false; // Exit the loop
+                    }
+                });
+                $(this).toggle(found); // Show/hide the row based on search result
+            });
+        }
+
+        // Event handler for the search input
+        $("#searchoffer").on("keyup", function () {
+            var searchText = $(this).val();
+            searchOffer(searchText);
+        });
+    });
+</script>
+
+
+<style>
+    .search-container {
+    text-align: center;
+    margin-bottom: 40px; /* Added to give some space below the search container */
+}
+
+
+.search-input {
+    width: 300px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px;
+    background-color: #f6f6b7;
+    font-size: 16px;
+    color: #333;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.search-input::placeholder {
+    font-family: Arial, sans-serif; /* Specify the font family for the placeholder text */
+    font-size: 16px; /* Adjust the font size of the placeholder text */
+    color: #333; /* Adjust the color of the placeholder text */
+}
+
+
+    </style>
+    
+
+ 
 {% endblock %}
