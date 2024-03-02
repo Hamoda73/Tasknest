@@ -8,6 +8,7 @@ use App\Form\ComplaintformType;
 use App\Repository\RespondRepository;
 use App\Entity\Respond;
 use App\Form\RespondType;
+use App\Form\UserType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,6 +17,8 @@ use Symfony\Bridge\Doctrine\ManagerRegistry as DoctrineManagerRegistry;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mailer\MailerInterface;
+use App\Entity\User;
+use App\Repository\UserRepository;
 
 class RespondController extends AbstractController
 {
@@ -28,35 +31,30 @@ class RespondController extends AbstractController
     }
 
     #[Route('/respond/{id}', name: 'app_respond')]
-    public function respond($id, ManagerRegistry $managerRegistry, ComplaintRepository $complaintRepository, RespondRepository $respondRepository, Request $req, MailerInterface $mailer): Response
+    public function respond($id, ManagerRegistry $managerRegistry, ComplaintRepository $complaintRepository, RespondRepository $respondRepository, Request $req, MailerInterface $mailer, UserRepository $userRepository): Response
     {
         $em = $managerRegistry->getManager();
         $complaint = $complaintRepository->find($id);
-
-
         $respond = new respond();
-
         $respond->setComplaint($complaint);
-
-
-
         $form = $this->createForm(RespondType::class, $respond);
         $form->handleRequest($req);
-        //$respond->setComplaint($id);
+        $user = $this->getUser();
         if ($form->isSubmitted() && $form->isValid()) {
-
             $em->persist($respond);
             $em->flush();
-
-            $sender ='tasknestcompany@gmail.com';
-            $receiver ='md.khelifi@hotmail.com';
-            
+            if ($user) {
+            // Get the email address of the logged-in user
+            $receiverEmail = $user->getEmail();
+            $message = $form->get('message')->getData();
             $email = (new Email())
-                ->from($sender)
-                ->to($receiver)
-                ->subject('Time for Symfony Mailer!')
-                ->text('Sending emails is fun again!');
+                ->from('tasknestcompany@gmail.com')
+                ->to($receiverEmail)
+                ->subject('Response for your complaint')
+                ->text($message);
            $mailer->send($email);
+
+        }
 
             return $this->redirectToRoute('app_dashboard');
 

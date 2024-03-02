@@ -21,28 +21,101 @@ class ComplaintRepository extends ServiceEntityRepository
         parent::__construct($registry, Complaint::class);
     }
 
-//    /**
-//     * @return Complaint[] Returns an array of Complaint objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function getGeneralInquiryComplaints()
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.type = :type')
+            ->setParameter('type', 'general inquiry')
+            ->getQuery()
+            ->getResult();
+    }
 
-//    public function findOneBySomeField($value): ?Complaint
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function getCustomerSupportComplaints()
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.type = :type')
+            ->setParameter('type', 'customer support')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getBillingIssueComplaints()
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.type = :type')
+            ->setParameter('type', 'billing issue')
+            ->getQuery()
+            ->getResult();
+    }
+
+
+public function countAllComplaints()
+{
+    return $this->createQueryBuilder('c')
+        ->select('COUNT(c.id) as totalComplaints')
+        ->getQuery()
+        ->getSingleScalarResult();
+}
+public function countGeneralInquiryComplaints()
+{
+    return $this->createQueryBuilder('c')
+        ->select('COUNT(c.id) as generalInquiryComplaintsCount')
+        ->where('c.type = :type')
+        ->setParameter('type', 'general inquiry')
+        ->getQuery()
+        ->getSingleScalarResult();
+}
+
+public function countBillingIssueComplaints()
+{
+    return $this->createQueryBuilder('c')
+        ->select('COUNT(c.id) as billingIssueComplaintsCount')
+        ->where('c.type = :type')
+        ->setParameter('type', 'billing issue')
+        ->getQuery()
+        ->getSingleScalarResult();
+}
+
+public function countCustomerSupportComplaints()
+{
+    return $this->createQueryBuilder('c')
+        ->select('COUNT(c.id) as customerSupportComplaintsCount')
+        ->where('c.type = :type')
+        ->setParameter('type', 'customer support')
+        ->getQuery()
+        ->getSingleScalarResult();
+}
+
+
+
+
+    
+
+
+
+
+    //    /**
+    //     * @return Complaint[] Returns an array of Complaint objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('c')
+    //            ->andWhere('c.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('c.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
+
+    //    public function findOneBySomeField($value): ?Complaint
+    //    {
+    //        return $this->createQueryBuilder('c')
+    //            ->andWhere('c.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

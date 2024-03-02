@@ -40,14 +40,73 @@ class ComplaintController extends AbstractController
     {
         $complaint = $complaintRepository->findAll();
         $respond = $respondRepository->findAll();
+        $sum = $respondRepository->countDoneComplaints();
+        $total =$complaintRepository->countAllComplaints();
 
         return $this->render('admin/dashboard.html.twig', [
             'controller_name' => 'ComplaintController',
             'complaint' => $complaint,
             'respond' => $respond,
+            'sum'=>$sum,
+            'total'=>$total,
 
         ]);
     }
+
+    #[Route('/dashboardgi', name: 'app_dashboardgi')]
+    public function dashboardgi(ComplaintRepository $complaintRepository, RespondRepository $respondRepository): Response
+    {
+        $complaint = $complaintRepository->getGeneralInquiryComplaints();
+        $respond = $respondRepository->getGeneralInquiryResponds();
+        $sum = $respondRepository->countDoneGeneralInquiryComplaints();
+        $total =$complaintRepository->countGeneralInquiryComplaints();
+
+        return $this->render('admin/dashboardgi.html.twig', [
+            'controller_name' => 'ComplaintController',
+            'complaint' => $complaint,
+            'respond' => $respond,
+            'sum'=>$sum,
+            'total'=>$total,
+
+        ]);
+    }
+    #[Route('/dashboardbi', name: 'app_dashboardbi')]
+    public function dashboardbi(ComplaintRepository $complaintRepository, RespondRepository $respondRepository): Response
+    {
+        $complaint = $complaintRepository->getBillingIssueComplaints();
+        $respond = $respondRepository->getBillingIssueResponds();
+        $sum = $respondRepository->countDoneBillingIssueComplaints();
+        $total =$complaintRepository->countBillingIssueComplaints();
+
+        return $this->render('admin/dashboardbi.html.twig', [
+            'controller_name' => 'ComplaintController',
+            'complaint' => $complaint,
+            'respond' => $respond,
+            'sum'=>$sum,
+            'total'=>$total,
+
+        ]);
+    }
+
+    #[Route('/dashboardcs', name: 'app_dashboardcs')]
+    public function dashboardcs(ComplaintRepository $complaintRepository, RespondRepository $respondRepository): Response
+    {
+        $complaint = $complaintRepository->getCustomerSupportComplaints();
+        $respond = $respondRepository->getCustomerSupportResponds();
+        $sum = $respondRepository->countDoneCustomerSupportComplaints();
+        $total =$complaintRepository->countCustomerSupportComplaints();
+
+        return $this->render('admin/dashboardcs.html.twig', [
+            'controller_name' => 'ComplaintController',
+            'complaint' => $complaint,
+            'respond' => $respond,
+            'sum'=>$sum,
+            'total'=>$total,
+
+        ]);
+    }
+
+
 
     #[Route('/userdashboard', name: 'app_userdashboard')]
     public function userdashboard(ComplaintRepository $complaintRepository, RespondRepository $respondRepository): Response
@@ -90,17 +149,22 @@ class ComplaintController extends AbstractController
 
         $form = $this->createForm(ComplaintformType::class, $complaint);
         $form->handleRequest($req);
-
+        $user = $this->getUser();
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($complaint);
             $em->flush();
-            
+            if ($user) {
+                // Get the email address of the logged-in user
+                $receiverEmail = $user->getEmail();
             $email = (new Email())
                 ->from('tasknestcompany@gmail.com')
-                ->to('md.khelifi@hotmail.com')
-                ->subject('Time for Symfony Mailer!')
-                ->text('Sending emails is fun again!');
+                ->to($receiverEmail)
+                ->subject('Complaint submission')
+                ->text('Thank you for contacting us, we received your feedback, our support team will get to you as soon as possible.
+
+                regards');
             $mailer->send($email);
+        }
 
             return $this->redirectToRoute('app_complaintpage');
         }

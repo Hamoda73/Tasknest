@@ -8,7 +8,9 @@
   flex-direction: row;
   gap: 200px;
 }
-
+.spaced-h3 {
+  margin-right: 10px;
+}
 
 .consultpic{
   margin-left: 200px;

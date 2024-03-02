@@ -27,7 +27,7 @@ class Complaint
     #[Assert\Length(min: 10)]
     private ?string $message = null;
 
-    #[ORM\ManyToOne(inversedBy: 'complaints')]
+    #[ORM\ManyToOne(inversedBy: 'complaints' )]
     private ?User $User = null;
 
    

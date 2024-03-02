@@ -18,49 +18,58 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-
-        <section class="content">
+        <div class="content-header">
             <div class="container-fluid">
-                <div class="card">
-                    <div class="card-header border-transparent">
-                        <h3 class="card-title">Complaint Types Distribution</h3>
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+
+                        <h1 class="m-0" style="font-weight: bold;">Statistics about the complaints</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                            <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                <i class="fas fa-times"></i>
-                            </button>
-                        </div>
+        <div class="card">
+            <div class="card-header border-transparent">
+                <h3 class="card-title">Complaint Types Distribution</h3>
+
+
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row xx">
+
+                    <div class="col-md-6">
+                        <canvas id="complaintTypesChart" width="400" height="200"></canvas>
                     </div>
-                    <div class="card-body">
-                        <div class="row xx">
-                    
-                            <div class="col-md-6">
-                                <canvas id="complaintTypesChart" width="400" height="200"></canvas>
-                            </div>
-                    
-                            <div class="col-md-6">
-                                <p>
-                                </p>
-                                <p>
-                                    
-                                </p>
-                                <!-- Bar Chart for Complaint Counts -->
-                                <canvas id="complaintCountsBarChart" width="500" height="200"></canvas>
-                            </div>
-                    
-                        </div>
+
+                    <div class="col-md-6">
+                        <p>
+                        </p>
+                        <p>
+
+                        </p>
+                        <!-- Bar Chart for Complaint Counts -->
+                        <canvas id="complaintCountsBarChart" width="500" height="200"></canvas>
                     </div>
-                    
 
                 </div>
             </div>
-        </section>
 
+
+        </div>
     </div>
+    </section>
+
+</div>
 
 </div>
 
