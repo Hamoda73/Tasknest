@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\CV;
+use App\Entity\Skill;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -33,6 +34,31 @@ class CVRepository extends ServiceEntityRepository
 
         return $cvWithSkills ? ['cv' => $cvWithSkills, 'skills' => $cvWithSkills->getSkills()->toArray()] : null;
     }
+    public function findSkillNamesByIds(array $selectedSkillIds): array
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->select('s.name')
+           ->from(Skill::class, 's')
+           ->where($qb->expr()->in('s.id', $selectedSkillIds));
+    
+        $query = $qb->getQuery();
+        
+        return array_map('current', $query->getResult()); // Extract skill names from the result
+    }
+    public function findCvsBySkillNames(array $selectedSkills): array
+{
+    $qb = $this->createQueryBuilder('cv');
+    $qb->innerJoin('cv.skills', 's')
+       ->andWhere($qb->expr()->in('s.name', ':selectedSkills'))
+       ->setParameter('selectedSkills', $selectedSkills);
+    
+    return $qb->getQuery()->getResult();
+}
+
+    
+    
+    
+    
 //    /**
 //     * @return CV[] Returns an array of CV objects
 //     */

@@ -40,7 +40,7 @@ class CV
     #[Assert\Count(min: 1, minMessage: "Select at least one language.")]
     private ?array $language = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     #[Assert\NotBlank(message: "Your Location cannot be blank.")]
     #[Assert\Length( 
         max: 20,
@@ -50,9 +50,11 @@ class CV
         pattern: "/^[a-zA-Z\s]*$/",
         message: "Your Location must only contain letters and spaces."
     )]
-    private ?string $location = null;
 
-    #[ORM\Column(length: 255)]
+    private ?string $location = null;
+    
+
+    #[ORM\Column(length: 255, nullable: true)]
     #[Assert\NotBlank(message: "Your Certification cannot be blank.")]
     #[Assert\Length( 
         max: 40,
@@ -64,7 +66,7 @@ class CV
     )]
     private ?string $certification = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     #[Assert\NotBlank(message: "Your Contact cannot be blank.")]
     #[Assert\Regex(
         pattern: "/^https?:\/\/(www\.)?facebook\.com\/[a-zA-Z0-9_.-]+\/?(\?locale=[a-zA-Z_]+)?$/",

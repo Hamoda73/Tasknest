@@ -6,16 +6,9 @@
 		<div class="card">
 			<div class="card-header border-transparent">
 				<div class="card-header">
-					<h3 class="card-title">All Skills</h3>
+					<h3 class="card-title" style=" font-size: 30px; margin-left: 755px; color: rgb(201, 138, 56);  font-weight: bold;">All Skills</h3>
 					<div class="card-tools">
-						<div class="input-group input-group-sm" style="width: 150px;">
-							<input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-							<div class="input-group-append">
-								<button type="submit" class="btn btn-default">
-									<i class="fas fa-search"></i>
-								</button>
-							</div>
-						</div>
+						
 					</div>
 				</div>
 				<div class="card-tools">
@@ -61,12 +54,37 @@
 							</tbody>
 						</table>
 					{% endif %}
+					
+					
 				</div>
+				  
 				<!-- /.table-responsive -->
+			</div>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-md-6">
+						<form class="text-center">
+							<a href="{{ path('showcvsadmin') }}" class="btn custom-btn">Return to CVs</a>
+						</form>
+					</div>
+					
+				</div>
 			</div>
 			<!-- /.content -->
 		</div>
 	</div>
+	<style>
+		.custom-btn {
+			color: #ffffff; /* Text color */
+			background-color: #0c917a; /* Background color */
+			border-color: #0c917a; /* Border color */
+		}
+	
+		.custom-btn:hover {
+			background-color: #38c4ac; /* Hover background color */
+			border-color: #38c4ac; /* Hover border color */
+		}
+	</style>
 {% endblock %}
 
 {% block footer %} {% endblock %}

@@ -1,256 +1,600 @@
-{% extends 'base.html.twig' %}
 
-{% block title %}Freelancers CVs!{% endblock %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-{% block body %}
-                            <style>
-                                :root {
-                                    --violet-color: #995492;
-                                }
-                                h7 {
-                                    color: var(--violet-color);
-                                    font-size: var(--h6-font-size);
-                                    margin-bottom: 10px; /* Adjust margin bottom for spacing */
-                                }
-                                .bullet {
-                                    font-size: 10px;
-                                    margin-right: 5px;
-                                    margin-top: 5px; /* Align bullet to the bottom */
-                                }
+        <title>Freelancers CVs!</title>
+        
 
-                                .skill-item {
-                                    display: flex; /* Display skill items as flex */
-                                    align-items: center; /* Align items vertically */
-                                    margin-right: 5px; /* Adjust as needed */
-                                }
+        
+        <link rel="icon" href="{{ asset('images/tasknest.png') }}">
+        <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap" rel="stylesheet"> 
+        <link href="{{ asset('css/bootstrap-icons.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/templatemo-topic-listing.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/mycss.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('css/stylescv.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-                                .skill-item h6 {
-                                    margin-bottom: 0; /* Remove bottom margin from skill item */
-                                }
 
-                                    /*   .bullet {
-                                    font-size: 10px;
-                                    margin-right: 5px;
-                                    margin-top: auto; 
-                                } */
+        <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+        <script src="{{asset('js/jquery.sticky.js')}}"></script>
+        <script src="{{asset('js/click-scroll.js')}}"></script>
+        <script src="{{asset('js/custom.js')}}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js" integrity="sha512-lvpTL6+ySwTr7W97xq9vpK46u+MB8pHlHJYZq0J0lh0Fd6jNhxJVryPVql7WWp9tDVawrrM/Kd25JrqrMZIKOw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha512-Pv9Ye2Wkpuw5AJBcQzW8KOFskZao3XK76wGiPzvkQMc+FwhNoo9wrZi7+8JnOlUkNbkf+GTnTdu3VX4fhv74Dg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-                                .language {
-                                    font-size: 17px;
-                                    font-weight: bold;
-                                    margin-bottom: 0;
-                                    margin-top: auto; /* Align language text to the bottom */
-                                }
-                                .language-item:first-child {
-                                margin-top: 70px; /* Adjust as needed */
-                                 }
-                                .lang{
-                                    margin-top: 10px;
-                                    }
+        
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <i class=""></i>
+                    <img src="{{ asset('images/tasknest1.png') }}" alt="Tasknest Logo" style="width: 220px; height: auto;">
+                </a>
+                <div class="d-lg-none ms-auto me-4">
+                    <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-lg-5 me-lg-auto">
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="{{ path('home') }}">Home</a>
+                        </li>
 
-                                .skill {
-                                    font-size: 17px;
-                                    font-weight: bold;
-                                    margin-bottom: -15px;
-                                    margin-top: 5px;
-                                }
-                                .ml-auto {
-                                    margin-left: 60px; /* This will push the languages section to the right by 50 pixels */
-                                }
-       
-                                .languages-heading {
-                                    margin-bottom: 15px; /* Adjust this value to increase or decrease the space */
-                                }
-                                .description {
-                                    margin-left: 30px; /* Adjust as needed to control position from the left */
-                                    margin-right: 20px; /* Adjust as needed to control position from the right */
-                                }
-                                .location {
-                                    margin-top: 20px!important; 
-                                    margin-right: -100px!important; 
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="{{ path('showcvs') }}">Freelancers</a>
+                        </li>
+
+                      
+
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="#section_4">FAQs</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="#section_5">Contact</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
+
+                            <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+                                <li><a class="dropdown-item" href="topics-listing.html">Topics Listing</a></li>
+
+                                <li><a class="dropdown-item" href="contact.html">Contact Form</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href=""></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href=""></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href=""></a>
+                        </li>
                         
-                                    margin-left: -5px; 
-                                /* margin-right: 20px;  Adjust as needed to control position from the right */
-                                    color: rgb(0, 0, 0); 
-                                }
-                                .location-image {
-                                    margin-top: 0px; /* Adjust as needed to control the vertical position (top) */
-                                    margin-left: -230px; /* Adjust as needed to control the horizontal position (left) */
-                                    margin-right: 20px; /* Adjust as needed to control position from the right */
-                                }
-                                .skill-container {
-                                    display: flex;
-                                    justify-content: space-between; /* Distribute items evenly along the container */
-                                }
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="{{ path('addcv', {'id': 1}) }}">Make Your own CV</a>
+                        </li>
+                       
+                    </ul>
 
-                                .skill-item {
-                                    /* width: calc(33.33% - 20px); Adjusted for equal spacing */
-                                    margin-right: 20px; /* Updated margin for equal spacing */
-                                    margin-bottom: 10px; /* Updated for consistency */
-                                }
-
-                                .action {
-                                    margin-top: 20px;
-                                    margin-left: 580px; /* Adjust as needed to control position from the left */
-                                    margin-right: 0px; /* Adjust as needed to control position from the right */
-                                    width: 30%; /* Adjust as needed to control the size of the block */
-                                }
-                                .action-item {
-                                    width: calc(40% - 10px); /* Adjust the width as needed */
-                                }
-                                .custom-btn1 {
-                                    background-color: rgb(196, 106, 187); /* Background color */
-                                    color: white; /* Text color */
-                                    border-radius: 20px;
-                                    /* Add any additional styling you need */
-                                }
-                                .custom-btn1:hover {
-                                    background-color: rgb(100, 24, 92); /* specify the desired hover background color */;
-                                    color: white; /* specify the desired hover text color */;
-                                    /* Add styles for button hover state if needed */
-                                }
-                                .mb-3 {
-                                    margin-bottom: -1rem!important;
-                                }
-
-                                .custom-block-image{
-                                margin-top: -15px!important; 
-                                margin-right: 15px!important;  
-                                }
-
-
-
-                                .ml-auto.certif {
-                                    margin-top: 30px;
-                                    margin-left: -11px;
-                                    margin-right: 10px;
-                                }
-                                .ml-auto.contact {
-                                    margin-left: -11px;
-                                    margin-right: 10px;
-                                }
-                                
-                                .left-column {
-                                    flex: 1;
-                                }
-
-                                .right-column {
-                                    flex: 2;
-                                    max-width: 70%;
-                                }
-
-                                .location-image {
-                                    margin-top: 0px;
-                                    margin-left: 0;
-                                    margin-right: 5px;
-                                }
-
-
-                                .languages {
-                                    margin-top: -10px;
-                                }
-
-                                .skill-item {
-                                    margin-right: 5px; /* Adjust as needed */
-                                }
-
-                                .custom-block {
-                                    display: flex;
-                                    padding: 20px;
-                                }
-                                .emp {
-                                    margin-right: 20px;
-                                    margin-top: 20px;
-                                }
-
-                            </style>
-
-
-    <header class="site-header d-flex flex-column justify-content-center align-items-center">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-5 col-12">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Freelancers</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">All CVs</li>
-                        </ol>
-                    </nav>
-                    <h2 class="text-white">You will find here all the CVs</h2>
+                    <div class="d-none d-lg-block">
+                        <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </header>
+        </nav>
+        
 
-    <section class="section-padding">
-        {% if cv is not empty %}
+    </head>
+    <style>
+        :root {
+            --violet-color: #995492;
+        }
+/*****************************new***************************/
+
+.navbar {
+    background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+    padding-top: 5px;
+    padding-bottom: 20px;
+}
+
+
+/*****************************new***************************/
+
+        h7 {
+            color: var(--violet-color);
+            font-size: var(--h6-font-size);
+            margin-bottom: 10px; /* Adjust margin bottom for spacing */
+        }
+        .bullet {
+            font-size: 10px;
+            margin-right: 5px;
+            margin-top: 5px; /* Align bullet to the bottom */
+        }
+    
+        .skill-item {
+            display: flex; /* Display skill items as flex */
+            align-items: center; /* Align items vertically */
+            margin-right: 5px; /* Adjust as needed */
+        }
+    
+        .skill-item h6 {
+            margin-bottom: 0; /* Remove bottom margin from skill item */
+        }
+    
+        .language {
+            font-size: 17px;
+            font-weight: bold;
+            margin-bottom: 0;
+            margin-top: auto; /* Align language text to the bottom */
+        }
+        .language-item:first-child {
+            margin-top: 70px; /* Adjust as needed */
+        }
+        .lang{
+            margin-top: 10px;
+        }
+    
+        .skill {
+            font-size: 17px;
+            font-weight: bold;
+            margin-bottom: -15px;
+            margin-top: 5px;
+        }
+        .ml-auto {
+            margin-left: 60px; /* This will push the languages section to the right by 50 pixels */
+        }
+    
+        .languages-heading {
+            margin-bottom: 15px; /* Adjust this value to increase or decrease the space */
+        }
+        .description {
+            margin-left: 30px; /* Adjust as needed to control position from the left */
+            margin-right: 20px; /* Adjust as needed to control position from the right */
+        }
+        .location {
+            margin-top: 20px!important; 
+            margin-right: -100px!important; 
+    
+            margin-left: -5px; 
+            /* margin-right: 20px;  Adjust as needed to control position from the right */
+            color: rgb(0, 0, 0); 
+        }
+        .location-image {
+            margin-top: 0px; /* Adjust as needed to control the vertical position (top) */
+            margin-left: -230px; /* Adjust as needed to control the horizontal position (left) */
+            margin-right: 20px; /* Adjust as needed to control position from the right */
+        }
+        .skill-container {
+            display: flex;
+            justify-content: space-between; /* Distribute items evenly along the container */
+        }
+    
+        .skill-item {
+            /* width: calc(33.33% - 20px); Adjusted for equal spacing */
+            margin-right: 20px; /* Updated margin for equal spacing */
+            margin-bottom: 10px; /* Updated for consistency */
+        }
+    
+        .action {
+            margin-top: 20px;
+            margin-left: 580px; /* Adjust as needed to control position from the left */
+            margin-right: 0px; /* Adjust as needed to control position from the right */
+            width: 30%; /* Adjust as needed to control the size of the block */
+        }
+        .action-item {
+            width: calc(40% - 10px); /* Adjust the width as needed */
+        }
+        .custom-btn1 {
+            background-color: rgb(196, 106, 187); /* Background color */
+            color: white; /* Text color */
+            border-radius: 20px;
+            /* Add any additional styling you need */
+        }
+        .custom-btn1:hover {
+            background-color: rgb(100, 24, 92); /* specify the desired hover background color */;
+            color: white; /* specify the desired hover text color */;
+            /* Add styles for button hover state if needed */
+        }
+        .mb-3 {
+            margin-bottom: -1rem!important;
+        }
+    
+        .custom-block-image{
+            margin-top: -15px!important; 
+            margin-right: 15px!important;  
+        }
+    
+        .ml-auto.certif {
+            margin-top: 30px;
+            margin-left: -11px;
+            margin-right: 10px;
+        }
+        .ml-auto.contact {
+            margin-left: -11px;
+            margin-right: 10px;
+        }
+    
+        .left-column {
+            flex: 1;
+        }
+    
+        .right-column {
+            flex: 2;
+            max-width: 70%;
+        }
+    
+        .location-image {
+            margin-top: 0px;
+            margin-left: 0;
+            margin-right: 5px;
+        }
+    
+        .languages {
+            margin-top: -10px;
+        }
+    
+        .skill-item {
+            margin-right: 5px; /* Adjust as needed */
+        }
+    
+        .custom-block {
+            display: flex;
+            padding: 20px;
+        }
+        .emp {
+            margin-right: 20px;
+            margin-top: 20px;
+        }
+        .form-group {
+            margin-bottom: 10px; /* Adjust spacing between form elements */
+        }
+    
+        .form-check-input {
+            margin-right: 10px; /* Spacing between checkbox and label */
+        }
+    
+        /* Style for the skill choice box */
+        .left-column {
+            background-color: #f8f9fa; /* Light gray background */
+            padding: 20px; /* Add padding */
+            border-radius: 10px; /* Rounded corners */
+        }
+    
+        /* Style for the skills list */
+        .skills-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px; /* Spacing between skills */
+        }
+    
+        /* Style for each skill */
+        .form-check {
+            display: flex;
+            align-items: center;
+        }
+    
+        .custom-checkbox {
+            margin-right: 10px; /* Spacing between checkbox and label */
+        }
+    
+        .custom-label {
+            font-size: 16px; /* Custom font size */
+            color: #555; /* Custom text color */
+        }
+        body {
+            background: #fff;
+            font-size: 14px;
+            line-height: 22px;
+            color: #363434;
+        }
+        /* Adjust input height and font size */
+.input-group .form-control {
+    height: 50px;
+    font-size: 16px;
+}
+
+/* Add border-radius to input */
+.input-group .form-control {
+    border-radius: 25px;
+}
+
+/* Style search icon */
+.input-group .input-group-text {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 25px;
+}
+
+/* Style search icon */
+.input-group .input-group-text i {
+    color: #555555;
+}
+
+/* Style search icon on hover */
+.input-group .input-group-text:hover {
+    background-color: #f2f2f2;
+    cursor: pointer;
+}
+.filter-button {
+    background-color: #e28323;
+    color: #f2f2f2;
+}
+.filter-button:hover {
+    background-color: #9a540f;
+    color: #f2f2f2;
+}
+    </style>
+    <body>
+        <header class="site-header d-flex flex-column justify-content-center align-items-center">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-5 col-12">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Freelancers</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">All CVs</li>
+                            </ol>
+                        </nav>
+                        <h2 class="text-white">You will find here all the CVs</h2>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <section class="section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-12">
+                        <!-- Left Column for Skill Choice Box -->
+                        <div class="left-column">
+                            {{ form_start(cvFilter) }}
+                            <div class="form-group">
+                                <p class="mb-0 font-weight-bold" style="margin-left: 15px!important; margin-bottom: 20px!important; color: aqua; flex-grow: 1;">Skills To Filter By:</p>
+                                <div class="skills-list">
+                                    {% for skill in cvFilter.skills %}
+                                        <div class="form-check">
+                                            {{ form_widget(skill, {'attr': {'class': 'form-check-input custom-checkbox'}}) }}
+                                            {{ form_label(skill, null, {'label_attr': {'class': 'form-check-label custom-label'}}) }}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <button type="submit" class="mb-2 btn custom-btn mt-3 mt-lg-4 filter-button">Filter</button>
+
+                            </div>
+                            {{ form_end(cvFilter) }}
+                            <p class="mb-0 font-weight-bold" style="margin-left: 15px!important; margin-bottom: 20px!important; color: aqua; flex-grow: 1;">Sreach By Skill : </p>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Search..." id="searchSKILL">
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+        
+                    <div class="col-lg-8 col-12 mt-3" id="cv-list">
+                        
+                            {% for c in pagination %}
+                                <!-- Display each CV -->
+                                <div class="custom-block custom-block-topics-listing bg-white shadow-lg mb-5 d-flex flex-wrap">
+                                    <!-- Left Column -->
+                                    <div class="left-column mr-4">
+                                        <!-- Display CV details -->
+                                        <!-- Adjust the display according to your requirements -->
+                                        <img src="{{ asset('images/' ~ c.user.image) }}" class="custom-block-image img-fluid rounded-circle mb-3" alt="">
+                                        <div class="d-flex align-items-center location">
+                                            <img src="{{ asset('images/loc.png') }}" alt="Location Icon" width="15" height="20" class="mr-2 location-image">
+                                            <p class="mb-0 ">{{ c.location }}</p>
+                                        </div>
+                                        <div class="mt-3 location">
+                                            <a href="{{ c.contact }}" target="_blank" class="mb-0 ">{{ c.user.fname ~ ' ' ~ c.user.lname }}</a>
+                                        </div>
+                                    </div>
+                                    <!-- Right Column -->
+                                    <div class="right-column">
+                                        <!-- Display CV details -->
+                                        <!-- Adjust the display according to your requirements -->
+                                        <h6 class="mb-2 name">{{ c.user.fname ~ ' ' ~ c.user.lname }}</h6>
+                                        <h5 class="mb-2">{{ c.bio }}</h5>
+                                        <p class="mb-0 description">{{ c.description }}</p>
+                                        <!-- Display languages -->
+                                        <div class="languages-heading mt-3">
+                                            <h7 class="mb-0 language">Languages :</h7>
+                                        </div>
+                                        <div class="languages">
+                                            {% for language in c.language %}
+                                                <div class="skill-item">
+                                                    <span class="bullet">&#8226;</span>
+                                                    <h6 class="mb-2 language">{{ language }}</h6>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                        <!-- Display skills -->
+                                        <div class="d-flex align-items-center mt-3">
+                                            <div class="skill">
+                                                <h7 class="mb-0 skill">Skills:</h7>
+                                            </div>
+                                            <div class="d-inline-flex flex-wrap ml-3">
+                                                {% for skill in c.skills %}
+                                                    <div class="skill-item skill-container mb-3 mr-3 custom-container">
+                                                        <h6 class="mb-2 btn custom-btn mt-3 mt-lg-4">{{ skill.name }}</h6>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        
+                    </div>
+                    
+                      
+                          
+                       
+                    
+                </div>
+            </div>
+        
+        
+        
+         <div class="col-lg-12 col-12">
+             <nav aria-label="Page navigation example">
+                 <ul class="pagination justify-content-center mb-0">
+                     <li class="page-item">
+                         {% if pagination.currentPageNumber > 1 %}
+                         <a class="page-link" href="{{ path('showcvs', {'page': 1}) }}" aria-label="First">
+                             <span aria-hidden="true">First</span>
+                         </a>
+                         {% endif %}
+                     </li>
+                     <li class="page-item">
+                         {% if pagination.currentPageNumber > 1 %}
+                         <a class="page-link" href="{{ path('showcvs', {'page': pagination.currentPageNumber - 1}) }}" aria-label="Previous">
+                             <span aria-hidden="true">Prev</span>
+                         </a>
+                         {% endif %}
+                     </li>
+        
+                        {% for page in range(1, pagination.pageCount) %}
+                        <li class="page-item{% if pagination.currentPageNumber == page %} active{% endif %}" aria-current="page">
+                            <a class="page-link" href="{{ path('showcvs', {'page': page}) }}">{{ page }}</a>
+                        </li>
+                        {% endfor %}
+                      
+                        
+                        <li class="page-item">
+                            {% if pagination.currentPageNumber < pagination.pageCount %}
+                            <a class="page-link" href="{{ path('showcvs', {'page': pagination.currentPageNumber + 1}) }}" aria-label="Next">
+                                <span aria-hidden="true">Next</span>
+                            </a>
+                            {% endif %}
+                        </li>
+                        <li class="page-item">
+                            {% if pagination.currentPageNumber < pagination.pageCount %}
+                            <a class="page-link" href="{{ path('showcvs', {'page': pagination.pageCount}) }}" aria-label="Last">
+                                <span aria-hidden="true">Last</span>
+                            </a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </nav>
+            </div> 
+           
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        
+            <script>
+                $(document).ready(function () {
+                    // Function to perform the search based on the specified skill
+                    function searchSkill(value) {
+                        console.log("Search triggered with value: " + value);
+                        $(".custom-block").each(function () {
+                            console.log("Checking CV");
+                            var skills = $(this).find(".skill-item h6").map(function () {
+                                return $(this).text().toLowerCase();
+                            }).get();
+                            console.log("Skills found: " + skills);
+                            var found = true; // Assume CV is found by default
+                            if (value.trim() !== "") { // Check if search value is not empty
+                                found = skills.some(function(skill) {
+                                    return skill.includes(value.toLowerCase());
+                                });
+                            }
+                            $(this).toggle(found);
+                        });
+                    }
+            
+                    // Event handler for the search input
+                    $("#searchSKILL").on("input", function () {
+                        var searchText = $(this).val();
+                        console.log("Search text: " + searchText);
+                        searchSkill(searchText);
+                    });
+                });
+            </script>
+            
+            
+            
+            
+        
+        </section>
+    </body>
+    <footer class="site-footer section-padding">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-12 mt-3 mx-auto">
-                    {% for c in cv %}
-                    <div class="custom-block custom-block-topics-listing bg-white shadow-lg mb-5 d-flex flex-wrap">
-        
-                        <!-- Left Column -->
-                        <div class="left-column mr-4">
-                            <img src="{{ asset('images/' ~ c.user.image) }}" class="custom-block-image img-fluid rounded-circle mb-3" alt="">
-                            <div class="d-flex align-items-center location">
-                                <img src="{{ asset('images/loc.png') }}" alt="Location Icon" width="15" height="20" class="mr-2 location-image">
-                                <p class="mb-0 ">{{ c.location }}</p>
-                            </div>
-                            <div class="mt-3 location">
-                                <a href="{{ c.contact }}" target="_blank" class="mb-0 ">{{ c.user.fname ~ ' ' ~ c.user.lname }}</a>
-                            </div>
-                        </div>
-        
-                        <!-- Right Column -->
-                        <div class="right-column">
-                            <h6 class="mb-2 name">{{ c.user.fname ~ ' ' ~ c.user.lname }}</h6>
-                            <h5 class="mb-2">{{ c.bio }}</h5>
-                            <p class="mb-0 description">{{ c.description }}</p>
-                            
-                            <div class="languages-heading mt-3">
-                                <h7 class="mb-0 language">Languages :</h7>
-                            </div>
-                            <div class="languages">
-                                {% for language in c.language %}
-                                    <div class="skill-item">
-                                        <span class="bullet">&#8226;</span>
-                                        <h6 class="mb-2 language">{{ language }}</h6>
-                                    </div>
-                                {% endfor %}
-                            </div>
-                            
-                            
-                            <div class="d-flex align-items-center mt-3">
-                                <div class="d-flex align-items-center skill">
-                                    <div style="display: inline-block;"> 
-                                        <h7 class="mb-0 skill">Skills:</h7>
-                                    </div>
-                                </div>
-                                <div class="d-flex flex-wrap ml-3">
-                                    {% if c.skills  is not empty %}
-                                    {% for skill in c.skills %}
-                                    <div class="skill-item skill-container mb-3 mr-3 custom-container"> <!-- Adjust margin-right as needed -->
-                                        <h6 class="mb-2 btn custom-btn mt-3 mt-lg-4">{{ skill.name }}</h6>
-                                    </div>
-                                    {% endfor %}
-                                    {% else %}
-                                    <h8 class="mb-0 emp"> No Skills </h8>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>
-        
-                        <div class="badge bg-design rounded-pill ms-auto">{{ c.skills|length }}</div>
-                    </div>
-                    {% endfor %}
+
+                <div class="col-lg-3 col-12 mb-4 pb-2">
+                    <a class="navbar-brand mb-2" href="index.html">
+                        <i class=""></i>
+                    <img src="{{asset('images/tasknest1.png')}}" alt="Tasknest Logo" style="width: 300px; height: auto;">
+                </a>
+                    </a>
                 </div>
+
+                <div class="col-lg-3 col-md-4 col-6">
+                    <h6 class="site-footer-title mb-3">Resources</h6>
+
+                    <ul class="site-footer-links">
+                        <li class="site-footer-link-item" style="margin-top: 20px;">
+                            <a href="#" class="site-footer-link">Home</a>
+                        </li>
+
+                        <li class="site-footer-link-item">
+                            <a href="{{ path('showcvs') }}" class="site-footer-link">Freelancers</a>
+                        </li>
+                    
+                        <li class="site-footer-link-item">
+                            <a href="#" class="site-footer-link">FAQs</a>
+                        </li>
+
+                        <li class="site-footer-link-item">
+                            <a href="#" class="site-footer-link">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-6 mb-4 mb-lg-0">
+                    <h6 class="site-footer-title mb-3">Information</h6>
+                    <p class="text-white d-flex mb-1" style="margin-top: 20px;">
+                        <a href="tel: 28-899-812" class="site-footer-link">
+                            28-899-812
+                        </a>
+                    </p>
+                    <p class="text-white d-flex">
+                        <a href="mailto:TaskNest@gmail.com" class="site-footer-link">
+                            TaskNest@gmail.com
+                        </a>
+                    </p>
+                </div>
+                
+                
+
+                <div class="col-lg-3 col-md-4 col-12 mt-4 mt-lg-0 ms-auto">
+                   
+
+                    <p class="copyright-text mt-lg-5 mt-4">Copyright © 2024 Freelancing Center. All rights reserved.
+                    <br><br>Design: <a rel="nofollow" href="https://templatemo.com" target="_blank">TechTitans</a> Distribution <a href="https://themewagon.com"></a></p>
+                    
+                </div>
+
             </div>
         </div>
-        
-        {% else %}
-        <p>No CVs found.</p>
-    {% endif %}
-    </section>           
-</main>
-{% endblock %}
-
+    </footer>
+</html>

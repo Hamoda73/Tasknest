@@ -138,7 +138,7 @@
                         <div class="d-flex mb-4"> <!-- Added mb-4 class for bottom margin -->
                             <img src="{{ asset('images/' ~ cv.user.image) }}" class="custom-block-image img-fluid rounded-circle mr-3" alt=""> <!-- Added mr-3 class for right margin -->
                             <div>
-                                <h6 class="mb-2 name">{{ cv.user.fname ~ ' ' ~ cv.user.lname }}</h6>
+                                <h6 class="mb-2 name">{{ cv.user.fname ~ '' ~ cv.user.lname }}</h6>
                                 <h5 class="mb-2">{{ cv.bio }}</h5>
                                 <p class=" description">{{ cv.description }}</p>
                                 <div class="d-flex align-items-center">
@@ -204,6 +204,10 @@
     margin-left: -11px;
     margin-right: 10px;
 }
+.action-item {
+    margin-right: 10px; /* Adjust as needed */
+}
+
 </style>
 
 
@@ -238,14 +242,21 @@
 
 
                       
-                        <div class="d-flex action action-item">
-                            <div class="action-item">
-                                <a href="{{ path('editcv', {'id': cv.id}) }}" class="btn custom-btn1 mt-3 mt-lg-4">Edit CV</a>
-                            </div>
-                            <div class="action-item">
-                                <a href="{{ path('removecv', {'id': cv.id}) }}" class="btn custom-btn1 mt-3 mt-lg-4">Delete CV</a>
+                        <div style="display: flex;">
+                         
+                            
+                                <div style="flex: 1; margin-right: -50px;">
+                                    <a href="{{ path('removecv', {'id': cv.id}) }}" class="btn custom-btn1 mt-3 mt-lg-4">Delete CV</a>
+                                </div>
+                                <div style="flex: 2; margin-right: 20px;">
+                                    <a href="{{ path('editcv', {'id': cv.id}) }}" class="btn custom-btn1 mt-3 mt-lg-4">Edit CV</a>
+                                </div>
+                            
+                            <div style="flex: 1;">
+                                <a href="{{ path('downloadPdf', {'idcv': cv.id}) }}" class="btn custom-btn1 mt-3 mt-lg-4">Download Resume as PDF</a>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
             </div>

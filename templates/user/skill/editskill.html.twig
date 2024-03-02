@@ -32,30 +32,27 @@
                                             {{ form_widget(skillForm.name, {'attr': {'class': 'form-control'}}) }}
                                             <label for="floatingInput">Skill</label>
                                         </div>
-                                        <div class="margin-inputs xx">
-                                                
-                                            <div class="xx form-floating label-width">
-                                                
-                                                {{ form_errors(skillForm.name) }}
-                                                
-                                            </div>
-
-                                            
-                                        </div>
+                                        
                                         <div class="xx form-floating label-width">
                                             {{ form_widget(skillForm.SkillValue, {'attr': {'class': 'form-control', 'min': 0, 'max': 100}}) }}
                                             <label for="floatingInput">Skill Value</label>
                                         </div>
-                                        <div class="margin-inputs xx">
+                                        
+                                    </div>
+                                    <div class="margin-inputs xx">
                                                 
-                                            <div class="xx form-floating label-width">
-                                                
-                                                {{ form_errors(skillForm.SkillValue) }}
-                                                
-                                            </div>
-
+                                        <div class="xx form-floating label-width">
+                                            
+                                            {{ form_errors(skillForm.name) }}
                                             
                                         </div>
+                                        <div class="xx form-floating label-width">
+                                                
+                                            {{ form_errors(skillForm.SkillValue) }}
+                                            
+                                        </div>
+
+                                        
                                     </div>
                                     <style>
                                         .margin-inputs .label-width1 {

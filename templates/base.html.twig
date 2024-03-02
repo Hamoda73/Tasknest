@@ -14,11 +14,13 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap" rel="stylesheet">                
-        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/bootst.min.css') }}" rel="stylesheet">
         <link href="{{ asset('css/bootstrap-icons.css') }}" rel="stylesheet">
         <link href="{{ asset('css/templatemo-topic-listing.css') }}" rel="stylesheet">
         <link href="{{ asset('css/mycss.css') }}" rel="stylesheet">
-
+        <link rel="stylesheet" href="{{ asset('css/stylescv.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
         {% endblock %}
         <nav class="navbar navbar-expand-lg">
             <div class="container">
@@ -87,7 +89,7 @@
             </div>
         </nav>
         {% block javascripts %}
-        <script src="{{asset('js/jquery.min.js')}}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
         <script src="{{asset('js/jquery.sticky.js')}}"></script>
         <script src="{{asset('js/click-scroll.js')}}"></script>
@@ -99,6 +101,12 @@
     </head>
 
     <body id="top"> 
+        <style>           body {
+            background: #fff;
+            font-size: 14px;
+            line-height: 22px;
+            color: #363434;
+        }    </style>
                 {% block body %} 
                 {% endblock %} 
     </body>
@@ -118,7 +126,7 @@
                     <h6 class="site-footer-title mb-3">Resources</h6>
 
                     <ul class="site-footer-links">
-                        <li class="site-footer-link-item">
+                        <li class="site-footer-link-item" style="margin-top: 20px;">
                             <a href="#" class="site-footer-link">Home</a>
                         </li>
 
@@ -138,19 +146,19 @@
 
                 <div class="col-lg-3 col-md-4 col-6 mb-4 mb-lg-0">
                     <h6 class="site-footer-title mb-3">Information</h6>
-
-                    <p class="text-white d-flex mb-1">
+                    <p class="text-white d-flex mb-1" style="margin-top: 20px;">
                         <a href="tel: 28-899-812" class="site-footer-link">
                             28-899-812
                         </a>
                     </p>
-
                     <p class="text-white d-flex">
                         <a href="mailto:TaskNest@gmail.com" class="site-footer-link">
                             TaskNest@gmail.com
                         </a>
                     </p>
                 </div>
+                
+                
 
                 <div class="col-lg-3 col-md-4 col-12 mt-4 mt-lg-0 ms-auto">
                    

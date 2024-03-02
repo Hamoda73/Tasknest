@@ -6,16 +6,9 @@
 		<div class="card">
 			<div class="card-header border-transparent">
 				<div class="card-header">
-					<h3 class="card-title">All CVs</h3>
+					<h3 class="card-title" style=" font-size: 30px; margin-left: 755px; color: rgb(201, 138, 56);  font-weight: bold;">All CVs</h3>
 					<div class="card-tools">
-						<div class="input-group input-group-sm" style="width: 150px;">
-							<input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-							<div class="input-group-append">
-								<button type="submit" class="btn btn-default">
-									<i class="fas fa-search"></i>
-								</button>
-							</div>
-						</div>
+						
 					</div>
 				</div>
 				<div class="card-tools">
@@ -27,16 +20,74 @@
 					</button>
 				</div>
 			</div>
+			<style>
+				.search-container {
+					text-align: center;
+				}
+			
+				.search-title {
+					margin-bottom: 10px;
+					font-size: 24px;
+					color: #333;
+				}
+			
+				.search-input {
+					width: 300px;
+					padding: 10px 15px;
+					border: none;
+					border-radius: 20px;
+					background-color: #f5f5f5;
+					font-size: 16px;
+					color: #333;
+					box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+					transition: box-shadow 0.3s ease;
+				}
+			
+				.search-input:focus {
+					outline: none;
+					box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+				}
+				.custom-table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .custom-table th, .custom-table td {
+        border: 1px solid #ffffff;
+        padding: 8px;
+        text-align: center;
+    }
+
+    .custom-table th {
+        background-color: #55d8c6;
+        color: #fff;
+    }
+
+    .custom-table tbody tr:nth-child(even) {
+        background-color: #9ad8cb;
+        color: #333;
+    }
+			</style>
+			
+			
+			
 			<!-- /.card-header -->
 			<div class="card-body p-0">
-				<div class="table-responsive">
+				
+				<div class="search-container">
+					<h2 class="search-title" style=" margin-bottom: 15px; color: rgb(231, 181, 14); ">Search Here</h2>
+					<input type="text" value="" style="margin-bottom: 25px; margin-left: 680px;" class="form-control search-input" placeholder="Search..." id="searchcv">
+				</div>
+				
+								<div class="table-responsive">
 					{% if cv is empty %}
    									 <div class="alert alert-info text-center">No CVs uploaded yet.</div>
 						{% else %}
-						<table class="table m-0">
+						<table class="table m-0 custom-table">
 							<thead>
 								<tr style="background-color: #55d8c6; color: #fff;">
 									<th style="text-align: center;">Freelancer</th>
+									<th style="text-align: center;">Name</th>
 									<th style="text-align: center;">BIO</th>
 									<th style="text-align: center;">Description</th>
 									<th style="text-align: center;">Languages</th>
@@ -44,6 +95,7 @@
 									<th style="text-align: center;">Certification</th>
 									<th style="text-align: center;">Contact</th>
 									<th style="text-align: center;">Action</th>
+								
 								</tr>
 							</thead>
 							<tbody>
@@ -52,6 +104,7 @@
 									<td style="text-align: center;">
 										<img src="{{ asset('images/' ~ c.user.image) }}" alt="User Image" style="width: 90px; height: 90px; border-radius: 50%;">
 									</td>
+									<td style="text-align: center;">{{ c.user.fname ~ ' ' ~ c.user.lname }}</td>
 									<td style="text-align: center;">{{ c.bio }}</td>
 									<td style="text-align: center;">{{ c.description }}</td>
 									<td style="text-align: center;">
@@ -66,6 +119,9 @@
 										<form action="" style="display: inline-block;">
 											<a href="{{ path('removecvadmin', {'id': c.id}) }}" class="btn btn-danger">Delete</a>
 										</form>
+										<form action="" style="display: inline-block; margin-top: 10px;">
+											<a href="{{ path('showskillsadmin', {'id': c.id}) }}" class="btn custom-btn">Skills</a>
+										</form>
 									</td>
 								</tr>
 								{% endfor %}
@@ -78,6 +134,44 @@
 			<!-- /.content -->
 		</div>
 	</div>
+	<style>
+		.custom-btn {
+			color: #ffffff; /* Text color */
+			background-color: #1d5196; /* Background color */
+			border-color: #1d5196; /* Border color */
+		}
+	
+		.custom-btn:hover {
+			background-color: #2e65ac; /* Hover background color */
+			border-color: #2e65ac; /* Hover border color */
+			color: #ffffff; /* Text color */
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<script>
+		$(document).ready(function () {
+			// Function to perform the search based on the specified keyword
+			function searchOffer(keyword) {
+				$(".table tbody tr").each(function () {
+					var found = false;
+					$(this).find("td").each(function () {
+						if ($(this).text().toLowerCase().includes(keyword.toLowerCase())) {
+							found = true;
+							return false; // Exit the loop
+						}
+					});
+					$(this).toggle(found); // Show/hide the row based on search result
+				});
+			}
+	
+			// Event handler for the search input
+			$("#searchcv").on("keyup", function () {
+				var searchText = $(this).val();
+				searchOffer(searchText);
+			});
+		});
+	</script>
 {% endblock %}
 
 {% block footer %} {% endblock %}

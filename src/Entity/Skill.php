@@ -24,7 +24,7 @@ class Skill
         maxMessage: "Skill name cannot be longer than {{ limit }} characters."
     )]
     #[Assert\Regex(
-        pattern: "/^[a-zA-Z0-9\s]*$/",
+        pattern: "/^[a-zA-Z0-9\s\+]*$/",
         message: "Your Skill name must only contain letters, numbers and spaces."
     )]
     private ?string $name = null;

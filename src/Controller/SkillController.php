@@ -98,23 +98,27 @@ class SkillController extends AbstractController
 
     /*----------------------------------------  ADMIN  -----------------------------------------------*/
 
- #[Route('admin/skill/showskillsadmin', name: 'showskillsadmin')]
-public function showskillsadmin(SkillRepository $SkillRepository): Response
-{
-    $skills = $SkillRepository->findAll();
-    return $this->render('admin/skill/showskills.html.twig', [
-        'skills' => $skills,
-    ]);
-}
+    #[Route('admin/skill/showskillsadmin/{id}', name: 'showskillsadmin')]
+    public function showskillsadmin(int $id, CVRepository $cvRepository): Response
+    {
+        $cv = $cvRepository->find($id);
+        $skills = $cv->getSkills();
+    
+        return $this->render('admin/skill/showskills.html.twig', [
+            'skills' => $skills,
+        ]);
+    }
 
-#[Route('admin/removeskilladmin/{id}', name: 'removeskilladmin')]
-public function removeskilladmin($id,SkillRepository $SkillRepository,ManagerRegistry $ManagerRegistry): Response
-{
-    $em = $ManagerRegistry->getManager();
-    $dataid = $SkillRepository->find($id);
-    $em->remove($dataid);
-    $em->flush();
-    return $this->redirectToRoute('showskillsadmin');
-}
+    #[Route('admin/removeskilladmin/{id}', name: 'removeskilladmin')]
+    public function removeskilladmin($id, SkillRepository $SkillRepository, ManagerRegistry $ManagerRegistry, Request $request): Response
+    {
+        $em = $ManagerRegistry->getManager();
+        $dataid = $SkillRepository->find($id);
+        $cv= $dataid->getCV()->getId();
+        $em->remove($dataid);
+        $em->flush();
+    
+        return $this->redirectToRoute('showskillsadmin', ['id' => $cv]);
+    }
   
 }
