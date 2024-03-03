@@ -1,0 +1,144 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sign in!
+{% endblock %}
+
+
+
+{% block body %}
+	<main>
+		<header class="site-header">
+			<div class="container">
+				<h2 class="text-white">Welcome to TASKNEST</h2>
+				<h6 class="text-white">Sign in and start the adventure</h6>
+			</div>
+		</header>
+		<style>
+			.custom-label {
+				color: blue!important;
+			}
+		</style>
+		<section class="section-padding ">
+			<div class="container">
+				<div class="col-lg-6 col-12">
+					<div class="xx login-form custom-form">
+						<form class="needs-validation" novalidate="" method="post">
+							{% if error %}
+								<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+							{% endif %}
+
+							<div class="margin-inputs form-floating ">
+								<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email">
+								<label class="custom-label" for="inputEmail">Email Adress</label>
+								<div class="invalid-feedback">Please enter your email.</div>
+							</div>
+							<div class="margin-inputs form-floating">
+								<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password">
+								<label class="custom-label" for="inputPassword">Password</label>
+								<div class="invalid-feedback">Please enter your password!</div>
+							</div>
+							<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+							<div class="col-12">
+								<div class="logincheckbox-container">
+									<input class="logincheckbox-input" type="checkbox" name="remember" value="true" id="rememberMe">
+									<label class="custom-label" class="logincheckbox-label" for="rememberMe">Remember me</label>
+								</div>
+							</div>
+							<div class="label-width">
+								<button type="submit" class="form-control">Login</button>
+							</div>
+							<div class="create-account-text">
+								<a href="{{ path('app_signup') }}">
+									<p>Don't have an account?</p>
+								</a>
+							</div>
+							<div class="create-account-text">
+								<a href="{{ path('app_forgot_password_request') }}">
+									<p>Forgot password?</p>
+								</a>
+							</div>
+						</form>
+
+						<div class="ww">
+							<a href="home#section_3"><img src="images/loginphoto.png" alt="loginpic" height="400" class="loginpic"></a>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer class="site-footer section-padding">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-lg-3 col-12 mb-4 pb-2">
+					<a class="navbar-brand mb-2" href="index.html">
+						<i class="bi-back"></i>
+						<span>Topic</span>
+					</a>
+				</div>
+
+				<div class="col-lg-3 col-md-4 col-6">
+					<h6 class="site-footer-title mb-3">Resources</h6>
+
+					<ul class="site-footer-links">
+						<li class="site-footer-link-item">
+							<a href="#" class="site-footer-link">Home</a>
+						</li>
+
+						<li class="site-footer-link-item">
+							<a href="#" class="site-footer-link">How it works</a>
+						</li>
+
+						<li class="site-footer-link-item">
+							<a href="#" class="site-footer-link">FAQs</a>
+						</li>
+
+						<li class="site-footer-link-item">
+							<a href="#" class="site-footer-link">Contact</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="col-lg-3 col-md-4 col-6 mb-4 mb-lg-0">
+					<h6 class="site-footer-title mb-3">Information</h6>
+
+					<p class="text-white d-flex mb-1">
+						<a href="tel: 305-240-9671" class="site-footer-link">
+							305-240-9671
+						</a>
+					</p>
+
+					<p class="text-white d-flex">
+						<a href="mailto:info@company.com" class="site-footer-link">
+							info@company.com
+						</a>
+					</p>
+				</div>
+
+				<div class="col-lg-3 col-md-4 col-12 mt-4 mt-lg-0 ms-auto">
+					<div class="dropdown">
+						<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+							English</button>
+
+						<ul class="dropdown-menu">
+							<li>
+								<button class="dropdown-item" type="button">Thai</button>
+							</li>
+
+							<li>
+								<button class="dropdown-item" type="button">Myanmar</button>
+							</li>
+
+							<li>
+								<button class="dropdown-item" type="button">Arabic</button>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+{% endblock %}

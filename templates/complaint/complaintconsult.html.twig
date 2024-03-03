@@ -1,0 +1,125 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Complaint{% endblock %}
+
+
+{% block body %}
+
+<main>
+
+    
+
+
+    <header class="rec-header d-flex flex-column justify-content-center align-items-center" img>
+
+        <div class="container">
+
+            <div class="row align-items-center">
+
+                <div class="col-lg-5 col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Homepage</a></li>
+
+                            <li class="breadcrumb-item active" aria-current="page">Reclamation</li>
+                        </ol>
+                    </nav>
+                    <h2 class="text-white">Complaints management system</h2>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="explore-section section-padding" id="section_2">
+        <div class="container-fluid">
+            <div class="row">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" href="{{ path('app_complaintpage') }}" role="tab" aria-controls="Send-tab-pane" aria-selected="true">
+                            Send
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" href="{{ path('app_complaintconsult') }}id="consult-tab data-bs-toggle="tab" data-bs-target="#consult-tab-pane" type="button" role="tab" aria-controls="consult-tab-pane" aria-selected="True">Consult</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="tab-content" id="myTabContent">
+                      
+                        <div class="tab-pane fade show active" id="consult-tab-pane" role="tabpanel" aria-labelledby="consult-tab"
+                            tabindex="0">
+                            <div class="row">
+                                <div class="xxx">
+                                    <form action="#" method="post" class="custom-form contact-form" role="form">
+                                        <div class="row">
+                                            <table>
+                                                <tr>
+                                                    <th style="color: black;">Type</th>
+                                                    <th style="color: black;">Message</th>
+                                                    <th style="color: black;">Action</th>
+                                                    <th style="color: black;">Response</th>
+                                                </tr>
+                                                {% for a in complaint %}
+                                                {% set x = 0%}
+                                                <tr>
+                                                    <td style="color: black;">{{a.type}}</td>
+                                                    <td style="color: black;">{{a.message}}</td>
+                                                    <td>
+                                                        {% for b in respond %}
+                                                    {% if a.id == b.Complaint.id %}
+                                                        {% set x = 1 %}
+                                                    {% endif %}
+                                                    {% endfor %}
+                                                        {% if x == 1 %}
+                                                        <a class="delete" href="{{ path('app_deletecomplaint', {'id': a.id}) }}">Delete</a>
+                                                        {% endif %}
+                                                        {% if x == 0 %}
+                                                        <a class="delete" href="{{ path('app_editcomplaint', {'id': a.id}) }}">Edit</a>
+                                                        <a class="delete" href="{{ path('app_deletecomplaint', {'id': a.id}) }}">Delete</a>
+                                                        {% endif %}
+                                                    </td>
+                                                    {% for b in respond %}
+                                                    {% if a.id == b.Complaint.id %}
+                                                    <td style="color: black;">{{ b.message }}</td>
+
+                                                    {% endif %}
+                                                    {% endfor %}
+                                                </tr>
+                                                {% endfor %}
+                                            </table>
+                                            <div class="row">
+                                                <div class="col-lg-3 col-12 ms-auto">
+                                                    <button type="submit"
+                                                        class="form-control btn btn-primary">Print</button>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </form>
+                                    <img src="images/callcenter.jpg" alt="" height="300px" width="300px">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <section class="section-padding section-bg">
+        <div class="container">
+            <div class="row">
+
+            </div>
+        </div>
+    </section>
+</main>
+
+
+
+
+{% endblock %}

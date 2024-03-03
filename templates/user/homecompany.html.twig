@@ -1,0 +1,30 @@
+{% extends 'user/index.html.twig' %}
+
+
+{% block navhome %}
+<li class="nav-item">
+    <a class="nav-link click-scroll" href="{{ path('homecompany', {'email': userid.email})  }}">Home</a>
+</li>
+{% endblock %}
+{% block navfree %}
+<li class="nav-item">
+   <a class="nav-link click-scroll" href="{{ path('showcvscompany', {'iduser': userid.id}) }}">Freelancers</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link click-scroll" href="{{ path('showAllofferscompany', {'iduser': userid.id}) }}">Jobs</a>
+ </li>
+
+{% endblock %}
+ {% block navcv %}
+
+
+ <li class="nav-item">
+    <a class="nav-link click-scroll" href="{{ path('show_offers', {'id': userid.id}) }}">My posts</a>
+</li>
+
+  <li class="nav-item">
+     <a class="nav-link click-scroll" href="{{ path('addformoff', {'iduser': userid.id}) }}">Post offer</a>
+  </li>
+  {% endblock %}
+
+  

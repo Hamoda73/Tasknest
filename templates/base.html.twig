@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}TaskNest
+			{% endblock %}
+		</title>
+		<link rel="icon" href="{{ asset('images/tasknest.png') }}">
+
+		{% block stylesheets %}     
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap" rel="stylesheet">                
+        <link href="{{ asset('css/bootst.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/bootstrap-icons.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/templatemo-topic-listing.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/mycss.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('css/stylescv.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+        {% endblock %}
+
+
+		{% block javascripts %}
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+        <script src="{{asset('js/jquery.sticky.js')}}"></script>
+        <script src="{{asset('js/click-scroll.js')}}"></script>
+        <script src="{{asset('js/custom.js')}}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js" integrity="sha512-lvpTL6+ySwTr7W97xq9vpK46u+MB8pHlHJYZq0J0lh0Fd6jNhxJVryPVql7WWp9tDVawrrM/Kd25JrqrMZIKOw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha512-Pv9Ye2Wkpuw5AJBcQzW8KOFskZao3XK76wGiPzvkQMc+FwhNoo9wrZi7+8JnOlUkNbkf+GTnTdu3VX4fhv74Dg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+
+		{% endblock %}
+		{% block nav %}
+			<nav class="navbar navbar-expand-lg">
+				<div class="container">
+					<a class="navbar-brand" >
+						<img src="{{asset('images/tasknest1.png')}}" alt="Resized Image" width="250px" height="auto">
+					</a>
+
+					<div class="d-lg-none ms-auto me-4">
+						<a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+					</div>
+
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+
+					<div class="collapse navbar-collapse" id="navbarNav">
+						<ul class="navbar-nav ms-lg-5 me-lg-auto">
+
+							{% block navhome %}
+							
+							
+							{% endblock %}
+                 
+						
+							{% block navfree %}
+							{% endblock %}
+							<li class="nav-item">
+								<a class="nav-link click-scroll" href="#section_4">Forum</a>
+							</li>
+
+							
+							<li class="nav-item">
+								<a class="nav-link click-scroll" href="{{ path('app_contact') }}">Contact</a>
+							</li>
+
+							<li class="nav-item">
+								<a class="nav-link click-scroll" href="{{ path('app_complaintpage') }}">Complaint page</a>
+							</li>
+						
+							{% block navcv %}
+							{% endblock %}
+
+							{% block offer %}
+
+                            {% endblock %}
+
+						</ul>
+
+						<div class="nav-item dropdown ">
+							<a href="#" class=" navbar-icon bi-person smoothscroll" role="button" data-bs-toggle="dropdown"></a>
+							<ul class="dropdown-menu-bg dropdown-menu">
+								{% if app.user != null %}
+									<li>
+										<p class="useroptions">
+											<span class="fname">{{app.user.fname}}</span>
+											<span class="lname">{{app.user.lname}}</span>
+											{% if app.user.image %}
+											<img src="{{ asset('/images/' ~ app.user.image) }}" alt="User Image" style="width: 50px; height: 50px; border-radius: 50%;">
+											{% endif %}
+										</p>
+									</li>
+									<li>
+										<button class="useroptions">
+											<a href="{{ path('app_logout') }}">Logout</a>
+										</button>
+									</li>
+									<li>
+										<button class="useroptions">
+											<a href="{{ path('app_updateuser', { id: app.user.id }) }}">Update</a>
+										</button>
+									</li>
+									<li>
+										<button class="useroptions">
+											<a href="{{ path('app_deleteuser', { 'id': app.user.id }) }}">Delete</a>
+										</button>
+									</li>
+								{% else %}
+									<li>
+										<button class="useroptions">
+											<a href="{{ path('app_signin') }}">Sigin</a>
+										</button>
+									</li>
+								{% endif %}
+
+							</ul>
+						</div>
+					</div>
+				</div>
+			</nav>
+		{% endblock %}
+	</head>
+	<body>
+		
+		{% block body %}{% endblock %}
+	</body>
+	<footer class="site-footer section-padding">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-3 col-12 mb-4 pb-2">
+                    <a class="navbar-brand mb-2" href="index.html">
+                        <i class=""></i>
+                    <img src="{{asset('images/tasknest1.png')}}" alt="Tasknest Logo" style="width: 300px; height: auto;">
+                </a>
+                    </a>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-6">
+                    <h6 class="site-footer-title mb-3">Resources</h6>
+
+                    <ul class="site-footer-links">
+                        <li class="site-footer-link-item" style="margin-top: 20px;">
+                            <a href="#" class="site-footer-link">Home</a>
+                        </li>
+
+                        <li class="site-footer-link-item">
+                            <a href="" class="site-footer-link">Freelancers</a>
+                        </li>
+                    
+                        <li class="site-footer-link-item">
+                            <a href="#" class="site-footer-link">FAQs</a>
+                        </li>
+
+                        <li class="site-footer-link-item">
+                            <a href="#" class="site-footer-link">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-6 mb-4 mb-lg-0">
+                    <h6 class="site-footer-title mb-3">Information</h6>
+                    <p class="text-white d-flex mb-1" style="margin-top: 20px;">
+                        <a href="tel: 28-899-812" class="site-footer-link">
+                            28-899-812
+                        </a>
+                    </p>
+                    <p class="text-white d-flex">
+                        <a href="mailto:TaskNest@gmail.com" class="site-footer-link">
+                            TaskNest@gmail.com
+                        </a>
+                    </p>
+                </div>
+                
+                
+
+                <div class="col-lg-3 col-md-4 col-12 mt-4 mt-lg-0 ms-auto">
+                   
+
+                    <p class="copyright-text mt-lg-5 mt-4">Copyright © 2024 Freelancing Center. All rights reserved.
+                    <br><br>Design: <a rel="nofollow" href="https://templatemo.com" target="_blank">TechTitans</a> Distribution <a href="https://themewagon.com"></a></p>
+                    
+                </div>
+
+            </div>
+        </div>
+    </footer>
+</html>

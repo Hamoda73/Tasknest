@@ -1,0 +1,86 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block body %}
+	<div
+		class="dashboard-managment-table">
+
+		<!-- TABLE: LATEST ORDERS -->
+		<div class="card">
+			<div class="card-header border-transparent">
+
+				<div class="card-header">
+					<h3 class="card-title">Users accounts</h3>
+
+					<div class="card-tools">
+						<div class="input-group input-group-sm" style="width: 150px;">
+							<input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+							<div class="input-group-append">
+								<button type="submit" class="btn btn-default">
+									<i class="fas fa-search"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="card-tools">
+					<button type="button" class="btn btn-tool" data-card-widget="collapse">
+						<i class="fas fa-minus"></i>
+					</button>
+					<button type="button" class="btn btn-tool" data-card-widget="remove">
+						<i class="fas fa-times"></i>
+					</button>
+				</div>
+			</div>
+			<!-- /.card-header -->
+			<div class="card-body p-0">
+				<div class="table-responsive">
+					<table class="table m-0">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Firstname</th>
+								<th>Lastname</th>
+								<th>Email</th>
+								<th>Phone number</th>
+								<th>Birthdate</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for u in user %}
+								{% if u.id != 12 %}
+									<tr>
+										<td>{{ u.id }}</td>
+										<td>{{ u.fname }}</td>
+										<td>{{ u.lname }}</td>
+										<td>{{ u.email }}</td>
+										<td>{{ u.phonenumber }}</td>
+										<td>{{ u.getBirthdate|date('Y-m-d') }}</td>
+										<td>
+											<form id="blockForm" action="{{ path('app_adminblockuser', { 'id': u.id }) }}" method="POST">
+												<input type="hidden" name="_method">
+												<button id="blockButton" type="submit" class="small-box bg-info" onclick="return confirm('Are you sure you want to block {{ u.fname }} {{ u.lname }} ?')">Block</button>
+											</form>
+											<form action="{{ path('app_admindeleteuser', { 'id': u.id }) }}" method="POST">
+												<input type="hidden" name="_method" value="DELETE">
+												<button type="submit" class="small-box bg-danger" onclick="return confirm('Are you sure you want to delete {{ u.fname }} {{ u.lname }}')">Delete</button>
+											</form>
+										</td>
+									</tr>
+								{% endif %}
+
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+				<!-- /.table-responsive -->
+			</div>
+			<!-- /.content -->
+		</div>
+	</div>
+{% endblock %}
+
+
+{% block footer %}{% endblock %}

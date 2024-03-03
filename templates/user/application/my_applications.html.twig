@@ -1,0 +1,163 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Applications for Offer{% endblock %}
+
+
+
+
+{% block navhome %}
+<li class="nav-item">
+    <a class="nav-link click-scroll" href="{{ path('homefreelancer', {'email': userid.email})  }}">Home</a>
+</li>
+{% endblock %}
+{% block navfree %}
+<li class="nav-item">
+   <a class="nav-link click-scroll" href="{{ path('showcvs', {'iduser': userid.id}) }}">Freelancers</a>
+</li>
+
+<li class="nav-item">
+   <a class="nav-link click-scroll" href="{{ path('showAlloffers', {'iduser': userid.id}) }}">Jobs</a>
+</li>
+{% endblock %}
+ {% block navcv %}
+ 
+ 
+
+
+ <li class="nav-item">
+    <a class="nav-link click-scroll" href="{{ path('my_applications', {'iduser': userid.id})}}"> my Applications</a>
+</li>
+                     
+
+
+  <li class="nav-item">
+     <a class="nav-link click-scroll" href="{{ path('addcv', {'id': userid.id}) }}">Make Your own CV</a>
+  </li>
+
+
+  
+  {% endblock %}
+
+{% block body %}
+<style>.navbar {
+    background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+    padding-top: 5px;
+    padding-bottom: 20px;
+}</style>
+<header class="site-header">
+    <div class="container">
+        <h2 class="text-white">Welcome to TASKNEST</h2>
+        <h6 class="text-white">Here are all your Applications </h6>
+    </div>
+</header> 
+<section class="explore-section section-padding" style="background-color: white;">
+    <div class="container">
+        <h1 class="text-center mt-3 mb-5">Your Applications</h1>
+        <div class="row mb-4">
+            <div class="col position-relative">
+                <div class="input-group">
+                    <input type="text" class="form-control search-input" placeholder="Search Application" aria-label="Search Application" aria-describedby="searchIcon" id="searchapplication">
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="searchIcon"><i class="bi bi-search"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        {% if applications is not empty %}
+        <div class="row">
+            {% for application in applications %}
+            <div class="col-md-12 mb-4">
+                <div class="card">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <!-- img-->
+                            <img src="{{ asset('images/topics/undraw_online_ad_re_ol62.png') }}" alt="Tasknest Logo" style="width: 100%; height: auto;">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h3 class="card-title">{{ application.getUser().getFname() }} {{ application.getUser().getLname() }}</h3>
+                                <p class="card-text"><strong>Email:</strong> {{ application.getUser().getEmail() }}</p>
+                                <p class="card-text"><strong>Phone Number:</strong> {{ application.getUser().getPhonenumber() }}</p>
+                                <h5 class="card-text"><strong>Job details :</strong> </h5>
+                                <p class="card-text"><strong>Entreprise:</strong>{{ application.getOffers().getEntrepriseName() }}</p>
+                                <p class="card-text"><strong>Post:</strong>{{application.getOffers().getPost()}}</p>
+                                <div class="apply-btn">
+                                    <a href="{{ path('editApp', {'idapp': application.id}) }}" class="btn custom-btn mt-3 ml-2 btn-edit ">Edit</a>
+                                    <a href="{{ path('deleteappuser', {'id':application.id})}}" class="btn custom-btn mt-3 ml-2 mr-2 btn-delete">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <h6 class="text-center">No Applications yet</h6>
+        {% endif %}
+    </div>
+</section>
+
+<style>
+    .btn-delete {
+        background-color: red;
+        color: white;
+        border-color: red;
+    }
+
+    .btn-delete:hover {
+        background-color: darkred;
+        border-color: darkred;
+    }
+    
+    .btn-edit {
+        background-color: rgb(237, 113, 18);
+        color: white;
+        border-color: rgb(237, 113, 18); 
+    }
+    
+    .apply-btn .btn {
+        margin-right: 260px; 
+    }
+
+/* Style for the search icon */
+.input-group-text {
+    background-color: transparent; /* Transparent background */
+    border-color: transparent; /* Transparent border */
+}
+
+.bi-search {
+    color: #000000; /* Color of the search icon */
+}
+
+
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Function to perform the search based on the specified keyword
+        function searchApplication(keyword) {
+            $(".card").each(function () {
+                var found = false;
+                $(this).find(".card-body").children("p").each(function () {
+                    if ($(this).text().toLowerCase().includes(keyword.toLowerCase())) {
+                        found = true;
+                        return false; // Exit the loop
+                    }
+                });
+                $(this).toggle(found); // Show/hide the card based on search result
+            });
+        }
+
+        // Event handler for the search input
+        $("#searchapplication").on("keyup", function () {
+            var searchText = $(this).val();
+            searchApplication(searchText);
+        });
+    });
+</script>
+
+{% endblock %}

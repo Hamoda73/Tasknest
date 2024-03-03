@@ -1,0 +1,244 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tasknest - CV!{% endblock %}
+
+
+
+{% block navhome %}
+<li class="nav-item">
+    <a class="nav-link click-scroll" href="{{ path('homefreelancer', {'email': userid.email})  }}">Home</a>
+</li>
+{% endblock %}
+{% block navfree %}
+<li class="nav-item">
+   <a class="nav-link click-scroll" href="{{ path('showcvs', {'iduser': userid.id}) }}">Freelancers</a>
+</li>
+
+<li class="nav-item">
+   <a class="nav-link click-scroll" href="{{ path('showAlloffers', {'iduser': userid.id}) }}">Jobs</a>
+</li>
+{% endblock %}
+ {% block navcv %}
+
+ <li class="nav-item">
+    <a class="nav-link click-scroll" href="{{ path('my_applications', {'iduser': userid.id})}}"> my Applications</a>
+</li>
+
+
+  <li class="nav-item">
+     <a class="nav-link click-scroll" href="{{ path('addcv', {'id': userid}) }}">Make Your own CV</a>
+  </li>
+  {% endblock %}
+
+  
+
+{% block body %}
+<main>
+    <header class="login-gif site-header">
+        <div class="container">
+            <h2 class="text-white">Welcome to TASKNEST</h2>
+            <h6 class="text-white">Edit your own CV</h6>
+        </div>
+    </header>
+	<style>
+        .custom-label {
+            color: blue!important;
+        }
+    </style>
+    <section class="explore-section section-padding" id="section_2">
+        <div class="container">
+            <div class="row">              
+                <div class="container">
+                    <h2 class="text-center mb-4" style="margin-top: -50px;">Edit your CV!</h2>
+                    <div class="row">
+                        <div class="col-lg-6" style="order: 2;">
+                            <div class="ww">
+                                <img src="{{ asset('images/loginpic.png') }}" alt="loginpic" height="270" class="loginpic" style="width: auto; max-width: 50%;">
+                            </div>
+                        </div>
+                     <div class="col-lg-6 ">
+                            <div class="custom-form" id="signup-form">
+                                    {{ form_start(cvForm,{attr:{novalidate:'novalidate'}}) }}
+                                        <div class="margin-inputs xx">
+                                            <div class="xx form-floating label-width">
+                                                {{ form_widget(cvForm.user,{'attr':{'class':'form-control'}}) }}
+                                                    <label class="custom-label" for="floatingInput">Last Name</label>
+                                            </div>
+                                            
+                                            <div class="xx form-floating label-width">
+                                                {{ form_widget(cvForm.bio,{'attr':{'class':'form-control'}}) }}
+                                                <label class="custom-label" for="floatingInput">BIO</label>
+                                            </div>
+                                        </div>
+                                        <div class="margin-inputs xx">
+                                       
+                                            <div class="xx form-floating label-width">
+ 
+                                            </div>
+
+                                            <div class="xx form-floating label-width">
+                                                
+                                                {{ form_errors(cvForm.bio) }}
+                                                
+                                            </div>
+                                    
+                                        </div>
+                                        <div class="margin-inputs form-floating">
+                                            <div class="xx form-floating label-width ">
+                                                {{ form_widget(cvForm.description,{'attr':{'class':'form-control'}}) }}
+                                                <label class="custom-label" for="floatingInput" class="birthdate-label">description</label>
+                                            </div>
+                                            <div class="margin-inputs xx">
+                                                
+                                                <div class="xx form-floating label-width">
+                                                    
+                                                    {{ form_errors(cvForm.description) }}
+                                                    
+                                                </div>
+
+                                                
+                                            </div>
+                                            <div class="margin-inputs xx custom-language-field">
+                                                <label class="custom-label" for="floatingInput">Languages:</label>
+                                                {{ form_widget(cvForm.language, {'attr': {'class': 'form-control no-border custom-language-field'}}) }}
+                                            </div>
+                                            <div class="margin-inputs xx">
+                                                
+                                                <div class="xx form-floating label-width">
+                                                    
+                                                    {{ form_errors(cvForm.language) }}
+                                                    
+                                                </div>
+    
+                                                
+                                            </div>
+                                          
+                                               <style>
+                                                                .no-border {
+                                                                    border: none;
+                                                                }
+                                                            /* Add column layout to custom-language-field class */
+                                                            .custom-language-field {
+                                                                    display: flex;
+                                                                    flex-direction: column!important; /* Change flex-direction to column */
+                                                                    gap: 2px!important; /* Adjust the gap between choices if needed */
+                                                                }
+
+                                                                /* Override margin-bottom for form-check elements within custom-language-field */
+                                                                .custom-language-field .form-check {
+                                                                    margin-bottom: 2px!important;
+                                                                }
+                                 
+                                            </style>
+                                        </div>
+                                        <div class="margin-inputs form-floating">
+                                            {{ form_widget(cvForm.location,{'attr':{'class':'form-control'}}) }}
+                                            <label class="custom-label" for="floatingInput">Location</label>
+                                        </div>
+                                        <div class="margin-inputs xx">
+                                                
+                                            <div class="xx form-floating label-width">
+                                                
+                                                {{ form_errors(cvForm.location) }}
+                                                
+                                            </div>
+
+                                        </div>
+                                        <div class="margin-inputs form-floating">
+                                            {{ form_widget(cvForm.certification,{'attr':{'class':'form-control'}}) }}
+                                            <label class="custom-label" for="floatingInput">Certification</label>
+                                        </div>
+                                        <div class="margin-inputs xx">
+                                                
+                                            <div class="xx form-floating label-width">
+                                                
+                                                {{ form_errors(cvForm.certification) }}
+                                                
+                                            </div>
+
+                                            
+                                        </div>
+                                        <div class="margin-inputs form-floating">
+                                            {{ form_widget(cvForm.contact,{'attr':{'class':'form-control'}}) }}
+                                            <label class="custom-label" for="floatingInput">Contact</label>
+                                        </div>
+                                        <div class="margin-inputs xx">
+                                                
+                                            <div class="xx form-floating label-width">
+                                                
+                                                {{ form_errors(cvForm.contact) }}
+                                                
+                                            </div>
+
+                                            
+                                        </div>
+                                        <div class="margin-inputs label-width1">
+                                            <button type="submit" href="" class="form-control">Edit</button>
+                                        </div>
+
+                    
+                                    {{ form_end(cvForm) }}
+                                </div>
+                            </div> 
+                        </div>
+                        <style>
+                             .table tbody tr {
+        text-align: center;
+    }
+    .table th {
+        font-weight: bold;
+        text-align: center; /* Center align the text */
+    }
+    .container1 {
+        display: flex;
+        justify-content: center; /* Center items horizontally */
+        padding: 0 15px; /* Add padding to the sides to create space */
+    }
+
+    .table tbody td {
+        text-align: center!important; /* Center align the text within table cells */
+    }
+                        </style>
+                            <div class="container"> 
+                                <h2 class="text-center mb-4" style="margin-top: 50px;">Your Skills!</h2>
+                                <div class="row">  
+                                    {% if cv.skills  is not empty %}
+                                    <table class="table table-bordered table-striped">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">Skill</th>
+                                                <th scope="col">Value</th>
+                                                <th scope="col" colspan="2">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                            {% for skill in cv.skills %}
+                                            <tr class="table">
+                                                <td class="text-center">{{ skill.name }}</td>
+                                                <td class="text-center">{{ skill.SkillValue }}</td>
+                                                <td class="text-center"><a href="{{ path('editSkill', {'idc': skill.id}) }}" class="btn custom-btn mt-3 mt-lg-4">Edit</a></td>
+                                                <td class="text-center"><a href="{{ path('removeskill', {'id': skill.id}) }}" class="btn custom-btn mt-3 mt-lg-4">Delete</a></td>
+                                            </tr>
+                                            {% endfor %}
+                                            
+                                        </tbody>
+                                    </table>
+                                    {% else %}
+                                            <h7 class="text-center mb-4" style="margin-top: 50px;">No Skills Available</h7>
+                                   {% endif %}
+                                <div class="margin-inputs label-width1">
+                                    <a  href="{{ path('showcvcreated', {'idc': cv.id}) }}" class="btn custom-btn mt-3 mt-lg-4">Show CV</a>
+                                    <a  href="{{ path('addSkill', {'idc': cv.id}) }}" class="btn custom-btn mt-3 mt-lg-4">Add Skill</a>
+                                </div>
+                               
+                                
+                            </div>                        
+                   
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+{% endblock %}

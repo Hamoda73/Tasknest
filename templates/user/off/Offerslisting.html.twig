@@ -1,0 +1,245 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}All Offers{% endblock %}
+
+{% block navhome %}
+<li class="nav-item">
+    <a class="nav-link click-scroll" href="{{ path('homefreelancer', {'email': userid.email})  }}">Home</a>
+</li>
+{% endblock %}
+{% block navfree %}
+<li class="nav-item">
+   <a class="nav-link click-scroll" href="{{ path('showcvs', {'iduser': userid.id}) }}">Freelancers</a>
+</li>
+
+<li class="nav-item">
+   <a class="nav-link click-scroll" href="{{ path('showAlloffers', {'iduser': userid.id}) }}">Jobs</a>
+</li>
+{% endblock %}
+ {% block navcv %}
+
+
+ <li class="nav-item">
+    <a class="nav-link click-scroll" href="{{ path('my_applications', {'iduser': userid.id})}}"> my Applications</a>
+</li>
+               
+
+
+
+  <li class="nav-item">
+     <a class="nav-link click-scroll" href="{{ path('addcv', {'id': userid.id}) }}">Make Your own CV</a>
+  </li>
+  {% endblock %}
+
+
+{% block body %}
+
+<header class="site-header">
+    <div class="container">
+        <h2 class="text-white">Welcome to TASKNEST</h2>
+        <h6 class="text-white">Check the Available jobs </h6>
+    </div>
+</header> 
+    <section class="explore-section section-padding" id="section_2" style="background-color: white;">
+        
+        <div class="container">
+            <h1 class="text-center mt-3 mb-5">Available Offers </h1>
+
+            <div class="sidebar-widget search mb-3" >
+                <h5 style="text-align: center;">Find what you're looking for  easier </h5>
+                <form id="advanced-search-form" >
+                    <div style="display: flex; justify-content: center; padding: 5px; margin-bottom: -3%;">
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="entrepriseName" placeholder="Entreprise Name">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="domain" placeholder="Domain">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="post" placeholder="Post">
+                        </div>
+                    </div>
+                   
+                    <button type="submit" class="btn btn-primary btn custom-btn mt-3 mt-lg-4 " style="margin-left: 46%; padding-bottom: 10px;"  >Search</button>
+                    
+                </form>
+                </div>
+
+            {% if pagination is not empty %}
+            <div class="row">
+                {% for offer in pagination %}
+                
+                    <div class="col-md-12 mb-4"> {# Use 12 columns to occupy full width #}
+                        <div class="card">
+                            <div class="row no-gutters">
+                                <div class="col-md-4">
+                                    <!-- img-->
+                                    <img src="{{ asset('images/entreprise.jpg') }}" alt="Tasknest Logo" style="width: 100%; height: auto;">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h2 class="card-title rep"><span class="Black">{{ offer.entrepriseName }}</span></h2>
+                                        <p class="card-text dom"><strong><span class="purple">Domain:</span></strong> {{ offer.domain }}</p>
+                                        <p class="card-text psst"><strong><span class="purple">Post:</span></strong> {{ offer.post }}</p>
+                                        <p class="card-text"><strong><span class="purple">Description:</span></strong> {{ offer.description }}</p>
+                                        <p class="card-text"><strong><span class="purple">Salary:</span></strong> {{ offer.salary }}DT</p>
+                                        <p class="card-text"><strong><span class="purple">Period:</span></strong> {{ offer.period }}</p>
+                                        <p class="card-text"><strong><span class="purple">Localisation:</span></strong> {{ offer.localisation }}</p>
+                                    </div>
+                                    <div class="apply-btn">
+                                        <a href="{{ path('addformapp', {'offerId': offer.id,'userid': userid.id }) }}" class="btn custom-btn mt-3 mt-lg-4 applybtn">Apply</a>
+
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            {% else %}
+
+            <h6 class="text-center">No Offers yet</h6>
+
+    {% endif %}
+        </div>
+    </section>
+    <div class="col-lg-12 col-12">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center mb-0">
+                <li class="page-item">
+                    {% if pagination.currentPageNumber > 1 %}
+                    <a class="page-link" href="{{ path('showAlloffers', {'iduser': userid.id,'page': 1}) }}" aria-label="First">
+                        <span aria-hidden="true">First</span>
+                    </a>
+                    {% endif %}
+                </li>
+                <li class="page-item">
+                    {% if pagination.currentPageNumber > 1 %}
+                    <a class="page-link" href="{{ path('showAlloffers', {'iduser': userid.id,'page': pagination.currentPageNumber - 1}) }}" aria-label="Previous">
+                        <span aria-hidden="true">Prev</span>
+                    </a>
+                    {% endif %}
+                </li>
+   
+                   {% for page in range(1, pagination.pageCount) %}
+                   <li class="page-item{% if pagination.currentPageNumber == page %} active{% endif %}" aria-current="page">
+                       <a class="page-link" href="{{ path('showAlloffers', {'iduser': userid.id,'page': page}) }}">{{ page }}</a>
+                   </li>
+                   {% endfor %}
+                 
+                   
+                   <li class="page-item">
+                       {% if pagination.currentPageNumber < pagination.pageCount %}
+                       <a class="page-link" href="{{ path('showAlloffers', {'iduser': userid.id,'page': pagination.currentPageNumber + 1}) }}" aria-label="Next">
+                           <span aria-hidden="true">Next</span>
+                       </a>
+                       {% endif %}
+                   </li>
+                   <li class="page-item">
+                       {% if pagination.currentPageNumber < pagination.pageCount %}
+                       <a class="page-link" href="{{ path('showAlloffers', {'iduser': userid.id,'page': pagination.pageCount}) }}" aria-label="Last">
+                           <span aria-hidden="true">Last</span>
+                       </a>
+                       {% endif %}
+                   </li>
+               </ul>
+           </nav>
+       </div>
+
+    <style>
+        .apply-btn {
+            position: absolute;
+            bottom: 10px; 
+            right: 10px; 
+            color :rgb(240, 154, 16);
+            display: flex;
+        }
+       
+        .Black{
+            color: rgb(212, 91, 26);
+        }
+        .purple {
+            color: purple;
+        }
+
+
+      
+    </style>
+<style>
+    .sidebar-widget.search {
+        background-color: #f5f5f5;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar-widget.search h5 {
+        margin-bottom: 15px;
+        color: #333;
+        font-size: 20px;
+    }
+
+    .sidebar-widget.search .form-group {
+        margin-bottom: 20px;
+    }
+
+    .sidebar-widget.search .form-control {
+        border-radius: 10px;
+    }
+
+    .sidebar-widget.search button.btn-primary {
+        border-radius: 10px;
+        background-color: orange;
+        border-color: orange;
+    }
+
+    .sidebar-widget.search button.btn-primary:hover {
+        background-color: darkorange;
+        border-color: darkorange;
+    }
+</style>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('advanced-search-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Get form inputs
+            var entrepriseName = document.getElementById('entrepriseName').value.trim().toLowerCase();
+            var domain = document.getElementById('domain').value.trim().toLowerCase(); // Get the date value
+            var post = document.getElementById('post').value.trim().toLowerCase();
+            
+            // Perform search based on form inputs
+            performSearch(entrepriseName , domain, post);
+        });
+        
+        function performSearch(entrepriseName, domain, post) {
+            // Loop through each item in the table
+            var items = document.querySelectorAll('.card');
+            items.forEach(function(item) {
+                var entreprise = item.querySelector('.rep').textContent.toLowerCase();
+                var domaintitle = item.querySelector('.dom').textContent.toLowerCase();
+                var position = item.querySelector('.psst').textContent.toLowerCase(); 
+                
+                // Perform search filtering
+                var matchesEntreprise = entreprise.includes(entrepriseName);
+                var matchesDomain = domaintitle.includes(domain); 
+                var matchesposition = position.includes(post); 
+                
+                // Hide or show the item based on search results
+                if (matchesEntreprise && matchesDomain && matchesposition) {
+                    item.style.display = ''; // Show the item
+                } else {
+                    item.style.display = 'none'; // Hide the item
+                }
+            });
+        }
+    });
+</script>
+
+
+{% endblock %}

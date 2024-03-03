@@ -1,0 +1,310 @@
+/*mohamed's css is down there dont touch it*/
+.forget-pass-text {
+  margin-top: -15px;
+  margin-left: 120px;
+}
+.xx {
+  display: flex;
+  flex-direction: row;
+  gap: 200px;
+}
+.spaced-h3 {
+  margin-right: 10px;
+}
+
+.consultpic{
+  margin-left: 200px;
+
+}
+.loginpic {
+  margin-left: 200px;
+}
+.label-width {
+  width: 400px;
+}
+.label-width1 {
+  width: 550px;
+}
+.flex-signup-form-pic {
+  display: flex;
+  flex-direction: row;
+}
+.margin-tab {
+  margin-top: -40px;
+  margin-bottom: -40px;
+}
+
+.loginpic {
+  border-radius: 50%;
+  filter: grayscale(50%);
+  transition: 0.5s ease;
+  cursor: pointer;
+}
+.loginpic:hover {
+  transform: scale(1.3);
+  filter: grayscale(0%);
+}
+.margin-inputs {
+  margin-bottom: -10px;
+}
+.ww {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+.create-account-text {
+  margin-left: 100px;
+  margin-top: 10px;
+}
+.create-account-text:hover {
+  color: rergb(64, 0, 255);
+  margin-left: 100px;
+  margin-top: 10px;
+}
+.have-account-text {
+  margin-left: 100px;
+  margin-top: 10px;
+}
+.logincheckbox-container {
+  margin-bottom: 10px;
+  margin-left: 120px;
+}
+#rememberMe {
+  margin-right: 6px;
+  pointer-events: none;
+}
+.logincheckbox-label {
+  font-weight: 500;
+  color: rgb(137, 137, 137);
+  cursor: pointer;
+}
+#rememberMe:checked {
+  accent-color: #7d2ae8;
+}
+#rememberMe:checked label {
+  color: #7d2ae8;
+}
+.username-navbar {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: xx-small;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.deleto {
+  display: inline-block;
+  padding: 8px 12px;
+  background-color: #dc3545; /* You can choose your desired color */
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.deleto:hover {
+  background-color: #c82333; /* Change the color on hover if desired */
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+button.edit {
+  background-color: #3498db;
+}
+
+button.delete {
+  background-color: #e74c3c;
+}
+
+/*mohamed's css is up there dont touch it*/
+
+
+
+
+
+
+.forget-pass-text {
+  margin-top: -15px;
+  margin-left: 120px;
+}
+.xx {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+}
+
+.loginpic {
+  margin-left: 200px;
+}
+.label-width {
+  width: 400px;
+}
+.label-width1 {
+  width: 550px;
+}
+.flex-signup-form-pic {
+  display: flex;
+  flex-direction: row;
+}
+.margin-tab {
+  margin-top: -40px;
+  margin-bottom: -40px;
+}
+
+.loginpic {
+  border-radius: 50%;
+  filter: grayscale(50%);
+  transition: 0.5s ease;
+  cursor: pointer;
+}
+.loginpic:hover {
+  transform: scale(1.3);
+  filter: grayscale(0%);
+}
+.margin-inputs {
+  margin-bottom: -10px;
+}
+.ww {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+.create-account-text {
+  margin-left: 100px;
+  margin-top: 10px;
+}
+.forgot-password-text {
+  margin-left: 100px;
+  margin-top: -10px;
+}
+.have-account-text {
+  margin-left: 100px;
+  margin-top: 10px;
+}
+.logincheckbox-container {
+  margin-bottom: 10px;
+  margin-left: 120px;
+}
+#rememberMe {
+  margin-right: 6px;
+  pointer-events: none;
+}
+.logincheckbox-label {
+  font-weight: 500;
+  color: rgb(137, 137, 137);
+  cursor: pointer;
+}
+#rememberMe:checked {
+  accent-color: #7d2ae8;
+}
+#rememberMe:checked label {
+  color: #7d2ae8;
+}
+.birthdate-error-message {
+  color: red; /* Set color to red */
+  font-size: 14px; /* Set font size */
+  margin-top: 5px; /* Add margin to separate from the input */
+}
+.profilepic::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.file-label {
+  display: inline-block;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+.admin-infos {
+  color: white;
+  font-size: large;
+}
+.useroptions {
+  background-color: #40e0d0;
+  width: 90%;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  margin-left: 7px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.useroptions:hover,
+.useroptions:focus {
+  transform: scale(1.05);
+  outline: none;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+.dashboard-managment-table {
+  margin-left: 250px;
+  background-image: url("https://www.monitask.com/en/blog/how-to-create-and-promote-teamwork-in-the-workplace");
+  background-size: cover;
+  background-position: center;
+}
+.fname {
+  font-size: 16px;
+  color: black;
+}
+.lname {
+  font-size: 16px;
+  color: black;
+}
+.vv {
+  color: #495057;
+}
+.button-box {
+  width: 220px;
+  margin: 35px auto;
+  position: relative;
+  border-radius: 30px;
+  background: #fff;
+}
+.toggle-btn {
+  padding: 10px 40px;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  outline: none;
+  position: relative;
+  text-align: center;
+}
+#btn {
+  left: 0;
+  top: 0;
+  position: absolute;
+  width: 110px;
+  height: 100%;
+  background: #e67e22;
+  border-radius: 30px;
+  transition: 0.5s;
+}

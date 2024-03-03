@@ -1,0 +1,90 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block body %}
+	<div class="dashboard-managment-table">
+		<!-- TABLE: LATEST ORDERS -->
+		<div class="card">
+			<div class="card-header border-transparent">
+				<div class="card-header">
+					<h3 class="card-title" style=" font-size: 30px; margin-left: 620px; color: rgb(201, 138, 56);  font-weight: bold;">All Skills</h3>
+					<div class="card-tools">
+						
+					</div>
+				</div>
+				<div class="card-tools">
+					<button type="button" class="btn btn-tool" data-card-widget="collapse">
+						<i class="fas fa-minus"></i>
+					</button>
+					<button type="button" class="btn btn-tool" data-card-widget="remove">
+						<i class="fas fa-times"></i>
+					</button>
+				</div>
+			</div>
+			<!-- /.card-header -->
+			<div class="card-body p-0">
+				<div class="table-responsive">
+					{% if skills is empty %}
+   									 <div class="alert alert-info text-center">No Skills uploaded yet.</div>
+						{% else %}
+						<table class="table m-0">
+							<thead>
+								<tr style="background-color: #55d8c6; color: #fff;">
+									<th style="text-align: center;">Freelancer</th>
+									<th style="text-align: center;">Skill</th>
+									<th style="text-align: center;">Value</th>
+									<th style="text-align: center;">Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for skill in skills %}
+								<tr style="background-color: #9ad8cb; color: #333;">
+									<td style="text-align: center;">
+										<img src="{{ asset('images/' ~ skill.cv.user.image) }}" alt="User Image" style="width: 90px; height: 90px; border-radius: 50%;">
+									</td>
+                                    
+									<td style="text-align: center;">{{ skill.name }}</td>
+									<td style="text-align: center;">{{ skill.skillvalue }}</td>
+									<td style="text-align: center;">
+										<form action="" style="display: inline-block;">
+											<a href="{{ path('removeskilladmin', {'id': skill.id}) }}" class="btn btn-danger">Delete</a>
+										</form>
+									</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					{% endif %}
+					
+					
+				</div>
+				  
+				<!-- /.table-responsive -->
+			</div>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-md-6">
+						<form class="text-center">
+							<a href="{{ path('showcvsadmin') }}" class="btn custom-btn">Return to CVs</a>
+						</form>
+					</div>
+					
+				</div>
+			</div>
+			<!-- /.content -->
+		</div>
+	</div>
+	<style>
+		.custom-btn {
+			color: #ffffff; /* Text color */
+			background-color: #0c917a; /* Background color */
+			border-color: #0c917a; /* Border color */
+		}
+	
+		.custom-btn:hover {
+			background-color: #38c4ac; /* Hover background color */
+			border-color: #38c4ac; /* Hover border color */
+		}
+	</style>
+{% endblock %}
+
+{% block footer %} {% endblock %}

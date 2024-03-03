@@ -1,0 +1,113 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Tasknest - SKILL!
+{% endblock %}
+
+
+
+{% block navhome %}
+<li class="nav-item">
+    <a class="nav-link click-scroll" href="{{ path('homefreelancer', {'email': userid.email})  }}">Home</a>
+</li>
+{% endblock %}
+{% block navfree %}
+<li class="nav-item">
+   <a class="nav-link click-scroll" href="{{ path('showcvs', {'iduser': userid.id}) }}">Freelancers</a>
+</li>
+
+<li class="nav-item">
+   <a class="nav-link click-scroll" href="{{ path('showAlloffers', {'iduser': userid.id}) }}">Jobs</a>
+</li>
+{% endblock %}
+ {% block navcv %}
+
+ <li class="nav-item">
+    <a class="nav-link click-scroll" href="{{ path('my_applications', {'iduser': userid.id})}}"> my Applications</a>
+</li>
+
+
+  <li class="nav-item">
+     <a class="nav-link click-scroll" href="{{ path('addcv', {'id': userid}) }}">Make Your own CV</a>
+  </li>
+  {% endblock %}
+
+
+{% block body %}
+<main>
+    <header class="login-gif site-header">
+        <div class="container">
+            <h2 class="text-white">Welcome to TASKNEST</h2>
+            <h6 class="text-white">Edit your skills</h6>
+        </div>
+    </header>
+	<style>
+        .custom-label {
+            color: blue!important;
+        }
+    </style>
+    <section class="explore-section section-padding" id="section_2">
+        <div class="container">
+            <div class="row">              
+                <div class="container">
+                    <h2 class="text-center mb-4" style="margin-top: -50px;">Edit your Skills!</h2>
+                    <div class="row">
+                        <div class="col-lg-6" style="order: 2;">
+                            <div class="ww">
+                                <img src="{{ asset('images/loginpic.png') }}" alt="loginpic" height="270" class="loginpic" style="width: auto; max-width: 50%;">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="custom-form" id="signup-form">
+                                {{ form_start(skillForm, {attr: {novalidate: 'novalidate'}}) }}
+                                    <div class="margin-inputs xx">
+                                        <div class="xx form-floating label-width">
+                                            {{ form_widget(skillForm.name, {'attr': {'class': 'form-control'}}) }}
+                                            <label class="custom-label" for="floatingInput">Skill</label>
+                                        </div>
+                                        
+                                        <div class="xx form-floating label-width">
+                                            {{ form_widget(skillForm.SkillValue, {'attr': {'class': 'form-control', 'min': 0, 'max': 100}}) }}
+                                            <label class="custom-label" for="floatingInput">Skill Value</label>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="margin-inputs xx">
+                                                
+                                        <div class="xx form-floating label-width">
+                                            
+                                            {{ form_errors(skillForm.name) }}
+                                            
+                                        </div>
+                                        <div class="xx form-floating label-width">
+                                                
+                                            {{ form_errors(skillForm.SkillValue) }}
+                                            
+                                        </div>
+
+                                        
+                                    </div>
+                                    <style>
+                                        .margin-inputs .label-width1 {
+                                            display: inline-block;
+                                            margin-right: 10px;
+                                        }
+                                        .margin-inputs .label-width1:last-child {
+                                            margin-right: 0;
+                                        }
+                                    </style>
+                                    <div class="xx form-floating label-width action action-item">
+                                        <a href="{{ path('showcvcreated', {'idc': cv.id}) }}" class="btn custom-btn mt-3 mt-lg-4">Show CV</a>
+                                     
+                                        <button href="{{ path('addSkill', {'idc': skill.cv.id}) }}" type="submit" class="btn custom-btn mt-3 mt-lg-4">Add Skill</button>
+                                    </div>
+                                {{ form_end(skillForm) }}
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}
