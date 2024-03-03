@@ -46,4 +46,31 @@ class ForumController extends AbstractController
         ]
      );
     }
+    #[Route('/forumSingle', name: 'app_forumSingle')]
+    public function forumSingle(): Response
+    {
+
+        return $this->render('forum/forum-single.html.twig',
+           
+        
+     );
+    }
+    #[Route('/forumCat', name: 'app_forumCat')]
+    public function forumCat(): Response
+    {
+
+        return $this->render('forum/forums.html.twig',
+           
+        
+     );
+    }
+    #[Route('/forumCreation', name: 'app_forumCreation')]
+    public function forumCreation(): Response
+    {
+
+        return $this->render('forum/forum.html - Copie.twig',
+           
+        
+     );
+    }
 }
