@@ -11,6 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\DBAL\Types\Types;
 use phpDocumentor\Reflection\Types\Boolean;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Entity\Dislikes;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -74,9 +75,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'User', targetEntity: Complaint::class)]
     private Collection $complaints;
 
+    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Dislikes::class)]
+    private Collection $dislikes;
+
+
+
     public function __construct()
     {
         $this->complaints = new ArrayCollection();
+        $this->dislikes = new ArrayCollection();
+        
     }
 
     /**
@@ -287,5 +295,37 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->getLname(); 
     }
+
+    /**
+     * @return Collection<int, Dislikes>
+     */
+    public function getDislikes(): Collection
+    {
+        return $this->dislikes;
+    }
+
+    public function addDislike(Dislikes $dislike): static
+    {
+        if (!$this->dislikes->contains($dislike)) {
+            $this->dislikes->add($dislike);
+            $dislike->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDislike(Dislikes $dislike): static
+    {
+        if ($this->dislikes->removeElement($dislike)) {
+            // set the owning side to null (unless already changed)
+            if ($dislike->getUserId() === $this) {
+                $dislike->setUserId(null);
+            }
+        }
+
+        return $this;
+    }
+
+
     
 }

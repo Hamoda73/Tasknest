@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create New Post</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Create New Post</h1>
+  <form action="submit_post.php" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input type="text" name="title" id="title" required>
+    </div>
+    <div class="form-group">
+      <label for="content">Content:</label>
+      <textarea name="content" id="content" rows="10" required></textarea>
+    </div>
+    <div class="form-group">
+      <label for="category">Category:</label>
+      <select name="category" id="category" required>
+        <option value="">Select a Category</option>
+        <option value="1">General Discussion</option>
+        <option value="2">Tech Talk</option>
+        <option value="3">Art & Design</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="image">Image(s):</label>
+      <input type="file" name="image[]" id="image" multiple>
+    </div>
+    <div class="form-group">
+      <label for="video_url">Video URL (optional):</label>
+      <input type="url" name="video_url" id="video_url">
+    </div>
+    <button type="submit">Create Post</button>
+  </form>
+  <script src="script.js"></script>
+</body>
+</html>
