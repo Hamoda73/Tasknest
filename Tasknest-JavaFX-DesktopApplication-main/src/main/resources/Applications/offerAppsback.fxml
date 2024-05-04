@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="785.0" prefWidth="1900.0" style="-fx-background-color: EA8D22FF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dashboard.controllers.displayappsback">
+    <stylesheets>
+        <URL value="@cardappsOffer.css" />
+    </stylesheets>
+    <stylesheets>
+        <URL value="@menu.css" />
+    </stylesheets>
+    <children>
+        <VBox prefHeight="680.0" prefWidth="216.0" style="-fx-background-color: EA8D22FF;">
+            <children>
+                <VBox alignment="CENTER" prefHeight="77.0" prefWidth="216.0" style="-fx-background-color: white; -fx-background-radius: 100;">
+                    <children>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/logo.png" />
+                            </image>
+                            <VBox.margin>
+                                <Insets left="-5.0" />
+                            </VBox.margin>
+                        </ImageView>
+                    </children>
+                    <VBox.margin>
+                        <Insets left="10.0" right="15.0" top="40.0" />
+                    </VBox.margin>
+                </VBox>
+                <VBox prefHeight="147.0" prefWidth="194.0">
+                    <VBox.margin>
+                        <Insets top="20.0" />
+                    </VBox.margin>
+                    <children>
+                        <ImageView fx:id="profile" onMouseClicked="#goprofile" fitHeight="136.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/login.png" />
+                            </image>
+                            <VBox.margin>
+                                <Insets left="40.0" right="10.0" />
+                            </VBox.margin>
+                        </ImageView>
+                    </children>
+                </VBox>
+                <HBox alignment="CENTER" prefHeight="64.0" prefWidth="216.0">
+                    <children>
+                        <Label  fx:id="user" onMouseClicked="#listusers" alignment="CENTER" prefHeight="39.0" prefWidth="62.0" text="User" textFill="WHITE">
+                            <font>
+                                <Font name="Calibri Bold Italic" size="24.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="64.0" prefWidth="216.0">
+                    <children>
+                        <Label fx:id="allcvs" onMouseClicked="#allcvsback" alignment="CENTER" prefHeight="39.0" prefWidth="120.0" text="Freelancers" textFill="WHITE">
+                            <font>
+                                <Font name="Calibri Bold Italic" size="24.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="64.0" prefWidth="216.0">
+                    <children>
+                        <Label fx:id="offerapps" alignment="CENTER" prefHeight="39.0" prefWidth="165.0" text="Offers and Apps" textFill="WHITE" onMouseClicked="#showalloffers">
+                            <font>
+                                <Font name="Calibri Bold Italic" size="24.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="64.0" prefWidth="216.0">
+                    <children>
+                        <Label fx:id="forum" alignment="CENTER" prefHeight="39.0" prefWidth="78.0" text="Forum" textFill="WHITE">
+                            <font>
+                                <Font name="Calibri Bold Italic" size="24.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="64.0" prefWidth="216.0">
+                    <children>
+                        <Label fx:id="reclamation" onMouseClicked="#showreclamation" alignment="CENTER" prefHeight="39.0" prefWidth="191.0" text="Reclamation">
+                            <font>
+                                <Font name="Calibri Bold Italic" size="24.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+        <VBox layoutX="216.0" layoutY="7.0" prefHeight="769.0" prefWidth="1284.0" style="-fx-background-color: white; -fx-background-radius: 25;">
+            <children>
+                <HBox prefHeight="169.0" prefWidth="1098.0" style="-fx-background-color: #33208FFF; -fx-background-radius: 25;">
+                    <VBox.margin>
+                        <Insets left="10.0" right="10.0" top="30.0" />
+                    </VBox.margin>
+                    <children>
+                        <ImageView fitHeight="175.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/password.png" />
+                            </image>
+                        </ImageView>
+                        <VBox prefHeight="175.0" prefWidth="876.0">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="103.0" prefWidth="876.0" text="Dashboard" textFill="WHITE">
+                                    <font>
+                                        <Font name="Calibri Bold Italic" size="57.0" />
+                                    </font>
+                                </Label>
+                                <Label alignment="CENTER" prefHeight="101.0" prefWidth="883.0" text="Offers and Apps DATA " textFill="#8ae478">
+                                    <font>
+                                        <Font name="Calibri Bold Italic" size="37.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+                <HBox prefHeight="556.0" prefWidth="1284.0">
+                    <children>
+                        <ScrollPane fx:id="appssScrollPane" prefHeight="551.0" prefWidth="731.0" style="-fx-background-color: transparent;">
+                            <HBox.margin>
+                                <Insets left="180.0" right="40.0" top="5.0" />
+                            </HBox.margin>
+                        </ScrollPane>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

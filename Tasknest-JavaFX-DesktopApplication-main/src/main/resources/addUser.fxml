@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="680.0" prefWidth="1320.0" style="-fx-background-color: #31768f;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tasknest.controllers.AddOffer">
+    <children>
+        <VBox prefHeight="680.0" prefWidth="216.0">
+            <children>
+                <VBox alignment="CENTER" prefHeight="77.0" prefWidth="216.0" style="-fx-background-color: white; -fx-background-radius: 100;">
+                    <children>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@images/logo.png" />
+                            </image>
+                            <VBox.margin>
+                                <Insets left="-5.0" />
+                            </VBox.margin>
+                        </ImageView>
+                    </children>
+                    <VBox.margin>
+                        <Insets left="10.0" right="15.0" top="40.0" />
+                    </VBox.margin>
+                </VBox>
+                <VBox prefHeight="147.0" prefWidth="194.0">
+                    <VBox.margin>
+                        <Insets top="20.0" />
+                    </VBox.margin>
+                    <children>
+                        <ImageView fitHeight="116.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@images/login.png" />
+                            </image>
+                            <VBox.margin>
+                                <Insets left="50.0" />
+                            </VBox.margin>
+                        </ImageView>
+                    </children>
+                </VBox>
+                <HBox alignment="CENTER" prefHeight="64.0" prefWidth="216.0">
+                    <children>
+                        <Label alignment="CENTER" prefHeight="39.0" prefWidth="62.0" text="Home" textFill="WHITE">
+                            <font>
+                                <Font name="Calibri Bold Italic" size="24.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="64.0" prefWidth="216.0">
+                    <children>
+                        <Label alignment="CENTER" prefHeight="39.0" prefWidth="120.0" text="Freelancers" textFill="WHITE">
+                            <font>
+                                <Font name="Calibri Bold Italic" size="24.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="64.0" prefWidth="216.0">
+                    <children>
+                        <Label alignment="CENTER" prefHeight="39.0" prefWidth="129.0" text="Reclamation" textFill="WHITE">
+                            <font>
+                                <Font name="Calibri Bold Italic" size="24.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="64.0" prefWidth="216.0">
+                    <children>
+                        <Label alignment="CENTER" prefHeight="39.0" prefWidth="78.0" text="Forum" textFill="WHITE">
+                            <font>
+                                <Font name="Calibri Bold Italic" size="24.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+        <VBox layoutX="216.0" layoutY="7.0" prefHeight="666.0" prefWidth="1098.0">
+            <children>
+                <VBox prefHeight="674.0" prefWidth="1106.0" style="-fx-background-color: white; -fx-background-radius: 25;">
+                    <children>
+                        <HBox prefHeight="48.0" prefWidth="1098.0">
+                            <children>
+                                <VBox prefHeight="48.0" prefWidth="674.0" />
+                                <VBox alignment="CENTER" opacity="0.53" prefHeight="38.0" prefWidth="284.0" style="-fx-background-color: #6cb9b9; -fx-background-radius: 25;">
+                                    <HBox.margin>
+                                        <Insets bottom="5.0" left="50.0" right="20.0" top="5.0" />
+                                    </HBox.margin>
+                                    <children>
+                                        <Label prefHeight="22.0" prefWidth="102.0" text="Your Own Cv" textFill="WHITE">
+                                            <font>
+                                                <Font name="Calibri Bold Italic" size="18.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </VBox>
+                            </children></HBox>
+                        <HBox prefHeight="572.0" prefWidth="1075.0">
+                            <children>
+                                <VBox prefHeight="559.0" prefWidth="1098.0">
+                                    <children>
+                                        <HBox prefHeight="131.0" prefWidth="1068.0" style="-fx-background-color: #6cb9b9; -fx-background-radius: 25;">
+                                            <VBox.margin>
+                                                <Insets left="15.0" right="15.0" />
+                                            </VBox.margin>
+                                            <children>
+                                                <ImageView fitHeight="131.0" fitWidth="147.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@images/vector.png" />
+                                                    </image>
+                                                </ImageView>
+                                                <VBox prefHeight="137.0" prefWidth="937.0">
+                                                    <children>
+                                                        <Label prefHeight="46.0" prefWidth="407.0" text="Discover . Learn . Enjoy" textFill="WHITE">
+                                                            <VBox.margin>
+                                                                <Insets left="280.0" top="10.0" />
+                                                            </VBox.margin>
+                                                            <font>
+                                                                <Font name="Calibri Bold Italic" size="40.0" />
+                                                            </font></Label>
+                                                        <HBox>
+                                                            <children>
+                                                                <TextField prefHeight="34.0" prefWidth="468.0" promptText="Search Here ..." style="-fx-background-radius: 25;">
+                                                                    <HBox.margin>
+                                                                        <Insets left="240.0" top="28.0" />
+                                                                    </HBox.margin>
+                                                                </TextField>
+                                                                <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                                    <image>
+                                                                        <Image url="@images/search.png" />
+                                                                    </image>
+                                                                    <HBox.margin>
+                                                                        <Insets left="-30.0" top="32.0" />
+                                                                    </HBox.margin>
+                                                                </ImageView>
+                                                            </children>
+                                                        </HBox>
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                        </HBox>
+                                        <HBox prefHeight="446.0" prefWidth="798.0">
+                                            <children>
+                                                <VBox prefHeight="446.0" prefWidth="1110.0">
+                                                    <children>
+                                                        <HBox prefHeight="439.0" prefWidth="1098.0">
+                                                            <children>
+                                                                <VBox prefHeight="100.0" prefWidth="495.0">
+                                                                    <children>
+                                                                        <HBox prefHeight="423.0" prefWidth="300.0" style="-fx-background-color: #f9f9f9; -fx-background-radius: 25;">
+                                                                            <VBox.margin>
+                                                                                <Insets bottom="20.0" left="5.0" right="10.0" top="20.0" />
+                                                                            </VBox.margin>
+                                                                            <effect>
+                                                                                <DropShadow height="7.0" radius="3.0" width="7.0">
+                                                                                    <color>
+                                                                                        <Color red="0.7368420958518982" green="0.6658869385719299" blue="0.6658869385719299" />
+                                                                                    </color>
+                                                                                </DropShadow>
+                                                                            </effect>
+                                                                        </HBox>
+                                                                    </children>
+                                                                </VBox>
+                                                                <ScrollPane prefHeight="419.0" prefWidth="978.0" style="-fx-background-color: while;">
+                                                                    <content>
+                                                                        <HBox opacity="0.23" prefHeight="248.0" prefWidth="746.0" spacing="10.0" style="-fx-background-radius: 25; -fx-background-color: #6cb9b9;">
+                                                                            <opaqueInsets>
+                                                                                <Insets />
+                                                                            </opaqueInsets>
+                                                                            <effect>
+                                                                                <DropShadow height="7.0" radius="3.0" width="7.0">
+                                                                                    <color>
+                                                                                        <Color red="0.6842105388641357" green="0.6335282921791077" blue="0.6335282921791077" />
+                                                                                    </color>
+                                                                                </DropShadow>
+                                                                            </effect>
+                                                                            <children>
+                                                                                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                                                    <HBox.margin>
+                                                                                        <Insets left="10.0" top="30.0" />
+                                                                                    </HBox.margin>
+                                                                                </ImageView>
+                                                                            </children>
+                                                                        </HBox>
+                                                                    </content>
+                                                                    <HBox.margin>
+                                                                        <Insets top="20.0" />
+                                                                    </HBox.margin>
+                                                                </ScrollPane>
+                                                            </children>
+                                                        </HBox>
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

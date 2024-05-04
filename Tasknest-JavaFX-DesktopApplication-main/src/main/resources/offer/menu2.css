@@ -1,0 +1,76 @@
+#home {
+    -fx-text-fill: white;
+}
+
+#home:hover {
+    -fx-text-fill: black;
+}
+
+#yourApps {
+    -fx-text-fill: white;
+}
+
+#yourApps:hover{
+    -fx-text-fill: black;
+}
+
+#freelancer {
+    -fx-text-fill: white;
+}
+
+#freelancer:hover{
+    -fx-text-fill: black;
+}
+
+#reclamation{
+    -fx-text-fill: white;
+}
+
+#reclamation:hover{
+    -fx-text-fill: black;
+}
+
+#forum{
+    -fx-text-fill: white;
+}
+#forum:hover{
+    -fx-text-fill: black;
+}
+
+#checkoffers{
+    -fx-text-fill: white;
+}
+#checkoffers:hover{
+    -fx-text-fill: black;
+}
+
+#postoffer{
+    -fx-text-fill: white;
+}
+#postoffer:hover{
+    -fx-text-fill: black;
+}
+#yourowncv{
+    -fx-text-fill: white;
+}
+#yourowncv:hover{
+    -fx-text-fill: black;
+}
+#urapps{
+    -fx-text-fill: white;
+}
+#urapps:hover{
+    -fx-text-fill: black;
+}
+#user{
+    -fx-text-fill: white;
+}
+#user:hover{
+    -fx-text-fill: black;
+}
+#allcvs{
+    -fx-text-fill: white;
+}
+#allcvs:hover{
+    -fx-text-fill: black;
+}

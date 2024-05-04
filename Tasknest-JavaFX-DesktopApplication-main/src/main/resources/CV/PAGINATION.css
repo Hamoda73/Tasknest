@@ -1,0 +1,10 @@
+.pagination .pagination-control > .pagination-page {
+    /* Your styles for the pagination buttons */
+    -fx-background-color: #892193FF;
+    -fx-border-color: #2b012f;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-padding: 5px;
+}

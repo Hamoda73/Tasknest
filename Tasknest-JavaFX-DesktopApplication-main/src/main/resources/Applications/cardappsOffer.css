@@ -1,0 +1,66 @@
+.offerapp-card .Edit-buttonn {
+    -fx-pref-width: 100;
+    -fx-background-color: #f5c54c;
+    -fx-background-radius: 25;
+    -fx-border-radius: 25;
+    -fx-text-fill: white;
+    -fx-font-family: Calibri;
+}
+.offerapp-card .Resume-button {
+    -fx-pref-width: 200;
+    -fx-background-color: #7f80f1;
+    -fx-background-radius: 25;
+    -fx-border-radius: 25;
+    -fx-text-fill: white;
+    -fx-font-family: Calibri;
+}
+.offerapp-card .delete-button {
+    -fx-pref-width: 100;
+    -fx-background-color: #f16974;
+    -fx-background-radius: 25;
+    -fx-border-radius: 25;
+    -fx-text-fill: white;
+    -fx-font-family: Calibri;
+}
+
+.offerapp-card .sms-button {
+    -fx-pref-width: 150;
+    -fx-background-color: #442ea1;
+    -fx-background-radius: 25;
+    -fx-border-radius: 25;
+    -fx-text-fill: white;
+    -fx-font-family: Calibri;
+}
+
+
+.offerapp-card {
+    -fx-background-color: white;
+    -fx-background-radius: 20;
+    -fx-padding: 10;
+    -fx-border-radius: 20;
+    -fx-border-color: #31768f;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 0);
+    -fx-font-family: Calibri;
+    -fx-font-size: 24;
+    -fx-font-weight: bold;
+
+    -fx-padding-right: 40px;
+}
+
+.offerapp-card.image-view {
+    -fx-fit-width: 5; /* Image width */
+    -fx-fit-height: 5; /* Image height */
+}
+
+.offerapp-card .details {
+    -fx-spacing: 5; /* Spacing between elements */
+}
+
+.no-apps-label{
+    -fx-font-size: 50px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #5e0808; /* Black text color */
+}
+
+

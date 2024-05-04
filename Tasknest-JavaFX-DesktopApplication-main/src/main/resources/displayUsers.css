@@ -1,0 +1,9 @@
+* {
+    -fx-font-family: "Calibri";
+    -fx-font-size: 15.0px;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
+* {
+    -fx-font: 15.0 "Calibri Bold Italic";
+}

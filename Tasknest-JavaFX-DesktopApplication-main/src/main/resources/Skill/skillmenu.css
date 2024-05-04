@@ -1,0 +1,35 @@
+#home {
+    -fx-text-fill: white;
+}
+
+#home:hover {
+    -fx-text-fill: black;
+}
+#freelancers {
+    -fx-text-fill: white;
+}
+
+#freelancers:hover {
+    -fx-text-fill: black;
+}
+#reclamation {
+    -fx-text-fill: white;
+}
+
+#reclamation:hover {
+    -fx-text-fill: black;
+}
+#forum {
+    -fx-text-fill: white;
+}
+
+#forum:hover {
+    -fx-text-fill: black;
+}
+#yourowncv {
+    -fx-text-fill: white;
+}
+
+#yourowncv:hover {
+    -fx-text-fill: black;
+}

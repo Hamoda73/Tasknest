@@ -1,0 +1,59 @@
+
+.offer-card .apply-button {
+    -fx-pref-width: 200;
+    -fx-background-color: #6cb9b9;
+    -fx-background-radius: 25;
+    -fx-border-radius: 25;
+    -fx-text-fill: white;
+    -fx-font-family: Calibri;
+}
+
+.offer-card .delete-button {
+    -fx-pref-width: 100;
+    -fx-background-color: #f30b0b;
+    -fx-background-radius: 25;
+    -fx-border-radius: 25;
+    -fx-text-fill: white;
+    -fx-font-family: Calibri;
+}
+
+.offer-card .edit-button {
+    -fx-pref-width: 100;
+    -fx-background-color: #ea8d22;
+    -fx-background-radius: 25;
+    -fx-border-radius: 25;
+    -fx-text-fill: white;
+    -fx-font-family: Calibri;
+}
+.offer-card {
+    -fx-background-color: white;
+    -fx-background-radius: 20;
+    -fx-padding: 10;
+    -fx-border-radius: 20;
+    -fx-border-color: #31768f;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 0);
+    -fx-font-family: Calibri;
+    -fx-font-size: 24;
+    -fx-font-weight: bold;
+
+    -fx-padding-right: 40px;
+}
+
+.offer-card .image-view {
+    -fx-fit-width: 10; /* Image width */
+    -fx-fit-height: 10; /* Image height */
+}
+
+.offer-card .details {
+    -fx-spacing: 5; /* Spacing between elements */
+}
+
+.no-offers-label {
+    -fx-font-size: 50px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #5e0808; /* Black text color */
+}
+
+
+

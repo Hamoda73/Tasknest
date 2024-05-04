@@ -1,0 +1,38 @@
+/* style.css */
+
+/* Root container */
+.root {
+    -fx-background-color: #f0f0f0; /* Set background color */
+}
+
+/* Form container */
+#form-container {
+    -fx-background-color: #69f1c7; /* Set form background color */
+    -fx-padding: 20px; /* Add padding */
+    -fx-spacing: 10px; /* Add spacing between elements */
+}
+
+/* Text fields */
+.text-field {
+    -fx-background-color: #f9f9f9; /* Set background color */
+    -fx-border-color: #ccc; /* Set border color */
+    -fx-border-width: 1px; /* Set border width */
+    -fx-border-radius: 5px; /* Add border radius */
+    -fx-pref-width: 200px; /* Set preferred width */
+}
+
+/* Submit button */
+.button {
+    -fx-background-color: #69f1c7; /* Set background color */
+    -fx-text-fill: #e1efef; /* Set text color */
+    -fx-border-radius: 5px; /* Add border radius */
+    -fx-padding: 10px 20px; /* Add padding */
+    -fx-cursor: hand; /* Change cursor to pointer on hover */
+    -fx-font-weight: bold; /* Make text bold */
+}
+
+
+/* Button hover effect */
+.button:hover {
+    -fx-background-color: #19a479; /* Darken background color on hover */
+}

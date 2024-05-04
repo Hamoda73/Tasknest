@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<HBox fx:id="root1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="870.0" prefWidth="604.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tasknest.controllers.CV.ResumeController">
+   <children>
+      <VBox prefHeight="870.0" prefWidth="233.0" style="-fx-background-color: #31b2e7;">
+         <children>
+            <ImageView fx:id="imagecv" fitHeight="212.0" fitWidth="182.0" pickOnBounds="true" preserveRatio="true">
+               <VBox.margin>
+                  <Insets left="25.0" top="5.0" />
+               </VBox.margin>
+            </ImageView>
+            <Label fx:id="name" alignment="CENTER" prefHeight="30.0" prefWidth="228.0" text="Label">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="locat" prefHeight="20.0" prefWidth="184.0" text="Label" textFill="#f5f2f2bc">
+               <VBox.margin>
+                  <Insets left="5.0" top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="number" prefHeight="20.0" prefWidth="183.0" text="Label" textFill="#ffffffb2">
+               <VBox.margin>
+                  <Insets left="5.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="email" prefHeight="20.0" prefWidth="223.0" text="Label" textFill="#ffffffaa">
+               <VBox.margin>
+                  <Insets left="5.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Line endX="79.29287719726562" endY="-0.6213386058807373" startX="258.5857849121094" startY="-0.621474027633667" stroke="WHITE" strokeMiterLimit="7.0">
+               <rotationAxis>
+                  <Point3D />
+               </rotationAxis>
+               <VBox.margin>
+                  <Insets left="10.0" top="15.0" />
+               </VBox.margin>
+            </Line>
+            <Label prefHeight="29.0" prefWidth="166.0" text="SKILLS" textFill="WHITE">
+               <VBox.margin>
+                  <Insets left="25.0" top="15.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Calibri Bold Italic" size="18.0" />
+               </font>
+            </Label>
+            <VBox fx:id="skillContainer">
+            <HBox    prefHeight="21.0" prefWidth="184.0">
+               <children>
+                  <Label fx:id="skillN" alignment="CENTER" text="JAVA" textFill="#ffffffab">
+                     <font>
+                        <Font name="Calibri Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <ProgressBar fx:id="prog" prefHeight="10.0" prefWidth="99.0" progress="0.28">
+                     <HBox.margin>
+                        <Insets left="5.0" top="3.0" />
+                     </HBox.margin>
+                  </ProgressBar>
+                  <Label fx:id="value" text="Label" textFill="#ffffffa8">
+                     <HBox.margin>
+                        <Insets left="6.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Calibri" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets left="7.0" />
+               </VBox.margin>
+            </HBox>
+            </VBox>
+            <Line endX="79.29287719726562" endY="-0.6213386058807373" startX="266.5857849121094" startY="-0.6213348507881165" stroke="WHITE" strokeMiterLimit="7.0">
+               <VBox.margin>
+                  <Insets left="10.0" top="15.0" />
+               </VBox.margin>
+            </Line>
+            <Label prefHeight="26.0" prefWidth="166.0" text="LANGUAGES" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold Italic" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="25.0" top="20.0" />
+               </VBox.margin>
+            </Label>
+            <VBox fx:id="language" />
+            <Line endX="79.29287719726562" endY="-0.6213386058807373" startX="264.98577880859375" startY="-0.6213226318359375" stroke="WHITE" strokeMiterLimit="7.0">
+               <VBox.margin>
+                  <Insets left="10.0" top="15.0" />
+               </VBox.margin>
+            </Line>
+            <Label prefHeight="37.0" prefWidth="199.0" text="SOCIAL" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold Italic" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="25.0" top="20.0" />
+               </VBox.margin>
+            </Label>
+            <Label prefHeight="22.0" prefWidth="176.0" text="FaceBook :" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold Italic" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="15.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="contact" alignment="TOP_LEFT" prefHeight="76.0" prefWidth="215.0" text="Label" textFill="#23265f">
+               <font>
+                  <Font name="Calibri Bold Italic" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="7.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
+      </VBox>
+      <VBox prefHeight="870.0" prefWidth="392.0" style="-fx-background-color: #ffffff;" styleClass="bac">
+         <children>
+            <Label fx:id="bio" alignment="CENTER" prefHeight="61.0" prefWidth="394.0" text="Label" textFill="#31b2e7">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Line endX="1446.271728515625" endY="-513.2039184570312" startX="1098.771728515625" startY="-513.2039184570312" stroke="#31b2e7" strokeMiterLimit="7.0">
+               <VBox.margin>
+                  <Insets left="17.0" />
+               </VBox.margin>
+            </Line>
+            <Label prefHeight="38.0" prefWidth="340.0" text="EXPERIENCE" textFill="#31b2e7">
+               <VBox.margin>
+                  <Insets left="25.0" top="40.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Calibri Bold Italic" size="23.0" />
+               </font>
+            </Label>
+            <VBox>
+               <Label fx:id="experience" prefHeight="200.0" prefWidth="340.0" text="Label">
+                  <font>
+                     <Font name="Calibri" size="18.0" />
+                  </font>
+                  <VBox.margin>
+                     <Insets left="10.0" />
+                  </VBox.margin>
+               </Label>
+            </VBox>
+
+            <Line endX="805.8787841796875" endY="-312.07745361328125" startX="1162.1788330078125" startY="-311.870361328125" stroke="#31b2e7" strokeMiterLimit="7.0">
+               <VBox.margin>
+                  <Insets left="17.0" top="20.0" />
+               </VBox.margin>
+            </Line>
+            <Label prefHeight="38.0" prefWidth="340.0" text="CERTIFICATION" textFill="#31b2e7">
+               <font>
+                  <Font name="Calibri Bold Italic" size="23.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="25.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="certification" prefHeight="38.0" prefWidth="340.0" text="Label">
+               <font>
+                  <Font name="Calibri" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </Label>
+
+         </children>
+      </VBox>
+   </children>
+</HBox>
