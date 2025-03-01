@@ -11,3 +11,9 @@ Framework: Symfony
 Frontend: Twig, Bootstrap
 Backend: PHP, Doctrine ORM
 Database: MySQL 
+
+<img src="https://github.com/Hamoda73/Tasknest/blob/master/1719141246136.jpg" width="25%"/>
+<img src="https://github.com/Hamoda73/Tasknest/blob/master/1719135225255.jpg" width="25%"/>
+
+
+
